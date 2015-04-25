@@ -1,5 +1,6 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -48,7 +49,16 @@ public class MainActivity extends ActionBarActivity {
 	
 	public void textViewNum_onClick(View v){
 		countLearning.nextValue();
+		playConfirmSound();
 		updateViews();
+	}
+
+	/**
+	 * p
+	 */
+	private void playConfirmSound() {
+		MediaPlayer mPlayer = MediaPlayer.create(MainActivity.this, R.raw.app_6);
+		mPlayer.start();
 	}
 
 	private void updateViews() {
