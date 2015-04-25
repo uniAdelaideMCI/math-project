@@ -1,12 +1,16 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
+	private CountLearning countLearning = new CountLearning();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,5 +34,11 @@ public class MainActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	public void textViewNum_onClick(View v){
+		TextView textView = (TextView)findViewById(R.id.textViewNum);
+		int value = countLearning.nextValue();
+		textView.setText(String.valueOf(value));
 	}
 }
