@@ -8,13 +8,23 @@ import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
+	
+	private static String COUNT_LEARNING = "au.edu.adelaide.mci.kidnumeracy.MainActivity.COUNT_LEARNING";
 
-	private CountLearning countLearning = new CountLearning();
+	private CountLearning countLearning;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		//restore counter learning object
+		if (null != savedInstanceState){
+			countLearning = (CountLearning)savedInstanceState.getSerializable(COUNT_LEARNING);
+		}else{
+			countLearning = new CountLearning();
+		}
+		updateViews();		
 	}
 
 	@Override
@@ -37,8 +47,18 @@ public class MainActivity extends ActionBarActivity {
 	}
 	
 	public void textViewNum_onClick(View v){
+		countLearning.nextValue();
+		updateViews();
+	}
+
+	private void updateViews() {
 		TextView textView = (TextView)findViewById(R.id.textViewNum);
-		int value = countLearning.nextValue();
-		textView.setText(String.valueOf(value));
+		textView.setText(String.valueOf(countLearning.getCurrentVaue()));
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		outState.putSerializable(COUNT_LEARNING, countLearning);
 	}
 }

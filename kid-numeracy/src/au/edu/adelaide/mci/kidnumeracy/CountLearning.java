@@ -3,12 +3,16 @@
  */
 package au.edu.adelaide.mci.kidnumeracy;
 
+import java.io.Serializable;
+
 /**
  * @author Yun
  *
  */
-public class CountLearning {
+public class CountLearning implements Serializable {
 	
+	private static final long serialVersionUID = 422349641231512002L;
+
 	private int currentValue = 0;
 	
 	private int step = 1;
