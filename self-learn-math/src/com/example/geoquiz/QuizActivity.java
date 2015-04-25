@@ -1,5 +1,7 @@
 package com.example.geoquiz;
 
+import android.app.ActionBar;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -36,6 +38,11 @@ public class QuizActivity extends ActionBarActivity {
 		Log.d(TAG, "onCreate(Bundle) called");
 		setContentView(R.layout.activity_quiz);
 
+//		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+////			ActionBar actionBar = getActionBar();
+////			actionBar.setSubtitle("Bodies of Water");	
+//		}
+		
 		mQuestionTextView = (TextView) findViewById(R.id.quetion_text_view);
 		
 		if (savedInstanceState != null){
