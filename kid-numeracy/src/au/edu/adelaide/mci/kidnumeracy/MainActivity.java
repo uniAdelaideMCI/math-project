@@ -6,7 +6,11 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity {
 	
@@ -25,7 +29,19 @@ public class MainActivity extends ActionBarActivity {
 		}else{
 			countLearning = new CountLearning();
 		}
-		updateViews();		
+		updateViews();
+		
+		GridView gridview = (GridView) findViewById(R.id.selectedApples);
+		
+		gridview.setAdapter(new ImageAdapter(this));
+
+	    gridview.setOnItemClickListener(new OnItemClickListener() {
+	        public void onItemClick(AdapterView<?> parent, View v,
+	                int position, long id) {
+	            Toast.makeText(MainActivity.this, "" + position,
+	                    Toast.LENGTH_SHORT).show();
+	        }
+	    });
 	}
 
 	@Override
