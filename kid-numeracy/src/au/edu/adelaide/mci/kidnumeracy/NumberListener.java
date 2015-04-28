@@ -10,4 +10,6 @@ public interface NumberListener {
 	 * Called whenever the number counted has changed
 	 */
 	public void numberChanged();
+	
+	public void numberFinished();
 }

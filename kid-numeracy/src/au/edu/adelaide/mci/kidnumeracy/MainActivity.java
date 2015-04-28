@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements NumberListener {
 	
 	private static String COUNT_LEARNING = "au.edu.adelaide.mci.kidnumeracy.MainActivity.COUNT_LEARNING";
 
 	private CountLearning countLearning;
+	
+	private boolean mNumFinished = false;
 	
 	public CountLearning getCountLearning() {
 		return countLearning;
@@ -30,6 +32,9 @@ public class MainActivity extends ActionBarActivity {
 		}else{
 			countLearning = new CountLearning();
 		}
+		
+		countLearning.addNumberListener(this);
+		
 		updateViews();
 	}
 
@@ -62,10 +67,17 @@ public class MainActivity extends ActionBarActivity {
 	 * p
 	 */
 	private void playConfirmSound() {
-		MediaPlayer mPlayer = MediaPlayer.create(MainActivity.this, R.raw.ding);
+		MediaPlayer mPlayer;
+		if (!mNumFinished){
+			mPlayer = MediaPlayer.create(MainActivity.this, R.raw.ding);
+		}else{
+			mPlayer = MediaPlayer.create(MainActivity.this, R.raw.cheer);
+			mNumFinished = false;
+		}
+		
 		mPlayer.start();
 	}
-
+	
 	private void updateViews() {
 		TextView textView = (TextView)findViewById(R.id.textViewNum);
 		textView.setText(String.valueOf(countLearning.getCurrentVaue()));
@@ -78,5 +90,16 @@ public class MainActivity extends ActionBarActivity {
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putSerializable(COUNT_LEARNING, countLearning);
+	}
+
+	@Override
+	public void numberChanged() {
+
+	}
+
+	@Override
+	public void numberFinished() {
+		mNumFinished = true;
+		countLearning.reset();			
 	}
 }

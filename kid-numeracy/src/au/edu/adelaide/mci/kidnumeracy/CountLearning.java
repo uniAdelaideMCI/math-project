@@ -28,10 +28,16 @@ public class CountLearning implements Serializable {
 	
 	private Set<NumberListener> numberListeners = new HashSet<NumberListener>();
 	
+	public void addNumberListener(NumberListener numberListener){
+		numberListeners.add(numberListener);
+	}
+	
 	public int nextValue(){
 		if (currentValue < mMaxValue){
 			currentValue += step;
 			fireNumChangedEvent();			
+		}else{
+			fireNumFinishedEvent();
 		}
 		return currentValue;
 	}
@@ -41,8 +47,18 @@ public class CountLearning implements Serializable {
 			numberListener.numberChanged();
 		}		
 	}
+	
+	private void fireNumFinishedEvent() {
+		for (NumberListener numberListener : numberListeners) {
+			numberListener.numberFinished();
+		}		
+	}	
 
 	public int getCurrentVaue(){
 		return currentValue;
+	}
+
+	public void reset() {
+		currentValue = 0;		
 	}
 }
