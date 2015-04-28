@@ -14,13 +14,25 @@ public class CountLearning implements Serializable {
 
 	private int currentValue = 0;
 	
+	private int mMaxValue = 10;
+	
+	public int getMaxValue() {
+		return mMaxValue;
+	}
+
+	public void setMaxValue(int maxValue) {
+		mMaxValue = maxValue;
+	}
+
 	private int step = 1;
 	
 	private Set<NumberListener> numberListeners = new HashSet<NumberListener>();
 	
 	public int nextValue(){
-		currentValue += step;
-		fireNumChangedEvent();
+		if (currentValue < mMaxValue){
+			currentValue += step;
+			fireNumChangedEvent();			
+		}
 		return currentValue;
 	}
 	

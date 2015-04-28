@@ -54,7 +54,7 @@ public class MainActivity extends ActionBarActivity {
 	
 	public void textViewNum_onClick(View v){
 		countLearning.nextValue();
-		//playConfirmSound();
+		playConfirmSound();
 		updateViews();
 	}
 
@@ -62,7 +62,7 @@ public class MainActivity extends ActionBarActivity {
 	 * p
 	 */
 	private void playConfirmSound() {
-		MediaPlayer mPlayer = MediaPlayer.create(MainActivity.this, R.raw.app_6);
+		MediaPlayer mPlayer = MediaPlayer.create(MainActivity.this, R.raw.ding);
 		mPlayer.start();
 	}
 
