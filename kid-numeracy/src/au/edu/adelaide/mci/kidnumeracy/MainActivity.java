@@ -1,42 +1,28 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
-import android.media.MediaPlayer;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.GridView;
-import android.widget.TextView;
 
-public class MainActivity extends ActionBarActivity implements NumberListener {
+public class MainActivity extends ActionBarActivity {
 	
-	private static String COUNT_LEARNING = "au.edu.adelaide.mci.kidnumeracy.MainActivity.COUNT_LEARNING";
-
-	private CountLearning countLearning;
-	
-	private boolean mNumFinished = false;
-	
-	public CountLearning getCountLearning() {
-		return countLearning;
-	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		//restore counter learning object
-		if (null != savedInstanceState){
-			countLearning = (CountLearning)savedInstanceState.getSerializable(COUNT_LEARNING);
-		}else{
-			countLearning = new CountLearning();
-		}
-		
-		countLearning.addNumberListener(this);
-		
-		updateViews();
 	}
+	
+	public void onBtnCountClick(View v){
+		Intent intent = new Intent(MainActivity.this,CountLearnActivity.class);
+		startActivity(intent);
+	}
+	
+	public void onBtnAddClick(View v){
+	}		
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -56,50 +42,10 @@ public class MainActivity extends ActionBarActivity implements NumberListener {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	public void textViewNum_onClick(View v){
-		countLearning.nextValue();
-		playConfirmSound();
-		updateViews();
-	}
-
-	/**
-	 * p
-	 */
-	private void playConfirmSound() {
-		MediaPlayer mPlayer;
-		if (!mNumFinished){
-			mPlayer = MediaPlayer.create(MainActivity.this, R.raw.ding);
-		}else{
-			mPlayer = MediaPlayer.create(MainActivity.this, R.raw.cheer);
-			mNumFinished = false;
-		}
-		
-		mPlayer.start();
-	}
-	
-	private void updateViews() {
-		TextView textView = (TextView)findViewById(R.id.textViewNum);
-		textView.setText(String.valueOf(countLearning.getCurrentVaue()));
-		GridView gridview = (GridView) findViewById(R.id.selectedApples);
-		
-		gridview.setAdapter(new ImageAdapter(this));
-	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putSerializable(COUNT_LEARNING, countLearning);
 	}
 
-	@Override
-	public void numberChanged() {
-
-	}
-
-	@Override
-	public void numberFinished() {
-		mNumFinished = true;
-		countLearning.reset();			
-	}
 }

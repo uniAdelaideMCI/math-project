@@ -17,7 +17,7 @@ public class ImageAdapter extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		MainActivity mainActivity = (MainActivity)mContext;
+		CountLearnActivity mainActivity = (CountLearnActivity)mContext;
 		return mainActivity.getCountLearning().getCurrentVaue();
 	}
 
