@@ -42,4 +42,16 @@ public class AddLearning {
 		fireAddEvent();
 		return result;
 	}
+
+	public int getOperand1() {
+		return operand1;
+	}
+
+	public int getOperand2() {
+		return operand2;
+	}
+
+	public int getResult() {
+		return result;
+	}
 }

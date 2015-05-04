@@ -26,6 +26,10 @@
             android:name=".CountLearnActivity"
             android:label="@string/title_activity_count_learn" >
         </activity>
+        <activity
+            android:name=".AddLearningActivity"
+            android:label="@string/title_activity_add_learning" >
+        </activity>
     </application>
 
 </manifest>
