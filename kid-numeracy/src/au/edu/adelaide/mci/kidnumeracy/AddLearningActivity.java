@@ -1,5 +1,6 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 public class AddLearningActivity extends ActionBarActivity implements AddListener {
 	
 	private AddLearning addLearning;
+
+	private MediaPlayer mPlayer; 
 	
 	private static final String ADD_LEARNING = "au.edu.adelaide.mci.kidnumeracy.ADD_LEARNING";
 
@@ -24,6 +27,7 @@ public class AddLearningActivity extends ActionBarActivity implements AddListene
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_learning);
+		mPlayer = MediaPlayer.create(AddLearningActivity.this, R.raw.ding);
 		if (null != savedInstanceState){
 			addLearning = (AddLearning)savedInstanceState.getSerializable(ADD_LEARNING);
 		}else{
@@ -54,6 +58,7 @@ public class AddLearningActivity extends ActionBarActivity implements AddListene
 	}
 	
 	public void onAddUiClick(View view){
+		mPlayer.start();
 		addLearning.add();
 	}
 

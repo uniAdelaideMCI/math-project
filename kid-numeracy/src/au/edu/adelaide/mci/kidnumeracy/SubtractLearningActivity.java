@@ -1,5 +1,6 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -14,6 +15,8 @@ public class SubtractLearningActivity extends ActionBarActivity implements Subtr
 	
 	private static final String SUBTRACT_LEARNING = "au.edu.adelaide.mci.kidnumeracy.SUBTRACT_LEARNING";
 	
+	private MediaPlayer mPlayer; 
+	
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
@@ -24,6 +27,7 @@ public class SubtractLearningActivity extends ActionBarActivity implements Subtr
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_subtract_learning);
+		mPlayer = MediaPlayer.create(SubtractLearningActivity.this, R.raw.ding);
 		if (null != savedInstanceState){
 			subtractLearning = (SubtractLearning)savedInstanceState.getSerializable(SUBTRACT_LEARNING);
 		}else{
@@ -64,6 +68,7 @@ public class SubtractLearningActivity extends ActionBarActivity implements Subtr
 	}
 	
 	public void onSubtractUiClick(View view){
+		mPlayer.start();
 		subtractLearning.subtract();
 	}
 }
