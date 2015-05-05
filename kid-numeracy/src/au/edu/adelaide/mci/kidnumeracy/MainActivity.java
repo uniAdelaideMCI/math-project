@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+@SuppressWarnings("deprecation")
 public class MainActivity extends ActionBarActivity {
 	
 
@@ -24,7 +25,12 @@ public class MainActivity extends ActionBarActivity {
 	public void onBtnAddClick(View v){
 		Intent intent = new Intent(MainActivity.this,AddLearningActivity.class);
 		startActivity(intent);		
-	}		
+	}
+	
+	public void onBtnSubtractClick(View v){
+		Intent intent = new Intent(MainActivity.this,SubtractLearningActivity.class);
+		startActivity(intent);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

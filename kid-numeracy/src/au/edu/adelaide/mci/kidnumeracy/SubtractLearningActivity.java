@@ -8,36 +8,36 @@ import android.view.View;
 import android.widget.TextView;
 
 @SuppressWarnings("deprecation")
-public class AddLearningActivity extends ActionBarActivity implements AddListener {
-	
-	private AddLearning addLearning;
-	
-	private static final String ADD_LEARNING = "au.edu.adelaide.mci.kidnumeracy.ADD_LEARNING";
+public class SubtractLearningActivity extends ActionBarActivity implements SubtractListener{
 
+	private SubtractLearning subtractLearning;
+	
+	private static final String SUBTRACT_LEARNING = "au.edu.adelaide.mci.kidnumeracy.SUBTRACT_LEARNING";
+	
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putSerializable(ADD_LEARNING, addLearning);
-	}	
+		outState.putSerializable(SUBTRACT_LEARNING, subtractLearning);
+	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_add_learning);
+		setContentView(R.layout.activity_subtract_learning);
 		if (null != savedInstanceState){
-			addLearning = (AddLearning)savedInstanceState.getSerializable(ADD_LEARNING);
+			subtractLearning = (SubtractLearning)savedInstanceState.getSerializable(SUBTRACT_LEARNING);
 		}else{
-			addLearning = new AddLearning();
-			addLearning.add();
+			subtractLearning = new SubtractLearning();
+			subtractLearning.subtract();
 		}
-		addLearning.addAddListener(this);
-		this.add();
+		subtractLearning.addSubtractListener(this);
+		this.subtract();
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.add_learning, menu);
+		getMenuInflater().inflate(R.menu.subtract_learning, menu);
 		return true;
 	}
 
@@ -52,18 +52,18 @@ public class AddLearningActivity extends ActionBarActivity implements AddListene
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	public void onAddUiClick(View view){
-		addLearning.add();
-	}
 
 	@Override
-	public void add() {
+	public void subtract() {
 		StringBuffer sb = new StringBuffer();
-		sb.append(addLearning.getOperand1())
-			.append(" + ").append(addLearning.getOperand2())
-			.append(" = ").append(addLearning.getResult());
+		sb.append(subtractLearning.getOperand1())
+			.append(" - ").append(subtractLearning.getOperand2())
+			.append(" = ").append(subtractLearning.getResult());
 		TextView tvResult = (TextView)findViewById(R.id.tvResult);
-		tvResult.setText(sb.toString());
+		tvResult.setText(sb.toString());	
+	}
+	
+	public void onSubtractUiClick(View view){
+		subtractLearning.subtract();
 	}
 }

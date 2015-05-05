@@ -7,5 +7,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_count_learn">CountLearnActivity</string>
     <string name="title_activity_add_learning">AddLearningActivity</string>
+    <string name="title_activity_subtract_learning">SubtractLearningActivity</string>
 
 </resources>

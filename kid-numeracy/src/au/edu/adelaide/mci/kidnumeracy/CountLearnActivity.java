@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
+@SuppressWarnings("deprecation")
 public class CountLearnActivity extends ActionBarActivity implements NumberListener {
 
 	private static String COUNT_LEARNING = "au.edu.adelaide.mci.kidnumeracy.COUNT_LEARNING";

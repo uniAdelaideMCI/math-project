@@ -41,6 +41,7 @@
         android:layout_alignLeft="@+id/btnCount"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="34dp"
+        android:onClick="onBtnSubtractClick"
         android:text="Subtract" />
 
     <Button

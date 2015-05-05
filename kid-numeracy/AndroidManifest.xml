@@ -30,6 +30,10 @@
             android:name=".AddLearningActivity"
             android:label="@string/title_activity_add_learning" >
         </activity>
+        <activity
+            android:name=".SubtractLearningActivity"
+            android:label="@string/title_activity_subtract_learning" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -8,7 +9,7 @@ import java.util.Set;
  * @author Yun
  *
  */
-public class AddLearning {
+public class AddLearning implements Serializable {
 	
 	private int operand1;
 	
