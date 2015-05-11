@@ -4,21 +4,26 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 
 public class ImageAdapter extends BaseAdapter {
 
 	private Context mContext;
 	
+	private ImageView[] imageViews; 
+	
+	private int maxValue;
+	
 	public ImageAdapter(Context c) {
         mContext = c;
+        CountLearnActivity countLearnActivity = (CountLearnActivity)c;
+        maxValue = countLearnActivity.getCountLearning().getMaxValue();
+        imageViews = new ImageView[maxValue];
     }	
 	
 	@Override
 	public int getCount() {
-		CountLearnActivity mainActivity = (CountLearnActivity)mContext;
-		return mainActivity.getCountLearning().getCurrentVaue();
+		return maxValue;
 	}
 
 	@Override
@@ -33,11 +38,9 @@ public class ImageAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView = new ImageView(mContext);
-        imageView.setImageResource(R.drawable.apple_red);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        imageView.setLayoutParams(new GridView.LayoutParams(70, 70));
-        return imageView;
+    	imageViews[position] = new ImageView(mContext);
+    	imageViews[position].setImageResource(R.drawable.balloon1); 
+    	return imageViews[position];
 	}
 
 }

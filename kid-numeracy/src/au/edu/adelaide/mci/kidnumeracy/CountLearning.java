@@ -14,7 +14,7 @@ public class CountLearning implements Serializable {
 
 	private int currentValue = 0;
 	
-	private int mMaxValue = 10;
+	private int mMaxValue = 20;
 	
 	public int getMaxValue() {
 		return mMaxValue;
