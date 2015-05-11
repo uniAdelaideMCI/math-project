@@ -38,14 +38,12 @@ public class CountLearnActivity extends ActionBarActivity implements NumberListe
 		
 		GridView gridview = (GridView) findViewById(R.id.selectedApples);
 		
-		gridview.setAdapter(new ImageAdapter(this));
-		updateViews();		
+		gridview.setAdapter(new ImageAdapter(this));	
 	}
 	
 	public void textViewNum_onClick(View v){
 		countLearning.nextValue();
 		playConfirmSound();
-		updateViews();
 	}
 	
 	/**
@@ -79,10 +77,7 @@ public class CountLearnActivity extends ActionBarActivity implements NumberListe
 		mNumFinished = true;
 		countLearning.reset();			
 	}	
-	
-	private void updateViews() {
-
-	}	
+		
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

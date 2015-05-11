@@ -1,6 +1,8 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
 import android.content.Context;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -39,7 +41,22 @@ public class ImageAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
     	imageViews[position] = new ImageView(mContext);
-    	imageViews[position].setImageResource(R.drawable.balloon1); 
+    	imageViews[position].setImageResource(R.drawable.balloon1);
+    	AnimationDrawable animationDrawable = new AnimationDrawable();
+    	Drawable balloon1 = mContext.getResources().getDrawable(R.drawable.balloon1);
+    	animationDrawable.addFrame(balloon1, 600);
+    	Drawable balloon2 = mContext.getResources().getDrawable(R.drawable.balloon2);
+    	animationDrawable.addFrame(balloon2, 600);
+    	Drawable balloon3 = mContext.getResources().getDrawable(R.drawable.balloon3);
+    	animationDrawable.addFrame(balloon3, 600);
+    	imageViews[position].setImageDrawable(animationDrawable);
+    	animationDrawable.start();
+    	imageViews[position].setOnClickListener(new View.OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				
+			}
+		});
     	return imageViews[position];
 	}
 
