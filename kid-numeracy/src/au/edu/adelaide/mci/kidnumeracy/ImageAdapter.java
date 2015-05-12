@@ -1,13 +1,11 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -27,6 +25,8 @@ public class ImageAdapter extends BaseAdapter {
 	
 	private Map<ImageView,Integer> counterNums = new HashMap<ImageView,Integer>(); 
 	
+	private Map<Integer,Drawable> numDrawables = new HashMap<Integer,Drawable>();
+	
 	private int maxValue;
 	
 	public ImageAdapter(Context c) {
@@ -41,7 +41,12 @@ public class ImageAdapter extends BaseAdapter {
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
+        
+        
         maxValue = countLearnActivity.getCountLearning().getMaxValue();
+        for(int i = 0 ; i <= maxValue ; i++){
+        	numDrawables.put(i, getDrawableByValue(i));
+        }
         imageViews = new ImageView[maxValue];
     }	
 	
@@ -63,6 +68,9 @@ public class ImageAdapter extends BaseAdapter {
 	private Drawable getDrawableByValue(int value) {
 		int resId = R.drawable.n0;
 		switch (value) {
+		case 0:
+			resId = R.drawable.n0;
+			break;		
 		case 1:
 			resId = R.drawable.n1;
 			break;
@@ -155,13 +163,17 @@ public class ImageAdapter extends BaseAdapter {
 						if (counterNums.get(imageView) == null){
 							int newValue = countLearning.nextValue();
 							counterNums.put(imageView,newValue);
-							animationDrawable.addFrame(getDrawableByValue(newValue), FRAME_DELAY);
+							animationDrawable.addFrame(getCachedDrawableByValue(newValue), FRAME_DELAY);
 //							mediaPlayer.stop();
 //							mediaPlayer.start();
 							animationDrawable.start();							
 						}
 					}
 				}
+			}
+
+			private Drawable getCachedDrawableByValue(int value) {
+				return numDrawables.get(value);
 			}
 		});
     	return imageViews[position];
