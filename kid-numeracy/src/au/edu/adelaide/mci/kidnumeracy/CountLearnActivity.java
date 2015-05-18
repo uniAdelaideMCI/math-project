@@ -1,5 +1,9 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
+import java.io.IOException;
+
+import org.json.JSONException;
+
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -27,6 +31,15 @@ public class CountLearnActivity extends ActionBarActivity implements NumberListe
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_count_learn);
 		
+		//get count learning phase definition from json files
+		try {
+			CountLearningProcess countLearningProcess = CountLearningProcess.load(this);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
 		//restore counter learning object
 		if (null != savedInstanceState){
 			countLearning = (CountLearning)savedInstanceState.getSerializable(COUNT_LEARNING);
@@ -37,8 +50,6 @@ public class CountLearnActivity extends ActionBarActivity implements NumberListe
 		countLearning.addNumberListener(this);
 		
 		GridView gridview = (GridView) findViewById(R.id.selectedApples);
-		
-		
 		gridview.setAdapter(new ImageAdapter(this));	
 	}
 	
