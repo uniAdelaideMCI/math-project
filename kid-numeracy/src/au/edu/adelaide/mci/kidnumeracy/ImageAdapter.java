@@ -9,6 +9,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 public class ImageAdapter extends BaseAdapter {
@@ -140,17 +141,21 @@ public class ImageAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+
     	imageViews[position] = new ImageView(mContext);
-    	imageViews[position].setImageResource(R.drawable.balloon1);
+    	//imageViews[position].setImageResource(R.drawable.balloon1);
+
     	AnimationDrawable animationDrawable = new AnimationDrawable();
-    	Drawable balloon1 = mContext.getResources().getDrawable(R.drawable.balloon1);
+    	Drawable balloon1 = mContext.getResources().getDrawable(R.drawable.apple_correct);
     	animationDrawable.addFrame(balloon1, FRAME_DELAY);
 //    	Drawable balloon2 = mContext.getResources().getDrawable(R.drawable.balloon2);
 //    	animationDrawable.addFrame(balloon2, FRAME_DELAY);
-    	Drawable balloon3 = mContext.getResources().getDrawable(R.drawable.balloon3);
-    	animationDrawable.addFrame(balloon3, FRAME_DELAY);
+//    	Drawable balloon3 = mContext.getResources().getDrawable(R.drawable.balloon3);
+//    	animationDrawable.addFrame(balloon3, FRAME_DELAY);
     	animationDrawable.setOneShot(true);
     	imageViews[position].setImageDrawable(animationDrawable);
+    	imageViews[position].setLayoutParams(new GridView.LayoutParams(parent.getWidth()/5,parent.getHeight()/4));
+    	imageViews[position].setScaleType(ImageView.ScaleType.FIT_CENTER);
     	animationDrawable.stop();
     	imageViews[position].setOnClickListener(new View.OnClickListener() {			
 			@Override

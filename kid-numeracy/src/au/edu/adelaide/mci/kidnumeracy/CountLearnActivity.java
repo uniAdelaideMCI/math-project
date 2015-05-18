@@ -38,6 +38,7 @@ public class CountLearnActivity extends ActionBarActivity implements NumberListe
 		
 		GridView gridview = (GridView) findViewById(R.id.selectedApples);
 		
+		
 		gridview.setAdapter(new ImageAdapter(this));	
 	}
 	
