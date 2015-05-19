@@ -7,21 +7,29 @@ import org.json.JSONException;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
-import android.widget.TextView;
 
 @SuppressWarnings("deprecation")
 public class CountLearnActivity extends ActionBarActivity implements NumberListener {
 
+	private static final String TAG = "CountLearnActivity";
+	
 	private static String COUNT_LEARNING = "au.edu.adelaide.mci.kidnumeracy.COUNT_LEARNING";
 	
 	private CountLearning countLearning;
 	
 	private boolean mNumFinished = false;
 	
+	boolean viewChange = false;
+	
+	public boolean isViewChange() {
+		return viewChange;
+	}
+
 	public CountLearning getCountLearning() {
 		return countLearning;
 	}	
@@ -34,28 +42,32 @@ public class CountLearnActivity extends ActionBarActivity implements NumberListe
 		//get count learning phase definition from json files
 		try {
 			CountLearningProcess countLearningProcess = CountLearningProcess.load(this);
+			//restore counter learning object
+			if (null != savedInstanceState){
+				countLearning = (CountLearning)savedInstanceState.getSerializable(COUNT_LEARNING);
+			}else{
+				countLearning = new CountLearning(countLearningProcess);
+			}
+			countLearning.addNumberListener(this);
+			
+			GridView gridview = (GridView) findViewById(R.id.selectedApples);
+			gridview.setAdapter(new ImageAdapter(this));				
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
-		//restore counter learning object
-		if (null != savedInstanceState){
-			countLearning = (CountLearning)savedInstanceState.getSerializable(COUNT_LEARNING);
-		}else{
-			countLearning = new CountLearning();
-		}
-		
-		countLearning.addNumberListener(this);
-		
-		GridView gridview = (GridView) findViewById(R.id.selectedApples);
-		gridview.setAdapter(new ImageAdapter(this));	
 	}
 	
 	public void textViewNum_onClick(View v){
-		countLearning.nextValue();
-		playConfirmSound();
+		if (viewChange){
+			GridView gridview = (GridView) findViewById(R.id.selectedApples);
+			gridview.setAdapter(new ImageAdapter(this));
+			viewChange = false;
+		}else{
+			countLearning.nextValue();
+			playConfirmSound();			
+		}
 	}
 	
 	/**
@@ -108,5 +120,23 @@ public class CountLearnActivity extends ActionBarActivity implements NumberListe
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void phaseChanged() {
+		viewChange = true;
+		Log.d(TAG, "ondPhaseChanged");		
+	}
+
+	@Override
+	public void ondDirectionChanged() {
+		viewChange = true;
+		Log.d(TAG, "ondDirectionChanged");
+	}
+
+	public void updateView() {
+		GridView gridview = (GridView) findViewById(R.id.selectedApples);
+		gridview.setAdapter(new ImageAdapter(this));
+		viewChange = false;
 	}
 }

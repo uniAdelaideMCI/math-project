@@ -16,6 +16,8 @@ public class ImageAdapter extends BaseAdapter {
 
 	private Context mContext;
 	
+	private CountLearnActivity countLearnActivity;
+	
 	private ImageView[] imageViews; 
 	
 	private CountLearning countLearning;
@@ -29,10 +31,12 @@ public class ImageAdapter extends BaseAdapter {
 	private Map<Integer,Drawable> numDrawables = new HashMap<Integer,Drawable>();
 	
 	private int maxValue;
+
+	private boolean isNewStart = true;
 	
 	public ImageAdapter(Context c) {
         mContext = c;
-        CountLearnActivity countLearnActivity = (CountLearnActivity)c;
+        countLearnActivity = (CountLearnActivity)c;
         countLearning = countLearnActivity.getCountLearning();
         //mediaPlayer = MediaPlayer.create(countLearnActivity, R.raw.bubble_explode);
 //        try {
@@ -160,21 +164,30 @@ public class ImageAdapter extends BaseAdapter {
     	imageViews[position].setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				if (v != null && v instanceof ImageView){
-					ImageView imageView = (ImageView)v;
-					Drawable drawable = imageView.getDrawable();
-					if (drawable instanceof AnimationDrawable){
-						AnimationDrawable  animationDrawable = (AnimationDrawable)drawable;
-						if (counterNums.get(imageView) == null){
-							int newValue = countLearning.nextValue();
-							counterNums.put(imageView,newValue);
-							animationDrawable.addFrame(getCachedDrawableByValue(newValue), FRAME_DELAY);
-//							mediaPlayer.stop();
-//							mediaPlayer.start();
-							animationDrawable.start();							
+				if (countLearnActivity.isViewChange()){
+					countLearnActivity.updateView();
+				}else{
+					if (v != null && v instanceof ImageView){
+						ImageView imageView = (ImageView)v;
+						Drawable drawable = imageView.getDrawable();
+						if (drawable instanceof AnimationDrawable){
+							AnimationDrawable  animationDrawable = (AnimationDrawable)drawable;
+							if (counterNums.get(imageView) == null){
+								int newValue = countLearning.getCurrentVaue();
+								if (isNewStart){
+									isNewStart = false;
+								}else{
+									newValue = countLearning.nextValue();
+								}
+								
+								counterNums.put(imageView,newValue);
+								animationDrawable.addFrame(getCachedDrawableByValue(newValue), FRAME_DELAY);
+								animationDrawable.start();							
+							}
 						}
-					}
+					}						
 				}
+
 			}
 
 			private Drawable getCachedDrawableByValue(int value) {

@@ -11,10 +11,28 @@ import java.util.Set;
 public class CountLearning implements Serializable {
 	
 	private static final long serialVersionUID = 422349641231512002L;
-
-	private int currentValue = 0;
+	
+	private static final int DIRECTION_UP = 1;
+	
+	private static final int DIRECTION_DOWN = 2;
+	
+	private int currentValue = 1;
 	
 	private int mMaxValue = 20;
+	
+	private CountLearningProcess mCountLearningProcess;
+	
+	private CountLearningPhase currentPhase;
+	
+	private int direction = DIRECTION_UP;
+	
+	private int currentTimes = 1;
+	
+	public CountLearning(CountLearningProcess countLearningProcess){
+		mCountLearningProcess= countLearningProcess;
+		mMaxValue = countLearningProcess.getFirstPhase().getMaxValue();
+		currentPhase = countLearningProcess.getFirstPhase();
+	}
 	
 	public int getMaxValue() {
 		return mMaxValue;
@@ -32,21 +50,73 @@ public class CountLearning implements Serializable {
 		numberListeners.add(numberListener);
 	}
 	
+	/**return next value
+	 * @return
+	 */
 	public int nextValue(){
-		if (currentValue < mMaxValue){
-			currentValue += step;
-			fireNumChangedEvent();			
-		}else{
-			fireNumFinishedEvent();
+		int repeatTimes = mCountLearningProcess.getRepeatTimes();
+		int nextValue = currentValue;
+		if (currentTimes <= repeatTimes){
+			switch (direction) {
+			case DIRECTION_UP:
+				if (currentValue < mMaxValue){
+					currentValue += step;
+					fireNumChangedEvent();
+					if (currentValue == mMaxValue){
+						direction = DIRECTION_DOWN;
+						fireDirectionChangedEvent();
+					}
+				}
+				nextValue = currentValue;
+				break;
+
+			default:  //count down
+				if (currentValue > 1){
+					currentValue -= step;
+					nextValue = currentValue;
+					fireNumChangedEvent();
+					if (currentValue == 1){
+						currentTimes++;
+						direction = DIRECTION_UP;
+						fireDirectionChangedEvent();
+						if (currentTimes == repeatTimes + 1){
+							nextPhase();
+						}
+					}
+				}
+				break;
+			}
 		}
-		return currentValue;
+		return nextValue;
 	}
 	
+	private void nextPhase() {
+		if (!mCountLearningProcess.isLastPhase(currentPhase)){
+			currentPhase = mCountLearningProcess.nextPhase(currentPhase);
+			currentValue = 1;
+			mMaxValue = currentPhase.getMaxValue();
+			currentTimes = 1;
+			direction = DIRECTION_UP;
+			firePhaseChangedEvent();
+		}
+	}
+
 	private void fireNumChangedEvent() {
 		for (NumberListener numberListener : numberListeners) {
 			numberListener.numberChanged();
 		}		
 	}
+	
+	private void fireDirectionChangedEvent() {
+		for (NumberListener numberListener : numberListeners) {
+			numberListener.ondDirectionChanged();
+		}		
+	}
+	private void firePhaseChangedEvent() {
+		for (NumberListener numberListener : numberListeners) {
+			numberListener.phaseChanged();
+		}		
+	}	
 	
 	private void fireNumFinishedEvent() {
 		for (NumberListener numberListener : numberListeners) {
@@ -59,6 +129,6 @@ public class CountLearning implements Serializable {
 	}
 
 	public void reset() {
-		currentValue = 0;		
+		currentValue = 1;		
 	}
 }

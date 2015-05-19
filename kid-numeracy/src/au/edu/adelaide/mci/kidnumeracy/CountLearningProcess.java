@@ -55,4 +55,20 @@ public class CountLearningProcess {
 		}
 		return countLearningProcess;
 	}
+	public CountLearningPhase getFirstPhase() {
+		return mPhases.get(0);
+	}
+	public CountLearningPhase nextPhase(CountLearningPhase currentPhase) {
+	    int index = mPhases.indexOf(currentPhase);
+		return mPhases.get(index+1);
+	}
+	
+	public boolean isLastPhase(CountLearningPhase currentPhase){
+		int index = mPhases.indexOf(currentPhase);
+		if (index == mPhases.size() - 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

@@ -11,5 +11,12 @@ public interface NumberListener {
 	 */
 	public void numberChanged();
 	
+	public void ondDirectionChanged();	
+	
+	public void phaseChanged();	
+	
+	/**
+	 * Finish counting all the phases
+	 */
 	public void numberFinished();
 }
