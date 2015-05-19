@@ -13,10 +13,10 @@ public interface NumberListener {
 	
 	public void ondDirectionChanged();	
 	
-	public void phaseChanged();	
+	public void onPhaseChanged();
 	
 	/**
 	 * Finish counting all the phases
 	 */
-	public void numberFinished();
+	public void onAllPhaseCounted();
 }

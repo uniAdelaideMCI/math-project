@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.Toast;
 
 @SuppressWarnings("deprecation")
 public class CountLearnActivity extends ActionBarActivity implements
@@ -101,9 +102,10 @@ public class CountLearnActivity extends ActionBarActivity implements
 	}
 
 	@Override
-	public void numberFinished() {
+	public void onAllPhaseCounted() {
 		mNumFinished = true;
-		countLearning.reset();
+		Log.d(TAG, "onAllPhaseCounted");
+		Toast.makeText(this, "Finish all counting", Toast.LENGTH_SHORT);
 	}
 
 	@Override
@@ -126,7 +128,7 @@ public class CountLearnActivity extends ActionBarActivity implements
 	}
 
 	@Override
-	public void phaseChanged() {
+	public void onPhaseChanged() {
 		viewChange = true;
 		Log.d(TAG, "ondPhaseChanged");
 	}
@@ -138,8 +140,10 @@ public class CountLearnActivity extends ActionBarActivity implements
 	}
 
 	public void updateView() {
-		GridView gridview = (GridView) findViewById(R.id.selectedApples);
-		gridview.setAdapter(new ImageAdapter(this));
-		viewChange = false;
+		if (!mNumFinished){
+			GridView gridview = (GridView) findViewById(R.id.selectedApples);
+			gridview.setAdapter(new ImageAdapter(this));
+			viewChange = false;			
+		}
 	}
 }

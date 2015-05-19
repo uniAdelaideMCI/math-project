@@ -90,7 +90,7 @@ public class CountLearning implements Serializable {
 		return nextValue;
 	}
 	
-	private void nextPhase() {
+	private boolean nextPhase() {
 		if (!mCountLearningProcess.isLastPhase(currentPhase)){
 			currentPhase = mCountLearningProcess.nextPhase(currentPhase);
 			currentValue = 1;
@@ -98,7 +98,15 @@ public class CountLearning implements Serializable {
 			currentTimes = 1;
 			direction = DIRECTION_UP;
 			firePhaseChangedEvent();
+			return true;
+		}else{
+			fireNumFinishedEvent();
+			return false;
 		}
+	}
+	
+	public boolean isLastPhase(){
+		return mCountLearningProcess.isLastPhase(currentPhase);
 	}
 
 	private void fireNumChangedEvent() {
@@ -114,13 +122,13 @@ public class CountLearning implements Serializable {
 	}
 	private void firePhaseChangedEvent() {
 		for (NumberListener numberListener : numberListeners) {
-			numberListener.phaseChanged();
+			numberListener.onPhaseChanged();
 		}		
 	}	
 	
 	private void fireNumFinishedEvent() {
 		for (NumberListener numberListener : numberListeners) {
-			numberListener.numberFinished();
+			numberListener.onAllPhaseCounted();
 		}		
 	}	
 

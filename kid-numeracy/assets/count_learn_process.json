@@ -1,11 +1,11 @@
 {
-	"repeatTimes":"2",
+	"repeatTimes":"1",
 	"phases":
 	[{"phaseNo":"1",
 	  "minValue":"1",
-	  "maxValue":"3"},
+	  "maxValue":"2"},
 	  {"phaseNo":"2",
 	  "minValue":"1",
-	  "maxValue":"5"}
+	  "maxValue":"3"}
 	]
 }
