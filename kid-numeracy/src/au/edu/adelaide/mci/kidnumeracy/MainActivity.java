@@ -31,6 +31,14 @@ public class MainActivity extends ActionBarActivity {
 		Intent intent = new Intent(MainActivity.this,SubtractLearningActivity.class);
 		startActivity(intent);
 	}
+	
+	/**
+	 * @param view
+	 */
+	public void onBtnTestClick(View view){
+		Intent intent = new Intent(this,CountTestActivity.class);
+		startActivity(intent);
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

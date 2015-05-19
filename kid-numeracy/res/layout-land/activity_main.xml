@@ -40,6 +40,7 @@
         android:id="@+id/btnTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/action_test" />
+        android:src="@drawable/action_test"
+        android:onClick="onBtnTestClick" />
 
 </LinearLayout>
