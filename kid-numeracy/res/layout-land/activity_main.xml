@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,46 +9,37 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="au.edu.adelaide.mci.kidnumeracy.MainActivity" >
 
-    <!-- android:background="@drawable/background" -->
-
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btnCount"
-        android:layout_alignBottom="@+id/btnCount"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="102dp"
-        android:onClick="onBtnAddClick"
-        android:text="Add" />
-
-    <Button
+    <ImageButton
         android:id="@+id/btnCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="116dp"
-        android:layout_marginTop="62dp"
-        android:layout_toLeftOf="@+id/btnAdd"
-        android:onClick="onBtnCountClick"
-        android:text="Count" />
+        android:src="@drawable/action_count"
+        android:onClick="onBtnCountClick" />
 
-    <Button
-        android:id="@+id/btnSubtract"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnCount"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="34dp"
-        android:onClick="onBtnSubtractClick"
-        android:text="Subtract" />
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-    <Button
+        <ImageButton
+            android:id="@+id/btnAddition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/action_addition"
+            android:onClick="onBtnAddClick" />
+
+        <ImageButton
+            android:id="@+id/btnSubtract"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/action_subtract"
+            android:onClick="onBtnSubtractClick" />
+    </LinearLayout>
+
+    <ImageButton
         android:id="@+id/btnTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/btnAdd"
-        android:layout_alignTop="@+id/btnSubtract"
-        android:text="Test" />
+        android:src="@drawable/action_test" />
 
-</RelativeLayout>
+</LinearLayout>

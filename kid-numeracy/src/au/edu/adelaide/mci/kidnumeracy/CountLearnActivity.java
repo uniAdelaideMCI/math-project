@@ -1,9 +1,11 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
 import java.io.IOException;
+import java.util.Random;
 
 import org.json.JSONException;
 
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -14,94 +16,95 @@ import android.view.View;
 import android.widget.GridView;
 
 @SuppressWarnings("deprecation")
-public class CountLearnActivity extends ActionBarActivity implements NumberListener {
+public class CountLearnActivity extends ActionBarActivity implements
+		NumberListener {
 
 	private static final String TAG = "CountLearnActivity";
-	
+
 	private static String COUNT_LEARNING = "au.edu.adelaide.mci.kidnumeracy.COUNT_LEARNING";
-	
+
 	private CountLearning countLearning;
-	
+
 	private boolean mNumFinished = false;
-	
+
 	boolean viewChange = false;
-	
+
 	public boolean isViewChange() {
 		return viewChange;
 	}
 
 	public CountLearning getCountLearning() {
 		return countLearning;
-	}	
-	
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_count_learn);
-		
-		//get count learning phase definition from json files
+		// get count learning phase definition from json files
 		try {
-			CountLearningProcess countLearningProcess = CountLearningProcess.load(this);
-			//restore counter learning object
-			if (null != savedInstanceState){
-				countLearning = (CountLearning)savedInstanceState.getSerializable(COUNT_LEARNING);
-			}else{
+			CountLearningProcess countLearningProcess = CountLearningProcess
+					.load(this);
+			// restore counter learning object
+			if (null != savedInstanceState) {
+				countLearning = (CountLearning) savedInstanceState
+						.getSerializable(COUNT_LEARNING);
+			} else {
 				countLearning = new CountLearning(countLearningProcess);
 			}
 			countLearning.addNumberListener(this);
-			
+
 			GridView gridview = (GridView) findViewById(R.id.selectedApples);
-			gridview.setAdapter(new ImageAdapter(this));				
+			gridview.setAdapter(new ImageAdapter(this));
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void textViewNum_onClick(View v){
-		if (viewChange){
+
+	public void textViewNum_onClick(View v) {
+		if (viewChange) {
 			GridView gridview = (GridView) findViewById(R.id.selectedApples);
 			gridview.setAdapter(new ImageAdapter(this));
 			viewChange = false;
-		}else{
+		} else {
 			countLearning.nextValue();
-			playConfirmSound();			
+			playConfirmSound();
 		}
 	}
-	
+
 	/**
 	 * p
 	 */
 	private void playConfirmSound() {
 		MediaPlayer mPlayer;
-		if (!mNumFinished){
+		if (!mNumFinished) {
 			mPlayer = MediaPlayer.create(CountLearnActivity.this, R.raw.ding);
-		}else{
+		} else {
 			mPlayer = MediaPlayer.create(CountLearnActivity.this, R.raw.cheer);
 			mNumFinished = false;
 		}
-		
+
 		mPlayer.start();
 	}
-	
+
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putSerializable(COUNT_LEARNING, countLearning);
 	}
-	
+
 	@Override
 	public void numberChanged() {
 
 	}
-	
+
 	@Override
 	public void numberFinished() {
 		mNumFinished = true;
-		countLearning.reset();			
-	}	
-		
+		countLearning.reset();
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -125,7 +128,7 @@ public class CountLearnActivity extends ActionBarActivity implements NumberListe
 	@Override
 	public void phaseChanged() {
 		viewChange = true;
-		Log.d(TAG, "ondPhaseChanged");		
+		Log.d(TAG, "ondPhaseChanged");
 	}
 
 	@Override

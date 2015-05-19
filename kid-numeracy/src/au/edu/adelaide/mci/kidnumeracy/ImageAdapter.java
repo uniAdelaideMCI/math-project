@@ -2,6 +2,7 @@ package au.edu.adelaide.mci.kidnumeracy;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
@@ -13,12 +14,29 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 public class ImageAdapter extends BaseAdapter {
-
+	private int[] resIds={R.drawable.apple_correct,
+		R.drawable.balloon1,R.drawable.cat,R.drawable.garfield,
+		R.drawable.hello_kitty,R.drawable.hippo,R.drawable.orange,R.drawable.tree};
+	private Drawable[] drawables = new Drawable[resIds.length];
+	private Random random = new Random(System.currentTimeMillis());
+	
+	@SuppressWarnings("deprecation")
+	public Drawable getRandomDrawable() {
+//		int index = random.nextInt(resIds.length);
+//		if (drawables[index] == null){
+//			drawables[index] = mContext.getResources().getDrawable(resIds[index]);
+//		}
+//		return drawables[index];
+		int index = random.nextInt(resIds.length);
+		return mContext.getResources().getDrawable(resIds[index]);
+	}
 	private Context mContext;
 	
 	private CountLearnActivity countLearnActivity;
 	
 	private ImageView[] imageViews; 
+	
+	private int firstPicIndex;
 	
 	private CountLearning countLearning;
 	
@@ -38,6 +56,7 @@ public class ImageAdapter extends BaseAdapter {
         mContext = c;
         countLearnActivity = (CountLearnActivity)c;
         countLearning = countLearnActivity.getCountLearning();
+        firstPicIndex = random.nextInt(resIds.length);
         //mediaPlayer = MediaPlayer.create(countLearnActivity, R.raw.bubble_explode);
 //        try {
 //			mediaPlayer.prepare();
@@ -46,7 +65,6 @@ public class ImageAdapter extends BaseAdapter {
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
-        
         
         maxValue = countLearnActivity.getCountLearning().getMaxValue();
         for(int i = 0 ; i <= maxValue ; i++){
@@ -150,8 +168,9 @@ public class ImageAdapter extends BaseAdapter {
     	//imageViews[position].setImageResource(R.drawable.balloon1);
 
     	AnimationDrawable animationDrawable = new AnimationDrawable();
-    	Drawable balloon1 = mContext.getResources().getDrawable(R.drawable.apple_correct);
-    	animationDrawable.addFrame(balloon1, FRAME_DELAY);
+    	//Drawable balloon1 = mContext.getResources().getDrawable(R.drawable.apple_correct);
+    	
+    	animationDrawable.addFrame(getDrawableByIndex(firstPicIndex), FRAME_DELAY);
 //    	Drawable balloon2 = mContext.getResources().getDrawable(R.drawable.balloon2);
 //    	animationDrawable.addFrame(balloon2, FRAME_DELAY);
 //    	Drawable balloon3 = mContext.getResources().getDrawable(R.drawable.balloon3);
@@ -195,6 +214,10 @@ public class ImageAdapter extends BaseAdapter {
 			}
 		});
     	return imageViews[position];
+	}
+
+	private Drawable getDrawableByIndex(int index) {
+		return mContext.getResources().getDrawable(resIds[index]);
 	}
 
 }
