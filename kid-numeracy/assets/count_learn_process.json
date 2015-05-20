@@ -3,9 +3,15 @@
 	"phases":
 	[{"phaseNo":"1",
 	  "minValue":"1",
-	  "maxValue":"2"},
+	  "maxValue":"5"},
 	  {"phaseNo":"2",
 	  "minValue":"1",
-	  "maxValue":"3"}
+	  "maxValue":"10"},
+	  {"phaseNo":"3",
+	  "minValue":"1",
+	  "maxValue":"15"},	  
+	  {"phaseNo":"4",
+	  "minValue":"1",
+	  "maxValue":"20"}	 	  	  	  
 	]
 }
