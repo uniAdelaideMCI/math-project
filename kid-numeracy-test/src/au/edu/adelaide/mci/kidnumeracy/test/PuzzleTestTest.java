@@ -1,13 +1,12 @@
 package au.edu.adelaide.mci.kidnumeracy.test;
 
-import android.test.AndroidTestCase;
+import junit.framework.TestCase;
 import au.edu.adelaide.mci.kidnumeracy.PuzzleTest;
 
-public class PuzzleTestTest extends AndroidTestCase {
+public class PuzzleTestTest extends TestCase {
 	PuzzleTest puzzleTest = new PuzzleTest();
 	@Override
 	protected void setUp() throws Exception {
-		// TODO Auto-generated method stub
 		super.setUp();
 	}
 	
@@ -16,4 +15,9 @@ public class PuzzleTestTest extends AndroidTestCase {
 		assertEquals(9, numCount);
 	}
 	
+	public void testGetMissingNumByRow(){
+		int missingNums[] = puzzleTest.getMissingNumByRow();
+		assertEquals(3,missingNums.length);
+		
+	}
 }

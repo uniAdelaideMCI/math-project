@@ -1,12 +1,58 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:id="@+id/ll_count_test_main"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    android:orientation="horizontal"
+    tools:context=".CountTestActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+    <GridView
+        android:id="@+id/gvPuzzle"
+        android:layout_width="1707px"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:padding="0dp"        
+        android:gravity="fill"
+        android:horizontalSpacing="0dp"
+        android:numColumns="3"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="0dp" >
+    </GridView>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_nums"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="0dp"
+        android:padding="0dp"             
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/ivNum1"
+            android:layout_width="fill_parent"
+            android:layout_height="533px"
+	        android:layout_margin="0dp"
+	        android:padding="0dp"                 
+            android:src="@drawable/n1"
+            android:onClick="onBtnNumChoose" />
+
+        <ImageView
+            android:id="@+id/ivNum2"
+            android:layout_width="fill_parent"
+            android:layout_height="533px"
+	        android:layout_margin="0dp"
+	        android:padding="0dp"              
+            android:src="@drawable/n2"
+            android:onClick="onBtnNumChoose"/>
+
+        <ImageView
+            android:id="@+id/ivNum3"
+            android:layout_width="100dp"
+            android:layout_height="533px"
+	        android:layout_margin="0dp"
+	        android:padding="0dp"              
+            android:onClick="onBtnNumChoose"/>
+
+    </LinearLayout>
+
+</LinearLayout>
