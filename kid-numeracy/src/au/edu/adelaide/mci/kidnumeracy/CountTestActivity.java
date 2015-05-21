@@ -1,6 +1,7 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
 import android.app.Activity;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,8 @@ public class CountTestActivity extends Activity {
 	private int missingNums[] = puzzleTest.getMissingNumByRow();
 	private DrawNumberMapper missingNumMapper = new DrawNumberMapper();
 	private PuzzleTestImageAdapter adapter = new PuzzleTestImageAdapter();
+	
+	private Drawable questionDrawable = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -200,9 +203,26 @@ public class CountTestActivity extends Activity {
 //					//update mapping
 //					drawNumberMapper.register(missingNum, drawable);				
 ////					displayDrawable = drawable;
+				}else{
+					Drawable drawable = this.getResources().getDrawable(R.drawable.error);
+					adapter.setImage(missingNum,drawable);
 				}
-			}			
+			}
+			
+			//change the next missing blank to question mark
+			int nextMissingNum = puzzleTest.peekNextMissingNum();
+			if (nextMissingNum != -1){
+				Drawable errorDrawable = getQuestionDrawable();
+				adapter.setImage(nextMissingNum, errorDrawable);				
+			}
 		}
 
+	}
+
+	private Drawable getQuestionDrawable() {
+		if (questionDrawable == null){
+			questionDrawable = this.getResources().getDrawable(R.drawable.question_mark);
+		}
+		return questionDrawable;
 	}
 }

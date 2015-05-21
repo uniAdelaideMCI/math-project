@@ -14,6 +14,7 @@ public class PuzzleTest {
 	private int columnCount = 3;
 	//missing numbers per row
 	private int missingCount = 1;
+	private int totalMissingCount = 3;
 	//the current missing number index
 	private int currentMissIndex = -1;
 	private int rowCount = 3;
@@ -28,6 +29,7 @@ public class PuzzleTest {
 
 	
 	public PuzzleTest(){
+		totalMissingCount = missingCount * rowCount;
 		int numCount = getNumCount();
 		nums = new int[numCount];
 		answeredNums = new int[3];
@@ -84,6 +86,15 @@ public class PuzzleTest {
 	
 	public int nextMissingNum(){
 		return missingNums[++currentMissIndex];
+	}
+	
+	public int peekNextMissingNum(){
+		if ( currentMissIndex + 1 < totalMissingCount){
+			return missingNums[currentMissIndex + 1];
+		}else{
+			return -1;
+		}
+
 	}
 
 	/**
