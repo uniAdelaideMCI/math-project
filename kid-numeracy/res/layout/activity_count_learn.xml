@@ -1,25 +1,26 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="2dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
+    android:paddingTop="2dp"
     tools:context="au.edu.adelaide.mci.kidnumeracy.MainActivity"
-    android:background="#FFFFFF"
     >
     <!-- android:background="@drawable/background" -->
-    <GridView
-    android:id="@+id/selectedApples"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:numColumns="4"
-    android:verticalSpacing="2dp"
-    android:horizontalSpacing="2dp"
-    android:stretchMode="columnWidth"
-    android:gravity="center"
-    android:background="#FFFFFF"
-    />
 
-</LinearLayout>
+    <GridView
+        android:id="@+id/selectedApples"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="fill"
+        android:layout_margin="0dp"
+        android:gravity="fill"
+        android:horizontalSpacing="0dp"
+        android:numColumns="5"
+        android:padding="0dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="0dp" />
+
+</FrameLayout>

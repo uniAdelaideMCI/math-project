@@ -26,6 +26,7 @@ public class CountTestActivity extends Activity {
 	private PuzzleTestImageAdapter adapter = new PuzzleTestImageAdapter();
 	
 	private Drawable questionDrawable = null;
+	private int currentMissingIndex = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -115,11 +116,13 @@ public class CountTestActivity extends Activity {
 		case 20:
 			resId = R.drawable.n20;
 			break;				
-		default:
-			break;
 		}
-		
-		return getResources().getDrawable(resId);
+		if (value >= 0 && value <=20){
+			return getResources().getDrawable(resId);
+		}else{
+			return null;
+		}
+
 	}	
 	
 	public class PuzzleTestImageAdapter extends BaseAdapter {
@@ -151,7 +154,7 @@ public class CountTestActivity extends Activity {
 			imageViews[position].setLayoutParams(new GridView.LayoutParams(parent.getWidth()/3,parent.getHeight()/3));
 			if (notMissing(position + 1, missingNums)){
 				imageViews[position].setImageDrawable(CountTestActivity.this.getDrawableByValue(position+1));
-			}else if (0 == puzzleTest.getRowIndexByValue(position + 1)){
+			}else if (position + 1 == puzzleTest.peekNextMissingNum()){
 				imageViews[position].setImageDrawable(CountTestActivity.this.getResources().getDrawable(R.drawable.question_mark));
 			}else{
 				imageViews[position].setImageDrawable(CountTestActivity.this.getResources().getDrawable(R.drawable.blank_mark));
@@ -174,7 +177,8 @@ public class CountTestActivity extends Activity {
 			return true;
 		}
 		public void setImage(int num, Drawable drawable) {
-			imageViews[num-1].setImageDrawable(drawable);			
+			imageViews[num-1].setImageDrawable(drawable);
+			drawNumberMapper.register(num, drawable);
 		}
 
 	}
@@ -189,7 +193,9 @@ public class CountTestActivity extends Activity {
 		ImageView imageView = (ImageView)view;	
 		//the num is being touched
 		int num = missingNumMapper.getNum(imageView.getDrawable());
-		if (!puzzleTest.isAnswered(num)){
+		
+		if (puzzleTest.getCurrentMissIndex() + 1 == currentMissingIndex){
+			currentMissingIndex++;
 			int missingNum = puzzleTest.nextMissingNum();		
 			puzzleTest.answer(num);
 			if (num != -1){

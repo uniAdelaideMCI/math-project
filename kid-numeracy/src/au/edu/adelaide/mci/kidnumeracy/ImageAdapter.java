@@ -20,16 +20,6 @@ public class ImageAdapter extends BaseAdapter {
 	private Drawable[] drawables = new Drawable[resIds.length];
 	private Random random = new Random(System.currentTimeMillis());
 	
-	@SuppressWarnings("deprecation")
-	public Drawable getRandomDrawable() {
-//		int index = random.nextInt(resIds.length);
-//		if (drawables[index] == null){
-//			drawables[index] = mContext.getResources().getDrawable(resIds[index]);
-//		}
-//		return drawables[index];
-		int index = random.nextInt(resIds.length);
-		return mContext.getResources().getDrawable(resIds[index]);
-	}
 	private Context mContext;
 	
 	private CountLearnActivity countLearnActivity;

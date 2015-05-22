@@ -21,34 +21,43 @@ public class PuzzleTest {
 	private int[] nums;
 	private int[] missingNums;
 	private int[] answeredNums;
+	private int[] answeredMissingIndices;
 	
 	public int getCurrentMissIndex() {
 		return currentMissIndex;
 	}
-
-
+	
+	
 	
 	public PuzzleTest(){
 		totalMissingCount = missingCount * rowCount;
 		int numCount = getNumCount();
 		nums = new int[numCount];
-		answeredNums = new int[3];
+		answeredNums = new int[totalMissingCount];
 		Arrays.fill(answeredNums, -1);
+		answeredMissingIndices = new int[totalMissingCount];
+		Arrays.fill(answeredMissingIndices, -1);
 		for (int i = 0; i < nums.length; i++) {
 			nums[i] = i + 1;
 		}
 		
-		missingNums = new int[rowCount];
+		missingNums = new int[totalMissingCount];
 		//for each row
 		for (int i = 0; i < missingNums.length; i++) {
 			Set<Integer> missingCols = new HashSet<Integer>();
 			for(int j = 1 ; j <= missingCount ; j++){
-				int colNo = random.nextInt(columnCount);
+				int colNo = -1;
+				if (i == 0){
+					colNo = random.nextInt(columnCount-1) + 1;	
+				}else{
+					colNo = random.nextInt(columnCount);					
+				}
 				if (!missingCols.contains(colNo)){
 					missingNums[i] = getNum(i,colNo);
 				}
 			}
-		}		
+		}
+		
 	}
 	
 	public int getNumCount() {
@@ -83,7 +92,7 @@ public class PuzzleTest {
 		int colNo = index % columnCount;
 		return colNo;
 	}
-	
+
 	public int nextMissingNum(){
 		return missingNums[++currentMissIndex];
 	}
