@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
 
 @SuppressWarnings("deprecation")
 public class AddLearningActivity extends ActionBarActivity implements AddListener {
@@ -70,5 +71,11 @@ public class AddLearningActivity extends ActionBarActivity implements AddListene
 			.append(" = ").append(addLearning.getResult());
 		TextView tvResult = (TextView)findViewById(R.id.tvResult);
 		tvResult.setText(sb.toString());
+		
+		NumImageView nivResult = (NumImageView)findViewById(R.id.nivResult);
+		nivResult.setNumValue(addLearning.getResult());
+		
+		NumObjectGridView nogvAddResult = (NumObjectGridView)findViewById(R.id.nogvAddResult);
+		nogvAddResult.setNumValue(addLearning.getResult());
 	}
 }
