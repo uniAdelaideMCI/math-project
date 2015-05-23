@@ -21,41 +21,47 @@ public class CountTestActivity extends Activity {
 	private ImageView ivNum3;
 	private PuzzleTest puzzleTest = new PuzzleTest();
 	private DrawNumberMapper drawNumberMapper = new DrawNumberMapper();
-	private int missingNums[] = puzzleTest.getMissingNumByRow();
 	private DrawNumberMapper missingNumMapper = new DrawNumberMapper();
 	private PuzzleTestImageAdapter adapter = new PuzzleTestImageAdapter();
-	
+
 	private Drawable questionDrawable = null;
 	private int currentMissingIndex = 0;
-	
+
+	private Drawable drawables[];
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_count_test);
-		gridView = (GridView)findViewById(R.id.gvPuzzle);
+
+		drawables = new Drawable[21];// The variable used to buffer number
+										// images
+
+		gridView = (GridView) findViewById(R.id.gvPuzzle);
 		gridView.setAdapter(adapter);
-		//show the missing numbers
-		int unorderedNums[] = Util.randomiseArray(missingNums);
-		ivNum1 = (ImageView)findViewById(R.id.ivNum1);
-		ivNum2 = (ImageView)findViewById(R.id.ivNum2);
-		ivNum3 = (ImageView)findViewById(R.id.ivNum3);
+		// show the missing numbers
+		int unorderedNums[] = puzzleTest.getMissNumsRandom();
+		ivNum1 = (ImageView) findViewById(R.id.ivNum1);
+		ivNum2 = (ImageView) findViewById(R.id.ivNum2);
+		ivNum3 = (ImageView) findViewById(R.id.ivNum3);
 		ivNum1.setImageDrawable(getDrawableByValue(unorderedNums[0]));
 		missingNumMapper.register(unorderedNums[0], ivNum1.getDrawable());
 		ivNum2.setImageDrawable(getDrawableByValue(unorderedNums[1]));
-		missingNumMapper.register(unorderedNums[1], ivNum2.getDrawable());		
+		missingNumMapper.register(unorderedNums[1], ivNum2.getDrawable());
 		ivNum3.setImageDrawable(getDrawableByValue(unorderedNums[2]));
-		missingNumMapper.register(unorderedNums[2], ivNum3.getDrawable());		
-		
-		llMain = (LinearLayout)findViewById(R.id.ll_count_test_main);
-		llNums = (LinearLayout)findViewById(R.id.ll_nums);
+		missingNumMapper.register(unorderedNums[2], ivNum3.getDrawable());
+
+		llMain = (LinearLayout) findViewById(R.id.ll_count_test_main);
+		llNums = (LinearLayout) findViewById(R.id.ll_nums);
+
 	}
-	
+
 	private Drawable getDrawableByValue(int value) {
 		int resId = R.drawable.n0;
 		switch (value) {
 		case 0:
 			resId = R.drawable.n0;
-			break;		
+			break;
 		case 1:
 			resId = R.drawable.n1;
 			break;
@@ -70,7 +76,7 @@ public class CountTestActivity extends Activity {
 			break;
 		case 5:
 			resId = R.drawable.n5;
-			break;	
+			break;
 		case 6:
 			resId = R.drawable.n6;
 			break;
@@ -109,28 +115,34 @@ public class CountTestActivity extends Activity {
 			break;
 		case 18:
 			resId = R.drawable.n18;
-			break;	
+			break;
 		case 19:
 			resId = R.drawable.n19;
 			break;
 		case 20:
 			resId = R.drawable.n20;
-			break;				
+			break;
 		}
-		if (value >= 0 && value <=20){
+		if (value >= 0 && value <= 20) {
+			// if (drawables[value] == null){
+			// drawables[value] = getResources().getDrawable(resId);
+			// }
+			// return drawables[value - 1];
 			return getResources().getDrawable(resId);
-		}else{
+		} else {
 			return null;
 		}
 
-	}	
-	
+	}
+
 	public class PuzzleTestImageAdapter extends BaseAdapter {
-		
-		private ImageView[] imageViews; 
-		public PuzzleTestImageAdapter(){
+
+		private ImageView[] imageViews;
+
+		public PuzzleTestImageAdapter() {
 			imageViews = new ImageView[getCount()];
 		}
+
 		@Override
 		public int getCount() {
 			return puzzleTest.getNumCount();
@@ -138,46 +150,48 @@ public class CountTestActivity extends Activity {
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
-			return null;
+			return puzzleTest.getNum(position);
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
-			return 0;
+			return puzzleTest.getNum(position).getRowNo();
 		}
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
+
 			imageViews[position] = new ImageView(CountTestActivity.this);
-			imageViews[position].setLayoutParams(new GridView.LayoutParams(parent.getWidth()/3,parent.getHeight()/3));
-			if (notMissing(position + 1, missingNums)){
-				imageViews[position].setImageDrawable(CountTestActivity.this.getDrawableByValue(position+1));
-			}else if (position + 1 == puzzleTest.peekNextMissingNum()){
-				imageViews[position].setImageDrawable(CountTestActivity.this.getResources().getDrawable(R.drawable.question_mark));
-			}else{
-				imageViews[position].setImageDrawable(CountTestActivity.this.getResources().getDrawable(R.drawable.blank_mark));
+			imageViews[position].setLayoutParams(new GridView.LayoutParams(
+					parent.getWidth() / 3, parent.getHeight() / 3));
+			// if not missing or answered correctly
+			PuzzleTest.PuzzleValue puzzleValue = puzzleTest.getNum(position);
+			if (!puzzleValue.isOriginalMissing()
+					|| (puzzleValue.isAnswered() && puzzleValue
+							.isAnsweredCorrect())) {
+				imageViews[position].setImageDrawable(CountTestActivity.this
+						.getDrawableByValue(position + 1));
+			} else if (puzzleValue.isAnswered()
+					&& !puzzleValue.isAnsweredCorrect()) {
+				imageViews[position].setImageDrawable(CountTestActivity.this
+						.getResources().getDrawable(R.drawable.error));
+			} else if (puzzleTest.isCurrentMissing(puzzleValue)) { // not
+																	// answered
+				imageViews[position].setImageDrawable(CountTestActivity.this
+						.getResources().getDrawable(R.drawable.question_mark));
+			} else {
+				imageViews[position].setImageDrawable(CountTestActivity.this
+						.getResources().getDrawable(R.drawable.blank_mark));
 			}
-			drawNumberMapper.register(position + 1, imageViews[position].getDrawable());			
+			drawNumberMapper.register(position + 1,
+					imageViews[position].getDrawable());
+			parent.invalidate();
 			return imageViews[position];
+
 		}
 
-		/**
-		 * @param value
-		 * @param missingNums
-		 * @return
-		 */
-		private boolean notMissing(int value, int[] missingNums) {
-			for (int i : missingNums) {
-				if (value == i){
-					return false;
-				}
-			}
-			return true;
-		}
 		public void setImage(int num, Drawable drawable) {
-			imageViews[num-1].setImageDrawable(drawable);
+			imageViews[num - 1].setImageDrawable(drawable);
 			drawNumberMapper.register(num, drawable);
 		}
 
@@ -185,49 +199,30 @@ public class CountTestActivity extends Activity {
 
 	@Override
 	protected void onStart() {
-		super.onStart();	
-	}	
-	
-	public void onBtnNumChoose(View view){
-		//get the number corresponding to the button
-		ImageView imageView = (ImageView)view;	
-		//the num is being touched
+		super.onStart();
+	}
+
+	public void onBtnNumChoose(View view) {
+		// get the number corresponding to the button
+		ImageView imageView = (ImageView) view;
+		// the num is being touched
 		int num = missingNumMapper.getNum(imageView.getDrawable());
-		
-		if (puzzleTest.getCurrentMissIndex() + 1 == currentMissingIndex){
+		if (puzzleTest.hasMissing()
+				&& puzzleTest.getCurrentMissIndex() == currentMissingIndex) {
+			PuzzleTest.PuzzleValue missingNum = puzzleTest.currentMissingNum();
+			boolean isCorrect = puzzleTest.answer(num);
 			currentMissingIndex++;
-			int missingNum = puzzleTest.nextMissingNum();		
-			puzzleTest.answer(num);
-			if (num != -1){
-				//if choose correct num, show the num
-				if (num == missingNum){
-					//the pic is being chosen
-					Drawable drawable = getDrawableByValue(num);
-					//display the image in the grid view
-					adapter.setImage(num,drawable);
-//					Drawable displayDrawable = drawNumberMapper.getDrawable(missingNum);
-//					//update mapping
-//					drawNumberMapper.register(missingNum, drawable);				
-////					displayDrawable = drawable;
-				}else{
-					Drawable drawable = this.getResources().getDrawable(R.drawable.error);
-					adapter.setImage(missingNum,drawable);
-				}
-			}
-			
-			//change the next missing blank to question mark
-			int nextMissingNum = puzzleTest.peekNextMissingNum();
-			if (nextMissingNum != -1){
-				Drawable errorDrawable = getQuestionDrawable();
-				adapter.setImage(nextMissingNum, errorDrawable);				
-			}
+			puzzleTest.nextMissingNum();
+			adapter = new PuzzleTestImageAdapter();
+			gridView.setAdapter(adapter);
 		}
 
 	}
 
 	private Drawable getQuestionDrawable() {
-		if (questionDrawable == null){
-			questionDrawable = this.getResources().getDrawable(R.drawable.question_mark);
+		if (questionDrawable == null) {
+			questionDrawable = this.getResources().getDrawable(
+					R.drawable.question_mark);
 		}
 		return questionDrawable;
 	}

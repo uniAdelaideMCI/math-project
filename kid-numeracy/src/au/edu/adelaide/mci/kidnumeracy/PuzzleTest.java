@@ -1,7 +1,8 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -10,56 +11,111 @@ import java.util.Set;
  *
  */
 public class PuzzleTest {
+	/**
+	 * @author Yun
+	 *
+	 */
+	class PuzzleValue {
+		private int rowNo;
+		private int colNo;
+		private int value;
+		private boolean orginalMissing;
+		private boolean answered = false;
+		private int answeredValue;
+		
+		public boolean isAnsweredCorrect(){
+			return value == answeredValue;
+		}
+
+		public boolean answer(int answer) {
+			answeredValue = answer;
+			answered = true;
+			return isAnsweredCorrect();
+		}
+
+		public boolean isAnswered() {
+			return answered;
+		}
+
+		public boolean isOriginalMissing() {
+			return orginalMissing;
+		}
+
+		private boolean samePosition(PuzzleValue puzzleValue) {
+			return puzzleValue.rowNo == rowNo && puzzleValue.colNo == colNo;
+		}
+
+		public int getValue() {
+			return value;
+		}
+
+		public int getRowNo() {
+			return rowNo;
+		}
+	}
+
+
+
 	private Random random = new Random();
+	private int rowCount = 3;
 	private int columnCount = 3;
 	//missing numbers per row
-	private int missingCount = 1;
+	private int missingCountPerRow = 1;
 	private int totalMissingCount = 3;
 	//the current missing number index
-	private int currentMissIndex = -1;
-	private int rowCount = 3;
-	private int[] nums;
-	private int[] missingNums;
-	private int[] answeredNums;
-	private int[] answeredMissingIndices;
+	private int currentMissIndex = 0;
+	private PuzzleValue[] nums;
+	private List<PuzzleValue> missNums = new ArrayList<PuzzleValue>();	
 	
 	public int getCurrentMissIndex() {
 		return currentMissIndex;
 	}
 	
+	public boolean hasMissing(){
+		return currentMissIndex < missNums.size();
+	}
+	
 	
 	
 	public PuzzleTest(){
-		totalMissingCount = missingCount * rowCount;
+		totalMissingCount = missingCountPerRow * rowCount;
 		int numCount = getNumCount();
-		nums = new int[numCount];
-		answeredNums = new int[totalMissingCount];
-		Arrays.fill(answeredNums, -1);
-		answeredMissingIndices = new int[totalMissingCount];
-		Arrays.fill(answeredMissingIndices, -1);
-		for (int i = 0; i < nums.length; i++) {
-			nums[i] = i + 1;
+		nums = new PuzzleValue[numCount];
+		for (int i = 0; i < rowCount ; i++){
+			for(int j = 0 ; j < columnCount ; j++){
+				int index = i*rowCount + j;
+				nums[index] = new PuzzleValue();
+				nums[index].rowNo = i;
+				nums[index].colNo = j;
+				nums[index].value = index + 1;
+			}
 		}
 		
-		missingNums = new int[totalMissingCount];
 		//for each row
-		for (int i = 0; i < missingNums.length; i++) {
+		for (int i = 0; i < rowCount ; i++) {
 			Set<Integer> missingCols = new HashSet<Integer>();
-			for(int j = 1 ; j <= missingCount ; j++){
+			for(int j = 0 ; j < missingCountPerRow ; j++){
 				int colNo = -1;
-				if (i == 0){
-					colNo = random.nextInt(columnCount-1) + 1;	
-				}else{
-					colNo = random.nextInt(columnCount);					
-				}
-				if (!missingCols.contains(colNo)){
-					missingNums[i] = getNum(i,colNo);
-				}
+				do {
+					colNo = random.nextInt(columnCount);
+					missingCols.add(colNo);
+				} while (!missingCols.contains(colNo));
+								
+				int index = i * rowCount + colNo;
+				nums[index].orginalMissing = true;
+				missNums.add(nums[index]);
+
 			}
 		}
 		
 	}
 	
+	public int getTotalOriginMissCount() {
+		return rowCount * missingCountPerRow;
+	}
+
+
+
 	public int getNumCount() {
 		return columnCount * rowCount;
 	}
@@ -68,12 +124,17 @@ public class PuzzleTest {
 	 * get missing indices 
 	 * @return
 	 */
-	public int[] getMissingNumByRow(){
-		return missingNums;
+	public PuzzleValue[] getOriginalMissNums(){
+		PuzzleValue[] values = new PuzzleValue[missNums.size()];
+		return missNums.toArray(values);
 	}
 	
-	public int getNum(int rowNo, int colNo) {
-		return nums[rowNo * columnCount + colNo];
+	public PuzzleValue getNum(int rowNo, int colNo) {
+		return getNum(rowNo * columnCount + colNo);
+	}
+	
+	public PuzzleValue getNum(int position) {
+		return nums[position];
 	}
 	
 	
@@ -93,51 +154,58 @@ public class PuzzleTest {
 		return colNo;
 	}
 
-	public int nextMissingNum(){
-		return missingNums[++currentMissIndex];
+	public PuzzleValue nextMissingNum(){
+		return missNums.get(currentMissIndex++);
 	}
 	
-	public int peekNextMissingNum(){
-		if ( currentMissIndex + 1 < totalMissingCount){
-			return missingNums[currentMissIndex + 1];
+	public PuzzleValue currentMissingNum(){
+		if (currentMissIndex >= missNums.size()){
+			return null;
 		}else{
-			return -1;
+			return missNums.get(currentMissIndex);			
 		}
-
 	}
+	
 
 	/**
 	 * answer the current missing number
 	 * @param num
 	 */
-	public boolean answer(int num) {
-		answeredNums[currentMissIndex] = num;
-		if (num == missingNums[currentMissIndex]){
-			return true;
-		}else{
-			return false;
-		}
+	public boolean answer(int answer) {
+		PuzzleValue puzzleValue = getCurrentMissNum();
+		return puzzleValue.answer(answer);
+	}
+
+
+
+	private PuzzleValue getCurrentMissNum() {
+		if (currentMissIndex > missNums.size())
+			return null;
+		return missNums.get(currentMissIndex);
 	}
 
 
 
 	/**
-	 * @param num
+	 * @param puzzleValue
 	 * @return
 	 */
-	public boolean isAnswered(int num) {
-		for (int answer : answeredNums) {
-			if (answer == num){
-				return true;
-			}
+	public boolean isCurrentMissing(PuzzleValue puzzleValue) {
+		if (currentMissingNum() != null && currentMissingNum().samePosition(puzzleValue)){
+			return true;
 		}
 		return false;
 	}
 
 
 
-	public int getMissingNum(int index) {
-		return missingNums[index];
+	public int[] getMissNumsRandom() {
+		int [] result = new int[getTotalOriginMissCount()];
+		int i = 0;
+		for (PuzzleValue puzzleValue : missNums) {
+			result[i++] = puzzleValue.getValue(); 
+		}
+		result = Util.randomiseArray(result);
+		return result;
 	}
-	
 }
