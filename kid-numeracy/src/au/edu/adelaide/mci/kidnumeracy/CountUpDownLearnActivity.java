@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
 
 /**
@@ -128,6 +129,10 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 
 	@Override
 	public void onAllPhaseCounted() {
+		
+	}
+	
+	public void onPhaseChooseClick(View view){
 		
 	}
 }

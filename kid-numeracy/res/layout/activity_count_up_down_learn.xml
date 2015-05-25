@@ -20,11 +20,30 @@
             android:numColumns="3" >
         </au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView>
 
-        <au.edu.adelaide.mci.kidnumeracy.NumImageView
-            android:id="@+id/nivLeft"
-            android:layout_width="match_parent"
+
+        <LinearLayout 
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/n1" />
+            android:gravity="left"
+            android:orientation="horizontal">
+		    <ImageButton
+		        android:id="@+id/ibPhaseChangeLeft"
+		        android:layout_width="100dp"
+		        android:layout_height="80dp"
+		        android:layout_marginBottom="0dp"
+		        android:paddingBottom="1dp"
+		        android:layout_gravity="bottom"	        
+		        android:scaleType="centerCrop"
+		        android:src="@drawable/arrow_right"
+				android:onClick="onPhaseChooseClick"  />            
+	        <au.edu.adelaide.mci.kidnumeracy.NumImageView
+	            android:id="@+id/nivLeft"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:src="@drawable/n1" />           
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
@@ -36,8 +55,8 @@
 
     <LinearLayout
         android:id="@+id/llRight"
-        android:layout_width="1180px"
-        android:layout_height="match_parent"
+            android:layout_width="1180px"
+            android:layout_height="match_parent"
         android:orientation="vertical" >
         <au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView
             android:id="@+id/nogvRight"
@@ -45,12 +64,30 @@
             android:layout_height="1180px"
             android:numColumns="3" >
         </au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView>
-
-        <au.edu.adelaide.mci.kidnumeracy.NumImageView
-            android:id="@+id/nivRight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/n1" />
+       <RelativeLayout 
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+ 	        <au.edu.adelaide.mci.kidnumeracy.NumImageView
+	            android:id="@+id/nivRight"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+				android:layout_centerHorizontal="true"
+	            android:src="@drawable/n1" />	        
+		    <ImageButton
+		        android:id="@+id/ibPhaseChangeRight"
+		        android:layout_width="100dp"
+		        android:layout_height="80dp"
+		        android:layout_marginBottom="0dp"
+		        android:paddingRight="1dp"
+		        android:paddingBottom="1dp"
+	            android:layout_alignParentRight="true"
+	            android:layout_alignParentBottom="true"		        
+		        android:layout_gravity="bottom"	        
+		        android:scaleType="centerCrop"
+		        android:src="@drawable/arrow_right"
+				android:onClick="onPhaseChooseClick" />            
+       </RelativeLayout>      
+    
     </LinearLayout>
 	
 </LinearLayout>
