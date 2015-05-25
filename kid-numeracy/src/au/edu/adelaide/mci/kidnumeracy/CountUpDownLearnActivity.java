@@ -1,10 +1,12 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
 
 /**
@@ -19,6 +21,9 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 
 	private NumImageView nivLeft;
 	private NumImageView nivRight;
+	
+	private ImageButton ibPhaseChangeLeft;
+	private ImageButton ibPhaseChangeRight;
 
 	private int phaseNo = 1;
 
@@ -30,12 +35,30 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void nextPhase(){
 		if (phaseNo == 1){
 			phaseNo = 2;
+			nogvLeft.setNumColumns(5);
+			nogvRight.setNumColumns(5);
 		}else{
 			phaseNo =1;
-		} 
+			nogvLeft.setNumColumns(3);	
+			nogvRight.setNumColumns(3);
+		}
+		Drawable drawable = null;
+		if (phaseNo == 1){
+			drawable = getResources().getDrawable(R.drawable.arrow_right);
+		}else{
+			drawable = getResources().getDrawable(R.drawable.arrow_left);
+		}
+		ibPhaseChangeLeft.setImageDrawable(drawable);
+		nogvLeft.setMaxValue(getMaxValue() - 1);
+		nogvLeft.setNumValue(getMaxValue() - 1);
+		nivLeft.setNumValue(getMaxValue() - 1);
+		nogvRight.setMaxValue(getMaxValue() - 1);
+		nogvRight.setNumValue(1);
+		nivRight.setNumValue(1);
 	}
 
 	@Override
@@ -50,6 +73,9 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 		nogvRight = (NumObjectGridView) findViewById(R.id.nogvRight);
 		nivLeft = (NumImageView) findViewById(R.id.nivLeft);
 		nivRight = (NumImageView) findViewById(R.id.nivRight);
+		
+		ibPhaseChangeLeft = (ImageButton)findViewById(R.id.ibPhaseChangeLeft);
+		ibPhaseChangeRight= (ImageButton)findViewById(R.id.ibPhaseChangeRight);
 		nogvLeft.addNumChangedListener(this);
 		int resIndex = nogvLeft.getRandomResIdIndex();
 		nogvRight.setStyleType(2);
@@ -133,6 +159,6 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 	}
 	
 	public void onPhaseChooseClick(View view){
-		
+		nextPhase();
 	}
 }

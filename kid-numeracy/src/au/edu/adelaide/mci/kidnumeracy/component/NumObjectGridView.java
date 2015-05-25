@@ -86,13 +86,12 @@ public class NumObjectGridView extends GridView {
 	}
 
 	public void setNumValue(int numValue) {
+			positions.clear();
 			for (int i = 0 ; i < numValue ; i++){
 				positions.put(i, null);
 			}
 			this.numValue = numValue;
 			setAdapter(new NumObjectImageAdapter());
-
-
 	}
 
 
