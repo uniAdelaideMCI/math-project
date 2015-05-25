@@ -40,9 +40,13 @@ public class NumObjectGridView extends GridView {
 	
 	private int resIdIndex = -1;
 	
-	public int getRandomResIdIndex() {
+	public int getRandomResIdIndex(boolean forceUpdate) {
 		if (resIdIndex == -1){
 			resIdIndex = random.nextInt(resIds.length);
+		}else{
+			if (forceUpdate){
+				resIdIndex = random.nextInt(resIds.length);
+			}
 		}
 		return resIdIndex;
 	}
@@ -66,7 +70,7 @@ public class NumObjectGridView extends GridView {
 	
 	public int getCurResId(){
 		if (resIdIndex == -1){
-			resIdIndex = getRandomResIdIndex();
+			resIdIndex = getRandomResIdIndex(false);
 		}
 		if (styleType == 1){
 			return resIds[resIdIndex];

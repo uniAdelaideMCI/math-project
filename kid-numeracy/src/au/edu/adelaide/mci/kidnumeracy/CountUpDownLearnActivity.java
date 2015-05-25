@@ -52,6 +52,7 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 		}else{
 			drawable = getResources().getDrawable(R.drawable.arrow_left);
 		}
+	    nogvRight.setResIdIndex(nogvLeft.getRandomResIdIndex(true));
 		ibPhaseChangeLeft.setImageDrawable(drawable);
 		nogvLeft.setMaxValue(getMaxValue() - 1);
 		nogvLeft.setNumValue(getMaxValue() - 1);
@@ -77,7 +78,7 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 		ibPhaseChangeLeft = (ImageButton)findViewById(R.id.ibPhaseChangeLeft);
 		ibPhaseChangeRight= (ImageButton)findViewById(R.id.ibPhaseChangeRight);
 		nogvLeft.addNumChangedListener(this);
-		int resIndex = nogvLeft.getRandomResIdIndex();
+		int resIndex = nogvLeft.getRandomResIdIndex(false);
 		nogvRight.setStyleType(2);
 		nogvRight.setResIdIndex(resIndex);
 		nogvLeft.setResIdIndex(resIndex);
