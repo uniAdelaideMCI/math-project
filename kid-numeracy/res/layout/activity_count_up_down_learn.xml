@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="0px"
+    tools:context="au.edu.adelaide.mci.kidnumeracy.CountUpDownLearnActivity" >
+
+    <LinearLayout
+        android:id="@+id/llLeft"
+        android:layout_width="1180px"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView
+            android:id="@+id/nogvLeft"
+            android:layout_width="match_parent"
+            android:layout_height="1180px"
+            android:numColumns="3" >
+        </au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView>
+
+        <au.edu.adelaide.mci.kidnumeracy.NumImageView
+            android:id="@+id/nivLeft"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/n1" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="200px"
+        android:layout_height="match_parent"
+        android:src="@drawable/kn_border" />
+
+    <LinearLayout
+        android:id="@+id/llRight"
+        android:layout_width="1180px"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        <au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView
+            android:id="@+id/nogvRight"
+            android:layout_width="match_parent"
+            android:layout_height="1180px"
+            android:numColumns="3" >
+        </au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView>
+
+        <au.edu.adelaide.mci.kidnumeracy.NumImageView
+            android:id="@+id/nivRight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/n1" />
+    </LinearLayout>
+	
+</LinearLayout>

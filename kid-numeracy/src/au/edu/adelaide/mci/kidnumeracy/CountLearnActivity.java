@@ -1,11 +1,9 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
 import java.io.IOException;
-import java.util.Random;
 
 import org.json.JSONException;
 
-import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

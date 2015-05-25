@@ -11,6 +11,8 @@
     <string name="title_activity_count_test">CountTestActivity</string>
     <string name="num1">number 1</string>
     <string name="num2">number 2</string>
-    <string name="num3">number 3</string>                
+    <string name="num3">number 3</string>
+    <string name="title_activity_count_up_down_learn">CountUpDownLearnActivity</string>
+    <string name="title_activity_count_ruler_learning">CountRulerLearningActivity</string>
 
 </resources>

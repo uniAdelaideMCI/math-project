@@ -71,4 +71,10 @@ public class CountLearningProcess {
 			return false;
 		}
 	}
+	
+	public CountLearningPhase addLearningPhase(int phaseNo, int minValue, int maxValue){
+		CountLearningPhase countLearningPhase = new CountLearningPhase(phaseNo, minValue, maxValue);
+		mPhases.add(countLearningPhase);
+		return countLearningPhase;
+	}
 }

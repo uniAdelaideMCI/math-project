@@ -197,10 +197,6 @@ public class CountTestActivity extends Activity {
 
 	}
 
-	@Override
-	protected void onStart() {
-		super.onStart();
-	}
 
 	public void onBtnNumChoose(View view) {
 		// get the number corresponding to the button

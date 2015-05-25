@@ -15,9 +15,9 @@ public class PuzzleTestTest extends TestCase {
 		assertEquals(9, numCount);
 	}
 	
-	public void testGetMissingNumByRow(){
-		int missingNums[] = puzzleTest.getMissingNumByRow();
-		assertEquals(3,missingNums.length);
-		
-	}
+//	public void testGetMissingNumByRow(){
+//		int missingNums[] = puzzleTest.getMissingNumByRow();
+//		assertEquals(3,missingNums.length);
+//		
+//	}
 }

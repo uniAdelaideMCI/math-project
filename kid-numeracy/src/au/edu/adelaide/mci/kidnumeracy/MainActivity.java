@@ -18,7 +18,9 @@ public class MainActivity extends ActionBarActivity {
 	}
 	
 	public void onBtnCountClick(View v){
-		Intent intent = new Intent(MainActivity.this,CountLearnActivity.class);
+		//Intent intent = new Intent(MainActivity.this,CountLearnActivity.class);
+		//Intent intent = new Intent(MainActivity.this,CountUpDownLearnActivity.class);
+		Intent intent = new Intent(MainActivity.this,CountRulerLearningActivity.class);
 		startActivity(intent);
 	}
 	
