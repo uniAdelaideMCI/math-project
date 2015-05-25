@@ -54,6 +54,7 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 		}
 	    nogvRight.setResIdIndex(nogvLeft.getRandomResIdIndex(true));
 		ibPhaseChangeLeft.setImageDrawable(drawable);
+		ibPhaseChangeRight.setImageDrawable(drawable);
 		nogvLeft.setMaxValue(getMaxValue() - 1);
 		nogvLeft.setNumValue(getMaxValue() - 1);
 		nivLeft.setNumValue(getMaxValue() - 1);

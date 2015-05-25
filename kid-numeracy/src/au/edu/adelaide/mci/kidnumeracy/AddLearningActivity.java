@@ -65,17 +65,14 @@ public class AddLearningActivity extends ActionBarActivity implements AddListene
 
 	@Override
 	public void add() {
-		StringBuffer sb = new StringBuffer();
-		sb.append(addLearning.getOperand1())
-			.append(" + ").append(addLearning.getOperand2())
-			.append(" = ").append(addLearning.getResult());
-		TextView tvResult = (TextView)findViewById(R.id.tvResult);
-		tvResult.setText(sb.toString());
+		int operand1 = addLearning.getOperand1();
+		int operand2 = addLearning.getOperand2();
+		int result = addLearning.getResult();
 		
 		NumImageView nivResult = (NumImageView)findViewById(R.id.nivResult);
-		nivResult.setNumValue(addLearning.getResult());
+		nivResult.setNumValue(result);
 		
 		NumObjectGridView nogvAddResult = (NumObjectGridView)findViewById(R.id.nogvAddResult);
-		nogvAddResult.setNumValue(addLearning.getResult());
+		nogvAddResult.setNumValue(result);
 	}
 }

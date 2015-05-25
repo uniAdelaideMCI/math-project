@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     android:padding="0px"
+    android:background="@drawable/background_wood_brown"
     tools:context="au.edu.adelaide.mci.kidnumeracy.CountUpDownLearnActivity" >
 
     <LinearLayout
