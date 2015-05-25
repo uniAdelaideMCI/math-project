@@ -95,7 +95,7 @@ public class CountLearnActivity extends ActionBarActivity implements
 	}
 
 	@Override
-	public void numberChanged() {
+	public void afterNumChanged(int oldValue) {
 
 	}
 

@@ -1,9 +1,5 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
-import java.io.IOException;
-
-import org.json.JSONException;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,44 +8,86 @@ import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
 
 /**
  * Count up and down at the same time
+ * 
  * @author Yun Zhang
  *
  */
-public class CountUpDownLearnActivity extends Activity implements NumberListener {
-	private CountLearning countLearning;
+public class CountUpDownLearnActivity extends Activity implements NumberListener{
 	private NumObjectGridView nogvLeft;
 	private NumObjectGridView nogvRight;
-	
+
 	private NumImageView nivLeft;
 	private NumImageView nivRight;
+
+	private int phaseNo = 1;
+
+	private int getMaxValue() {
+		if (phaseNo == 1) {
+			return 10;
+		} else {
+			return 20;
+		}
+	}
 	
+	public void nextPhase(){
+		if (phaseNo == 1){
+			phaseNo = 2;
+		}else{
+			phaseNo =1;
+		} 
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_count_up_down_learn);
-		try {
-			CountLearningProcess countLearningProcess = CountLearningProcess
-					.load(this);
-			int max = countLearningProcess.getFirstPhase().getMaxValue();
-			countLearning = new CountLearning(countLearningProcess);
-			countLearning.addNumberListener(this);
+		
+		int max = getMaxValue();
+
+		// show objects to be counted
+		nogvLeft = (NumObjectGridView) findViewById(R.id.nogvLeft);
+		nogvRight = (NumObjectGridView) findViewById(R.id.nogvRight);
+		nivLeft = (NumImageView) findViewById(R.id.nivLeft);
+		nivRight = (NumImageView) findViewById(R.id.nivRight);
+		nogvLeft.addNumChangedListener(this);
+		int resIndex = nogvLeft.getRandomResIdIndex();
+		nogvRight.setStyleType(2);
+		nogvRight.setResIdIndex(resIndex);
+		nogvLeft.setResIdIndex(resIndex);
+		nogvLeft.setMaxValue(max - 1);
+		nogvLeft.setNumValue(max - 1);
+		nogvRight.addNumChangedListener(new NumberListener() {
 			
-			//show objects to be counted
-			nogvLeft = (NumObjectGridView)findViewById(R.id.nogvLeft);
-			nogvRight = (NumObjectGridView)findViewById(R.id.nogvRight);
-			nogvLeft.setNumValue(max - 1);
-			nogvRight.setNumValue(1);
+			@Override
+			public void ondDirectionChanged() {
+				
+			}
 			
-			//show corresponding value
-			nivLeft = (NumImageView)findViewById(R.id.nivLeft);
-			nivRight = (NumImageView)findViewById(R.id.nivRight);
-			nivLeft.setNumValue(max - 1);
-			nivRight.setNumValue(1);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+			@Override
+			public void onPhaseChanged() {
+				
+			}
+			
+			@Override
+			public void onAllPhaseCounted() {
+				
+			}
+			
+			@Override
+			public void afterNumChanged(int oldValue) {
+				nivRight.setNumValue(nogvRight.getNumValue());	
+				if (oldValue > nogvRight.getNumValue()){  //decrease value 
+					nogvLeft.increase(true);
+				}
+			}
+		});
+		nogvRight.setMaxValue(max - 1);
+		nogvRight.setNumValue(1);
+
+		// show corresponding value
+
+		nivLeft.setNumValue(max - 1);
+		nivRight.setNumValue(1);
 	}
 
 	@Override
@@ -72,26 +110,24 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 	}
 
 	@Override
-	public void numberChanged() {
-		// TODO Auto-generated method stub
-		
+	public void afterNumChanged(int oldValue) {
+		nivLeft.setNumValue(nogvLeft.getNumValue());
+		if (oldValue > nogvLeft.getNumValue()){  //decrease value 
+			nogvRight.increase(true);
+		}
 	}
 
 	@Override
 	public void ondDirectionChanged() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void onPhaseChanged() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onAllPhaseCounted() {
-		// TODO Auto-generated method stub
 		
 	}
 }

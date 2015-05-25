@@ -61,7 +61,7 @@ public class CountLearning implements Serializable {
 			case DIRECTION_UP:
 				if (currentValue < mMaxValue){
 					currentValue += step;
-					fireNumChangedEvent();
+					fireNumChangedEvent(currentValue - step);
 					if (currentValue == mMaxValue){
 						direction = DIRECTION_DOWN;
 						fireDirectionChangedEvent();
@@ -74,7 +74,7 @@ public class CountLearning implements Serializable {
 				if (currentValue > 1){
 					currentValue -= step;
 					nextValue = currentValue;
-					fireNumChangedEvent();
+					fireNumChangedEvent(currentValue + step);
 					if (currentValue == 1){
 						currentTimes++;
 						direction = DIRECTION_UP;
@@ -109,9 +109,9 @@ public class CountLearning implements Serializable {
 		return mCountLearningProcess.isLastPhase(currentPhase);
 	}
 
-	private void fireNumChangedEvent() {
+	private void fireNumChangedEvent(int oldValue) {
 		for (NumberListener numberListener : numberListeners) {
-			numberListener.numberChanged();
+			numberListener.afterNumChanged(oldValue);
 		}		
 	}
 	

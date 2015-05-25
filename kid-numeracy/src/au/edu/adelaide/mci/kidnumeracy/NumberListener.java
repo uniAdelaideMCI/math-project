@@ -9,7 +9,7 @@ public interface NumberListener {
 	/**
 	 * Called whenever the number counted has changed
 	 */
-	public void numberChanged();
+	public void afterNumChanged(int oldValue);
 	
 	public void ondDirectionChanged();	
 	
