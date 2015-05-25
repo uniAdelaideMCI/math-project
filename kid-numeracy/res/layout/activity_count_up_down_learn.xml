@@ -29,7 +29,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/ivBorder"
         android:layout_width="200px"
         android:layout_height="match_parent"
         android:src="@drawable/kn_border" />

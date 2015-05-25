@@ -9,5 +9,5 @@ package au.edu.adelaide.mci.kidnumeracy.component;
  *
  */
 public interface RulerNumberChosenListener {
-	public void beforeRulerNumberChosen(int newNumber);
+	public void afterRulerNumberChosen(int newNumber);
 }

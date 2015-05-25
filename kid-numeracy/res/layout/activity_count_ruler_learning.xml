@@ -6,10 +6,11 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
+    android:background="@drawable/background_wood_brown"
     tools:context="au.edu.adelaide.mci.kidnumeracy.CountRulerLearningActivity" >
 
     <au.edu.adelaide.mci.kidnumeracy.component.Ruler
-        android:id="@+id/ruler1"
+        android:id="@+id/ruler"
         android:layout_width="2500px"
         android:layout_height="500px"
         android:layout_alignParentLeft="true"
@@ -18,5 +19,32 @@
         android:layout_marginTop="0dp"
         android:padding="0dp"
         android:src="@drawable/ruler_10_0" />
+
+    <ImageButton
+        android:id="@+id/ibPhaseChangeRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/arrow_right"
+        android:onClick="onPhaseChooseClick" />
+    <ImageButton
+        android:id="@+id/ibPhaseChangeLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/arrow_right"
+		android:onClick="onPhaseChooseClick"  />
+
+    <au.edu.adelaide.mci.kidnumeracy.NumImageView
+        android:id="@+id/nivNum"
+        android:layout_width="680px"
+        android:layout_height="900px"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/n1" />
 
 </RelativeLayout>

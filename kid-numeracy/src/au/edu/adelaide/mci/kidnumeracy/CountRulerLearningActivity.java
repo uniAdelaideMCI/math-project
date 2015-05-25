@@ -1,16 +1,36 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
+import au.edu.adelaide.mci.kidnumeracy.component.Ruler;
+import au.edu.adelaide.mci.kidnumeracy.component.RulerNumberChosenListener;
 
-public class CountRulerLearningActivity extends Activity {
+public class CountRulerLearningActivity extends Activity implements
+		RulerNumberChosenListener {
+	private Ruler ruler;
+	private NumImageView nivNum;
+	private ImageButton ibPhaseChangeRight;
+	private ImageButton ibPhaseChangeLeft;
+
+	private Drawable leftArrowDrawable;
+	private Drawable rightArrowDrawable;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_count_ruler_learning);
+		ruler = (Ruler) findViewById(R.id.ruler);
+		ruler.addAfterRulerNumberChosen(this);
+		nivNum = (NumImageView) findViewById(R.id.nivNum);
+		nivNum.setNumValue(1);
+
+		ibPhaseChangeLeft = (ImageButton) findViewById(R.id.ibPhaseChangeLeft);
+		ibPhaseChangeRight = (ImageButton) findViewById(R.id.ibPhaseChangeRight);
 	}
 
 	@Override
@@ -30,5 +50,35 @@ public class CountRulerLearningActivity extends Activity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void afterRulerNumberChosen(int newNumber) {
+		nivNum.setNumValue(newNumber);
+	}
+
+	@SuppressWarnings("deprecation")
+	public void onPhaseChooseClick(View view) {
+		// change the phase
+		ruler.nexPhase();
+
+		// change image on the button
+		if (ruler.isLastPhase()) {
+			// left arrow
+			if (leftArrowDrawable == null) {
+				leftArrowDrawable = getResources().getDrawable(
+						R.drawable.arrow_left);
+			}
+			ibPhaseChangeLeft.setImageDrawable(leftArrowDrawable);
+			ibPhaseChangeRight.setImageDrawable(leftArrowDrawable);
+		} else {
+			// right arrow
+			if (rightArrowDrawable == null) {
+				rightArrowDrawable = getResources().getDrawable(
+						R.drawable.arrow_right);
+			}
+			ibPhaseChangeRight.setImageDrawable(rightArrowDrawable);
+			ibPhaseChangeLeft.setImageDrawable(rightArrowDrawable);
+		}
 	}
 }
