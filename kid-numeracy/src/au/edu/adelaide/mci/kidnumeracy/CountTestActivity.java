@@ -136,6 +136,9 @@ public class CountTestActivity extends Activity {
 	}
 
 	public class PuzzleTestImageAdapter extends BaseAdapter {
+		private static final int OUTSIDE_LINE_WIDTH = 17;
+		private static final int INSIDE_LINE_WIDTH = 16;
+		private static final int TOTAL_LINE_WIDTH = OUTSIDE_LINE_WIDTH * 2 + INSIDE_LINE_WIDTH * 2;
 
 		private ImageView[] imageViews;
 
@@ -162,8 +165,10 @@ public class CountTestActivity extends Activity {
 		public View getView(int position, View convertView, ViewGroup parent) {
 
 			imageViews[position] = new ImageView(CountTestActivity.this);
-			imageViews[position].setLayoutParams(new GridView.LayoutParams(
-					parent.getWidth() / 3, parent.getHeight() / 3));
+			GridView.LayoutParams layoutParams = new  GridView.LayoutParams(
+					parent.getWidth()/ 3, parent.getHeight() / 3);
+			imageViews[position].setLayoutParams(layoutParams);
+			imageViews[position].setScaleType(ImageView.ScaleType.CENTER_INSIDE);
 			// if not missing or answered correctly
 			PuzzleTest.PuzzleValue puzzleValue = puzzleTest.getNum(position);
 			if (!puzzleValue.isOriginalMissing()
