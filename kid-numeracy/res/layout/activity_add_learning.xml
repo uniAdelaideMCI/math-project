@@ -48,8 +48,9 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_operand_object"
+            android:layout_centerHorizontal="true"
             android:layout_margin="0dp"
             android:padding="0dp"
             android:src="@drawable/plus" />
@@ -60,6 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
             android:padding="0dp"
+            android:layout_gravity="bottom"
             android:src="@drawable/plus" />
     </LinearLayout>
 
@@ -103,8 +105,9 @@
 
         <ImageView
             android:id="@+id/ivEqualObject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_operand_object"
+            android:layout_centerHorizontal="true"
             android:layout_margin="0dp"
             android:padding="0dp"
             android:src="@drawable/equal" />
@@ -127,9 +130,10 @@
         android:padding="0dp" >
 
         <au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView
-            android:id="@+id/nogvAddResult"
+            android:id="@+id/nogvResult"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/width_operator"
+            android:layout_height="@dimen/height_operand_object"
+            android:layout_centerHorizontal="true"
             android:layout_margin="0dp"
             android:numColumns="5"
             android:padding="0dp" >

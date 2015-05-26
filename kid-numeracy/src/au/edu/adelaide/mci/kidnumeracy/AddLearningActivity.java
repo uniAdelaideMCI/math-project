@@ -19,8 +19,10 @@ public class AddLearningActivity extends ActionBarActivity implements AddListene
 	//compoenets in the activity
 	NumObjectGridView nogvOperand1; //objects for first operand
 	NumImageView nivOperand1;
-	NumObjectGridView nogvOperand2; //objects for first operand
-	NumImageView nivOperand2;	
+	NumObjectGridView nogvOperand2; //objects for second operand
+	NumImageView nivOperand2;
+	NumObjectGridView nogvResult; //objects for second operand
+	NumImageView nivResult;	
 	
 	private static final String ADD_LEARNING = "au.edu.adelaide.mci.kidnumeracy.ADD_LEARNING";
 
@@ -44,14 +46,21 @@ public class AddLearningActivity extends ActionBarActivity implements AddListene
 
 		
 		nogvOperand1 = (NumObjectGridView)findViewById(R.id.nogvOperand1);
+		int resIdsIndex = nogvOperand1.getRandomResIdIndex(false);
 		nogvOperand1.setOpMode(NumObjectGridView.OP_MODE_READ_ONLY);
 		nivOperand1 = (NumImageView)findViewById(R.id.nivOperand1);
 		nogvOperand2 = (NumObjectGridView)findViewById(R.id.nogvOperand2);
+		nogvOperand2.setResIdIndex(resIdsIndex);
 		nogvOperand2.setOpMode(NumObjectGridView.OP_MODE_READ_ONLY);
-		nivOperand2 = (NumImageView)findViewById(R.id.nivOperand2);		
+		nivOperand2 = (NumImageView)findViewById(R.id.nivOperand2);	
+		
+		nogvResult = (NumObjectGridView)findViewById(R.id.nogvResult);
+		nogvResult.setResIdIndex(resIdsIndex);
+		nogvResult.setOpMode(NumObjectGridView.OP_MODE_READ_ONLY);
+		nivResult = (NumImageView)findViewById(R.id.nivResult);
 		
 		//trigger add event
-		this.add();		
+		addLearning.add();	
 	}
 
 	@Override
@@ -95,8 +104,7 @@ public class AddLearningActivity extends ActionBarActivity implements AddListene
 		NumImageView nivResult = (NumImageView)findViewById(R.id.nivResult);
 		nivResult.setNumValue(result);
 		
-		NumObjectGridView nogvAddResult = (NumObjectGridView)findViewById(R.id.nogvAddResult);
-		nogvAddResult.setMaxValue(20);
-		nogvAddResult.setNumValue(result);
+		nogvResult.setMaxValue(20);
+		nogvResult.setNumValue(result);
 	}
 }

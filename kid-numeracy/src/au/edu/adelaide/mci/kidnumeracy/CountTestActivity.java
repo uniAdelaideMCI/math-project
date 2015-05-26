@@ -1,7 +1,6 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
 import android.app.Activity;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -24,10 +23,7 @@ public class CountTestActivity extends Activity {
 	private DrawNumberMapper missingNumMapper;
 	private PuzzleTestImageAdapter adapter;
 
-	private Drawable questionDrawable = null;
 	private int currentMissingIndex = 0;
-
-	private Drawable drawables[];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +40,6 @@ public class CountTestActivity extends Activity {
 		missingNumMapper = new DrawNumberMapper();
 		adapter = new PuzzleTestImageAdapter();
 		currentMissingIndex = 0;
-		drawables = new Drawable[21];// The variable used to buffer number
-										// images
 
 		gridView = (GridView) findViewById(R.id.gvPuzzle);
 		gridView.setAdapter(adapter);
@@ -65,6 +59,7 @@ public class CountTestActivity extends Activity {
 		llNums = (LinearLayout) findViewById(R.id.ll_nums);
 	}
 
+	@SuppressWarnings("deprecation")
 	private Drawable getDrawableByValue(int value) {
 		int resId = R.drawable.n0;
 		switch (value) {
@@ -133,10 +128,6 @@ public class CountTestActivity extends Activity {
 			break;
 		}
 		if (value >= 0 && value <= 20) {
-			// if (drawables[value] == null){
-			// drawables[value] = getResources().getDrawable(resId);
-			// }
-			// return drawables[value - 1];
 			return getResources().getDrawable(resId);
 		} else {
 			return null;
@@ -145,9 +136,6 @@ public class CountTestActivity extends Activity {
 	}
 
 	public class PuzzleTestImageAdapter extends BaseAdapter {
-		private static final int OUTSIDE_LINE_WIDTH = 17;
-		private static final int INSIDE_LINE_WIDTH = 16;
-		private static final int TOTAL_LINE_WIDTH = OUTSIDE_LINE_WIDTH * 2 + INSIDE_LINE_WIDTH * 2;
 
 		private ImageView[] imageViews;
 
@@ -170,6 +158,7 @@ public class CountTestActivity extends Activity {
 			return puzzleTest.getNum(position).getRowNo();
 		}
 
+		@SuppressWarnings("deprecation")
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -219,8 +208,7 @@ public class CountTestActivity extends Activity {
 		int num = missingNumMapper.getNum(imageView.getDrawable());
 		if (puzzleTest.hasMissing()
 				&& puzzleTest.getCurrentMissIndex() == currentMissingIndex) {
-			PuzzleTest.PuzzleValue missingNum = puzzleTest.currentMissingNum();
-			boolean isCorrect = puzzleTest.answer(num);
+			puzzleTest.answer(num);
 			currentMissingIndex++;
 			puzzleTest.nextMissingNum();
 			adapter = new PuzzleTestImageAdapter();
@@ -235,13 +223,5 @@ public class CountTestActivity extends Activity {
 	
 	public void onRestartClick(View view){
 		init();
-	}
-
-	private Drawable getQuestionDrawable() {
-		if (questionDrawable == null) {
-			questionDrawable = this.getResources().getDrawable(
-					R.drawable.question_mark);
-		}
-		return questionDrawable;
 	}
 }
