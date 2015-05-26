@@ -35,8 +35,8 @@
 		        android:paddingBottom="1dp"
 		        android:layout_gravity="bottom"	        
 		        android:scaleType="centerCrop"
-		        android:src="@drawable/arrow_right"
-				android:onClick="onPhaseChooseClick"  />            
+		        android:src="@drawable/arrow_left"
+				android:onClick="onBackClick"  />            
 	        <au.edu.adelaide.mci.kidnumeracy.NumImageView
 	            android:id="@+id/nivLeft"
 	            android:layout_width="match_parent"
@@ -85,7 +85,7 @@
 	            android:layout_alignParentBottom="true"		        
 		        android:layout_gravity="bottom"	        
 		        android:scaleType="centerCrop"
-		        android:src="@drawable/arrow_right"
+		        android:src="@drawable/phase_twostar"
 				android:onClick="onPhaseChooseClick" />            
        </RelativeLayout>      
     

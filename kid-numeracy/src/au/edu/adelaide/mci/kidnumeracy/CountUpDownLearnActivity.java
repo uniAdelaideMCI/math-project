@@ -51,12 +51,11 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 		}
 		Drawable drawable = null;
 		if (phaseNo == 1){
-			drawable = getResources().getDrawable(R.drawable.arrow_right);
+			drawable = getResources().getDrawable(R.drawable.phase_twostar);
 		}else{
-			drawable = getResources().getDrawable(R.drawable.arrow_left);
+			drawable = getResources().getDrawable(R.drawable.phase_onestar);
 		}
 	    nogvRight.setResIdIndex(nogvLeft.getRandomResIdIndex(true));
-		ibPhaseChangeLeft.setImageDrawable(drawable);
 		ibPhaseChangeRight.setImageDrawable(drawable);
 		nogvLeft.setMaxValue(getMaxValue() - 1);
 		nogvLeft.setNumValue(getMaxValue() - 1);
@@ -181,5 +180,13 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 	
 	public void onPhaseChooseClick(View view){
 		nextPhase();
+	}
+	
+	/**
+	 * the event handler for back button to back to the main activity
+	 * @param view
+	 */
+	public void onBackClick(View view){
+		finish();
 	}
 }

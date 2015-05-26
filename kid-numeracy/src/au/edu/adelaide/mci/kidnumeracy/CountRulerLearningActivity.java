@@ -17,9 +17,6 @@ public class CountRulerLearningActivity extends Activity implements
 	private ImageButton ibPhaseChangeRight;
 	private ImageButton ibPhaseChangeLeft;
 
-	private Drawable leftArrowDrawable;
-	private Drawable rightArrowDrawable;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,21 +61,13 @@ public class CountRulerLearningActivity extends Activity implements
 
 		// change image on the button
 		if (ruler.isLastPhase()) {
-			// left arrow
-			if (leftArrowDrawable == null) {
-				leftArrowDrawable = getResources().getDrawable(
-						R.drawable.arrow_left);
-			}
-			ibPhaseChangeLeft.setImageDrawable(leftArrowDrawable);
-			ibPhaseChangeRight.setImageDrawable(leftArrowDrawable);
+			ibPhaseChangeRight.setImageDrawable(getResources().getDrawable(R.drawable.phase_onestar));
 		} else {
-			// right arrow
-			if (rightArrowDrawable == null) {
-				rightArrowDrawable = getResources().getDrawable(
-						R.drawable.arrow_right);
-			}
-			ibPhaseChangeRight.setImageDrawable(rightArrowDrawable);
-			ibPhaseChangeLeft.setImageDrawable(rightArrowDrawable);
+			ibPhaseChangeRight.setImageDrawable(getResources().getDrawable(R.drawable.phase_twostar));
 		}
+	}
+	
+	public void onBackClick(View view){
+		finish();
 	}
 }

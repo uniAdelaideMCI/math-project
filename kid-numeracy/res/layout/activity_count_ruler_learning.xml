@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_wood_brown"
     android:paddingBottom="0dp"
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    android:background="@drawable/background_wood_brown"
     tools:context="au.edu.adelaide.mci.kidnumeracy.CountRulerLearningActivity" >
 
     <au.edu.adelaide.mci.kidnumeracy.component.Ruler
@@ -21,30 +21,30 @@
         android:src="@drawable/ruler_10_0" />
 
     <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="onBackClick"
+        android:scaleType="centerCrop"
+        android:src="@drawable/arrow_left" />
+
+    <ImageButton
         android:id="@+id/ibPhaseChangeRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:onClick="onPhaseChooseClick"
         android:scaleType="centerCrop"
-        android:src="@drawable/arrow_right"
-        android:onClick="onPhaseChooseClick" />
-    <ImageButton
-        android:id="@+id/ibPhaseChangeLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/arrow_right"
-		android:onClick="onPhaseChooseClick"  />
+        android:src="@drawable/phase_twostar" />
 
     <au.edu.adelaide.mci.kidnumeracy.NumImageView
         android:id="@+id/nivNum"
         android:layout_width="680px"
         android:layout_height="900px"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/n1" />
 
 </RelativeLayout>
