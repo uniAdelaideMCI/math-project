@@ -24,6 +24,9 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 	
 	private ImageButton ibPhaseChangeLeft;
 	private ImageButton ibPhaseChangeRight;
+	
+	//0 read-only mode 1 tap mode 2 drop and drag mode
+	private int opMode = 0;
 
 	private int phaseNo = 1;
 
@@ -73,6 +76,8 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 		// show objects to be counted
 		nogvLeft = (NumObjectGridView) findViewById(R.id.nogvLeft);
 		nogvRight = (NumObjectGridView) findViewById(R.id.nogvRight);
+		nogvLeft.setOpMode(opMode);
+		nogvRight.setOpMode(opMode);
 		nivLeft = (NumImageView) findViewById(R.id.nivLeft);
 		nivRight = (NumImageView) findViewById(R.id.nivRight);
 		
@@ -104,9 +109,11 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 			
 			@Override
 			public void afterNumChanged(int oldValue) {
-				nivRight.setNumValue(nogvRight.getNumValue());	
-				if (oldValue > nogvRight.getNumValue()){  //decrease value 
-					nogvLeft.increase(true);
+				nivRight.setNumValue(nogvRight.getNumValue());
+				if (opMode == NumObjectGridView.OP_MODE_TAP){
+					if (oldValue > nogvRight.getNumValue()){  //decrease value 
+						nogvLeft.increase(true);
+					}
 				}
 			}
 		});
@@ -141,9 +148,13 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 	@Override
 	public void afterNumChanged(int oldValue) {
 		nivLeft.setNumValue(nogvLeft.getNumValue());
-		if (oldValue > nogvLeft.getNumValue()){  //decrease value 
-			nogvRight.increase(true);
+		//tap mode 
+		if (opMode == NumObjectGridView.OP_MODE_TAP){
+			if (oldValue > nogvLeft.getNumValue()){  //decrease value 
+				nogvRight.increase(true);
+			}			
 		}
+
 	}
 
 	@Override

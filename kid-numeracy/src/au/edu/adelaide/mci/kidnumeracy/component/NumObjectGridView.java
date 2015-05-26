@@ -8,8 +8,13 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -19,6 +24,71 @@ import au.edu.adelaide.mci.kidnumeracy.NumberListener;
 import au.edu.adelaide.mci.kidnumeracy.R;
 
 public class NumObjectGridView extends GridView {
+	private class ImageViewDragListener implements OnDragListener {
+		//Drawable enterShape = getResources().getDrawable(R.drawable.shape_droptarget);
+		@Override
+		public boolean onDrag(View v, DragEvent event) {
+			
+			int action = event.getAction();
+			switch (action) {
+			case DragEvent.ACTION_DRAG_STARTED:
+				//do nothing
+				break;
+			case DragEvent.ACTION_DRAG_ENTERED:
+				//TODO: v.setBackgroundDrawable(enterShape);
+				break;
+		    case DragEvent.ACTION_DRAG_EXITED:        
+		        v.setBackgroundDrawable(null);
+		        break;				
+		    case DragEvent.ACTION_DROP:
+		        int position = getPositionForView(v);
+		        if (increase(position) != -1){
+		        	NumObjectGridView source =  (NumObjectGridView)event.getLocalState();
+		        	int orgPos = Integer.parseInt(event.getClipData().getItemAt(0).getText().toString());
+		        	source.decreaseValue(orgPos);
+		        }		    	
+		        break;
+		    case DragEvent.ACTION_DRAG_ENDED:
+		    	break;
+			default:
+				break;
+			}
+			return true;
+		}
+
+	}
+
+	/**
+	 * The touch event for image vies
+	 * @author Yun
+	 *
+	 */
+	private class ImageViewTouchListener implements OnTouchListener {
+
+		@SuppressLint("ClickableViewAccessibility")
+		@Override
+		public boolean onTouch(View view, MotionEvent motionEvent) {
+			if (opMode == OP_MODE_DRAG_N_DROP){
+				
+				if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+					//store the original position in data
+					int position = getPositionForView(view);
+					ClipData.Item item = new ClipData.Item(String.valueOf(position));
+					String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
+					ClipData dragData = new ClipData(String.valueOf(position), 
+				            mimeTypes, item);
+					
+					DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+					//drag data contains the position information
+					view.startDrag(dragData, shadowBuilder, NumObjectGridView.this, 0);
+					return true;
+				}				
+			}
+			return false;
+		}
+
+	}
+
 	//The position and corresponding image
 	private Map<Integer,ImageView> positions = new HashMap<Integer,ImageView>();
 	
@@ -31,6 +101,21 @@ public class NumObjectGridView extends GridView {
 	
 	private Random random = new Random(System.currentTimeMillis());
 	
+	//0 read-only mode 1 tap mode 2 drop and drag mode
+	public final static int OP_MODE_READ_ONLY = 0;
+	public final static int OP_MODE_TAP = 1;
+	public final static int OP_MODE_DRAG_N_DROP = 2;	
+	private int opMode = 1;
+	
+	public int getOpMode() {
+		return opMode;
+	}
+
+	public void setOpMode(int opMode) {
+		this.opMode = opMode;
+	}
+
+
 	//This project does not need 0
 	private int numValue = 0;
 	
@@ -124,6 +209,20 @@ public class NumObjectGridView extends GridView {
 				Collections.sort(list);
 				position = list.get(0);
 			}
+			increase(position);
+			return position;
+		}else{
+			return -1;
+		}
+	}
+	
+	/**
+	 * Increase value by 1 and add object to the cell indicated by position
+	 * @param position
+	 * @return
+	 */
+	public int increase(int position){
+		if (numValue < maxNumValue){
 			numValue++;
 			positions.put(position, null);
 			setAdapter(new NumObjectImageAdapter());
@@ -183,8 +282,11 @@ public class NumObjectGridView extends GridView {
 			if (positions.containsKey(position)){
 				imageView.setImageDrawable(getContext().getResources().getDrawable(getCurResId()));
 				positions.put(position, imageView);
+				imageView.setOnTouchListener(new ImageViewTouchListener());
 			}else{
 				imageView.setImageDrawable(null);
+				//the blank cell could be drop target
+				imageView.setOnDragListener(new ImageViewDragListener());
 			}
 			
 			
@@ -196,13 +298,14 @@ public class NumObjectGridView extends GridView {
 				
 				@Override
 				public void onClick(View v) {
-					ImageView iv = (ImageView)v;
-					if (iv.getDrawable() != null){
-						int position = iv.getId();
-						if (position != -1){
-							decreaseValue(position);
-							
-						}
+					if (opMode == OP_MODE_TAP){
+						ImageView iv = (ImageView)v;
+						if (iv.getDrawable() != null){
+							int position = iv.getId();
+							if (position != -1){
+								decreaseValue(position);
+							}
+						}						
 					}
 				}
 
