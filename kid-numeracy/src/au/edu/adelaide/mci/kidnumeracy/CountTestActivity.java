@@ -19,10 +19,10 @@ public class CountTestActivity extends Activity {
 	private ImageView ivNum1;
 	private ImageView ivNum2;
 	private ImageView ivNum3;
-	private PuzzleTest puzzleTest = new PuzzleTest();
-	private DrawNumberMapper drawNumberMapper = new DrawNumberMapper();
-	private DrawNumberMapper missingNumMapper = new DrawNumberMapper();
-	private PuzzleTestImageAdapter adapter = new PuzzleTestImageAdapter();
+	private PuzzleTest puzzleTest;
+	private DrawNumberMapper drawNumberMapper;
+	private DrawNumberMapper missingNumMapper;
+	private PuzzleTestImageAdapter adapter;
 
 	private Drawable questionDrawable = null;
 	private int currentMissingIndex = 0;
@@ -34,6 +34,16 @@ public class CountTestActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_count_test);
 
+		init();
+
+	}
+
+	private void init() {
+		puzzleTest = new PuzzleTest();
+		drawNumberMapper = new DrawNumberMapper();
+		missingNumMapper = new DrawNumberMapper();
+		adapter = new PuzzleTestImageAdapter();
+		currentMissingIndex = 0;
 		drawables = new Drawable[21];// The variable used to buffer number
 										// images
 
@@ -53,7 +63,6 @@ public class CountTestActivity extends Activity {
 
 		llMain = (LinearLayout) findViewById(R.id.ll_count_test_main);
 		llNums = (LinearLayout) findViewById(R.id.ll_nums);
-
 	}
 
 	private Drawable getDrawableByValue(int value) {
@@ -218,6 +227,14 @@ public class CountTestActivity extends Activity {
 			gridView.setAdapter(adapter);
 		}
 
+	}
+	
+	public void onBackClick(View view){
+		finish();
+	}
+	
+	public void onRestartClick(View view){
+		init();
 	}
 
 	private Drawable getQuestionDrawable() {
