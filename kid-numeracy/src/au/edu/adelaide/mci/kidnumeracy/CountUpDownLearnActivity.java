@@ -26,7 +26,7 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 	private ImageButton ibPhaseChangeRight;
 	
 	//0 read-only mode 1 tap mode 2 drop and drag mode
-	private int opMode = 0;
+	private int opMode = 2;
 
 	private int phaseNo = 1;
 
