@@ -46,7 +46,8 @@
         </activity>
         <activity
             android:name=".CountUpDownLearnActivity"
-            android:label="@string/title_activity_count_up_down_learn" >
+            android:label="@string/title_activity_count_up_down_learn"
+            android:screenOrientation="landscape" >
         </activity>
         <activity
             android:name=".CountRulerLearningActivity"
