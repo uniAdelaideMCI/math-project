@@ -114,6 +114,10 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 					if (oldValue > nogvRight.getNumValue()){  //decrease value 
 						nogvLeft.increase(true);
 					}
+				}else if (opMode == NumObjectGridView.OP_MODE_DRAG_N_DROP){
+					if (oldValue < nogvRight.getNumValue()){  //increase
+						nogvLeft.decreaseDroppedValue(); 
+					}					
 				}
 			}
 		});
@@ -153,6 +157,10 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 			if (oldValue > nogvLeft.getNumValue()){  //decrease value 
 				nogvRight.increase(true);
 			}			
+		}else if (opMode == NumObjectGridView.OP_MODE_DRAG_N_DROP){
+			if (oldValue < nogvLeft.getNumValue()){
+				nogvRight.decreaseDroppedValue();
+			}
 		}
 
 	}

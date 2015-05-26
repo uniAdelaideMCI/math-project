@@ -44,8 +44,10 @@ public class AddLearningActivity extends ActionBarActivity implements AddListene
 
 		
 		nogvOperand1 = (NumObjectGridView)findViewById(R.id.nogvOperand1);
+		nogvOperand1.setOpMode(NumObjectGridView.OP_MODE_READ_ONLY);
 		nivOperand1 = (NumImageView)findViewById(R.id.nivOperand1);
 		nogvOperand2 = (NumObjectGridView)findViewById(R.id.nogvOperand2);
+		nogvOperand2.setOpMode(NumObjectGridView.OP_MODE_READ_ONLY);
 		nivOperand2 = (NumImageView)findViewById(R.id.nivOperand2);		
 		
 		//trigger add event

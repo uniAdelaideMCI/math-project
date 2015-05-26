@@ -41,12 +41,16 @@ public class NumObjectGridView extends GridView {
 		        v.setBackgroundDrawable(null);
 		        break;				
 		    case DragEvent.ACTION_DROP:
-		        int position = getPositionForView(v);
-		        if (increase(position) != -1){
-		        	NumObjectGridView source =  (NumObjectGridView)event.getLocalState();
-		        	int orgPos = Integer.parseInt(event.getClipData().getItemAt(0).getText().toString());
-		        	source.decreaseValue(orgPos);
-		        }		    	
+		    	View origView = (View)event.getLocalState();
+		    	if (origView != null && v.getParent() != origView.getParent()){
+			        int position = getPositionForView(v);
+			        increase(position);
+		    	}
+//		        if (increase(position) != -1){
+//		        	NumObjectGridView source =  (NumObjectGridView)event.getLocalState();
+//		        	int orgPos = Integer.parseInt(event.getClipData().getItemAt(0).getText().toString());
+//		        	source.decreaseValue(orgPos);		        		
+//		        }		    	
 		        break;
 		    case DragEvent.ACTION_DRAG_ENDED:
 		    	break;
@@ -73,14 +77,15 @@ public class NumObjectGridView extends GridView {
 				if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
 					//store the original position in data
 					int position = getPositionForView(view);
-					ClipData.Item item = new ClipData.Item(String.valueOf(position));
-					String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
-					ClipData dragData = new ClipData(String.valueOf(position), 
-				            mimeTypes, item);
+//					ClipData.Item item = new ClipData.Item(String.valueOf(position));
+//					String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
+//					ClipData dragData = new ClipData(String.valueOf(position), 
+//				            mimeTypes, item);
 					
 					DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
 					//drag data contains the position information
-					view.startDrag(dragData, shadowBuilder, NumObjectGridView.this, 0);
+					droppedPosition = position;
+					view.startDrag(null, shadowBuilder, view, 0);
 					return true;
 				}				
 			}
@@ -124,6 +129,8 @@ public class NumObjectGridView extends GridView {
 	private int minValue = 1;
 	
 	private int resIdIndex = -1;
+	
+	private int droppedPosition = -1;
 	
 	public int getRandomResIdIndex(boolean forceUpdate) {
 		if (resIdIndex == -1){
@@ -184,13 +191,20 @@ public class NumObjectGridView extends GridView {
 	}
 
 
-	private void decreaseValue(int position) {
+	public void decreaseValue(int position) {
 		if (numValue > minValue ){
 			positions.remove(position);
 			numValue--;
 			setAdapter(new NumObjectImageAdapter());			
 			fireAfterNumChangedEvent(numValue + 1);			
 		}
+	}
+	
+	public void decreaseDroppedValue() {
+		if (droppedPosition != -1){
+			decreaseValue(droppedPosition);
+			droppedPosition = -1;
+		}		
 	}
 	
 	public int increase(boolean randomPos){
@@ -334,4 +348,5 @@ public class NumObjectGridView extends GridView {
 	public void setResIdIndex(int resIndex) {
 		this.resIdIndex = resIndex;		
 	}
+
 }
