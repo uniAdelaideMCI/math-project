@@ -16,6 +16,12 @@ public class AddLearningActivity extends ActionBarActivity implements AddListene
 
 	private MediaPlayer mPlayer; 
 	
+	//compoenets in the activity
+	NumObjectGridView nogvOperand1; //objects for first operand
+	NumImageView nivOperand1;
+	NumObjectGridView nogvOperand2; //objects for first operand
+	NumImageView nivOperand2;	
+	
 	private static final String ADD_LEARNING = "au.edu.adelaide.mci.kidnumeracy.ADD_LEARNING";
 
 	@Override
@@ -33,10 +39,17 @@ public class AddLearningActivity extends ActionBarActivity implements AddListene
 			addLearning = (AddLearning)savedInstanceState.getSerializable(ADD_LEARNING);
 		}else{
 			addLearning = new AddLearning();
-			addLearning.add();
 		}
 		addLearning.addAddListener(this);
-		this.add();
+
+		
+		nogvOperand1 = (NumObjectGridView)findViewById(R.id.nogvOperand1);
+		nivOperand1 = (NumImageView)findViewById(R.id.nivOperand1);
+		nogvOperand2 = (NumObjectGridView)findViewById(R.id.nogvOperand2);
+		nivOperand2 = (NumImageView)findViewById(R.id.nivOperand2);		
+		
+		//trigger add event
+		this.add();		
 	}
 
 	@Override
@@ -69,10 +82,19 @@ public class AddLearningActivity extends ActionBarActivity implements AddListene
 		int operand2 = addLearning.getOperand2();
 		int result = addLearning.getResult();
 		
+		nivOperand1.setNumValue(operand1);
+		nogvOperand1.setMaxValue(20);
+		nogvOperand1.setNumValue(operand1);
+		
+		nivOperand2.setNumValue(operand2);
+		nogvOperand2.setMaxValue(20);
+		nogvOperand2.setNumValue(operand2);
+		
 		NumImageView nivResult = (NumImageView)findViewById(R.id.nivResult);
 		nivResult.setNumValue(result);
 		
 		NumObjectGridView nogvAddResult = (NumObjectGridView)findViewById(R.id.nogvAddResult);
+		nogvAddResult.setMaxValue(20);
 		nogvAddResult.setNumValue(result);
 	}
 }

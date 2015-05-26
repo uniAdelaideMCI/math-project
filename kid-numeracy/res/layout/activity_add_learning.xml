@@ -1,50 +1,148 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="0dp"
     android:onClick="onAddUiClick"
     android:padding="0dp"
     tools:context="au.edu.adelaide.mci.kidnumeracy.AddLearningActivity" >
 
     <LinearLayout
+        android:id="@+id/llOperand1"
         android:layout_width="@dimen/width_operand"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_margin="0dp"
+        android:onClick="onAddUiClick"
+        android:orientation="vertical"
+        android:padding="0dp" >
 
         <au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView
             android:id="@+id/nogvOperand1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_operand_object"
             android:layout_centerHorizontal="true"
-            android:numColumns="5" >
+            android:layout_margin="0dp"
+            android:numColumns="5"
+            android:padding="0dp" >
         </au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView>
 
         <au.edu.adelaide.mci.kidnumeracy.NumImageView
             android:id="@+id/nivOperand1"
-			android:layout_width="match_parent"
-			android:layout_height="@dimen/height_operand_object"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_operand_text"
+            android:layout_margin="0dp"
+            android:onClick="onAddUiClick"
+            android:padding="0dp"
             android:src="@drawable/n11" />
     </LinearLayout>
-    
+
     <LinearLayout
+        android:id="@+id/llPlus"
         android:layout_width="@dimen/width_operator"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:layout_margin="0dp"
+        android:onClick="onAddUiClick"
+        android:orientation="vertical"
+        android:padding="0dp" >
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:src="@drawable/plus" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:src="@drawable/plus" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llOperand2"
+        android:layout_width="@dimen/width_operand"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:onClick="onAddUiClick"
+        android:orientation="vertical"
+        android:padding="0dp" >
+
+        <au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView
+            android:id="@+id/nogvOperand2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_operand_object"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="0dp"
+            android:numColumns="5"
+            android:padding="0dp" >
+        </au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView>
+
+        <au.edu.adelaide.mci.kidnumeracy.NumImageView
+            android:id="@+id/nivOperand2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_operand_text"
+            android:layout_margin="0dp"
+            android:onClick="onAddUiClick"
+            android:padding="0dp"
+            android:src="@drawable/n11" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llEqual"
+        android:layout_width="@dimen/width_operator"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:onClick="onAddUiClick"
+        android:orientation="vertical"
+        android:padding="0dp" >
+
+        <ImageView
+            android:id="@+id/ivEqualObject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:src="@drawable/equal" />
+
+        <ImageView
+            android:id="@+id/ivEqualText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:src="@drawable/equal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="@dimen/width_operand"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:onClick="onAddUiClick"
+        android:orientation="vertical"
+        android:padding="0dp" >
+
+        <au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView
+            android:id="@+id/nogvAddResult"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/width_operator"
+            android:layout_margin="0dp"
+            android:numColumns="5"
+            android:padding="0dp" >
+        </au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView>
+
         <au.edu.adelaide.mci.kidnumeracy.NumImageView
             android:id="@+id/nivResult"
-			android:layout_width="match_parent"
-			android:layout_height="@dimen/height_operand_object"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_operand_text"
+            android:layout_margin="0dp"
+            android:onClick="onAddUiClick"
+            android:padding="0dp"
             android:src="@drawable/n11" />
-    </LinearLayout>    
+    </LinearLayout>
 
-    <au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView
-        android:id="@+id/nogvAddResult"
-        android:layout_width="900dp"
-        android:layout_height="900dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="93dp"
-        android:numColumns="3" >
-    </au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView>
-
-
-</RelativeLayout>
+</LinearLayout>
