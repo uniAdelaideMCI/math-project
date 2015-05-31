@@ -54,6 +54,11 @@
             android:label="@string/title_activity_count_ruler_learning"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name=".PuzzleTestTouchActivity"
+            android:label="@string/title_activity_puzzle_test_touch"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>

@@ -46,11 +46,6 @@ public class NumObjectGridView extends GridView {
 			        int position = getPositionForView(v);
 			        increase(position);
 		    	}
-//		        if (increase(position) != -1){
-//		        	NumObjectGridView source =  (NumObjectGridView)event.getLocalState();
-//		        	int orgPos = Integer.parseInt(event.getClipData().getItemAt(0).getText().toString());
-//		        	source.decreaseValue(orgPos);		        		
-//		        }		    	
 		        break;
 		    case DragEvent.ACTION_DRAG_ENDED:
 		    	break;
@@ -77,10 +72,6 @@ public class NumObjectGridView extends GridView {
 				if (motionEvent.getAction() == MotionEvent.ACTION_DOWN){
 					//store the original position in data
 					int position = getPositionForView(view);
-//					ClipData.Item item = new ClipData.Item(String.valueOf(position));
-//					String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
-//					ClipData dragData = new ClipData(String.valueOf(position), 
-//				            mimeTypes, item);
 					
 					DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
 					//drag data contains the position information

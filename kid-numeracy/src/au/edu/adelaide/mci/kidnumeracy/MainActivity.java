@@ -42,7 +42,8 @@ public class MainActivity extends ActionBarActivity {
 	 * @param view
 	 */
 	public void onBtnTestClick(View view){
-		Intent intent = new Intent(this,CountTestActivity.class);
+		//Intent intent = new Intent(this,CountTestActivity.class);
+		Intent intent = new Intent(this,PuzzleTestTouchActivity.class);
 		startActivity(intent);
 	}
 

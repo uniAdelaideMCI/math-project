@@ -175,6 +175,11 @@ public class PuzzleTest {
 		PuzzleValue puzzleValue = getCurrentMissNum();
 		return puzzleValue.answer(answer);
 	}
+	
+	public boolean answer(int position, int answer) {
+		PuzzleValue puzzleValue = getNum(position);	
+		return puzzleValue.answer(answer);
+	}	
 
 
 
@@ -208,4 +213,5 @@ public class PuzzleTest {
 		result = Util.randomiseArray(result);
 		return result;
 	}
+
 }
