@@ -14,7 +14,7 @@ public class CountRulerLearningActivity extends Activity implements
 	private Ruler ruler;
 	private NumImageView nivNum;
 	private ImageButton ibPhaseChangeRight;
-	private ImageButton ibPhaseChangeLeft;
+	private ImageButton ibBack;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class CountRulerLearningActivity extends Activity implements
 		nivNum = (NumImageView) findViewById(R.id.nivNum);
 		nivNum.setNumValue(1);
 
-		ibPhaseChangeLeft = (ImageButton) findViewById(R.id.ibPhaseChangeLeft);
+		ibBack = (ImageButton) findViewById(R.id.ibBack);
 		ibPhaseChangeRight = (ImageButton) findViewById(R.id.ibPhaseChangeRight);
 	}
 

@@ -19,50 +19,80 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 	private NumObjectGridView nogvLeft;
 	private NumObjectGridView nogvRight;
 
-	private NumImageView nivLeft;
 	private NumImageView nivRight;
 	
-	private ImageButton ibPhaseChangeLeft;
+	private ImageButton ibBack;
 	private ImageButton ibPhaseChangeRight;
 	
 	//0 read-only mode 1 tap mode 2 drop and drag mode
 	private int opMode = 2;
 
+	//Which phase
 	private int phaseNo = 1;
 
+	/**
+	 * @return the max number of cells in the grid
+	 */
 	private int getMaxValue() {
-		if (phaseNo == 1) {
+		if (phaseNo == 1){
+			return 6;
+		}else if (phaseNo == 2){
 			return 10;
-		} else {
+		}else if (phaseNo == 3){
+			return 16;
+		}else{
 			return 20;
 		}
 	}
 	
 	@SuppressWarnings("deprecation")
 	public void nextPhase(){
-		if (phaseNo == 1){
-			phaseNo = 2;
-			nogvLeft.setNumColumns(5);
-			nogvRight.setNumColumns(5);
-		}else{
-			phaseNo =1;
-			nogvLeft.setNumColumns(3);	
-			nogvRight.setNumColumns(3);
+		//go to next phase
+		phaseNo++;
+		if (phaseNo == 5){
+			phaseNo = 1;
 		}
+		
+		//change the number of stars according to phase
 		Drawable drawable = null;
 		if (phaseNo == 1){
-			drawable = getResources().getDrawable(R.drawable.phase_twostar);
-		}else{
 			drawable = getResources().getDrawable(R.drawable.phase_onestar);
+		}else if (phaseNo == 2){
+			drawable = getResources().getDrawable(R.drawable.phase_twostar);
+		}else if (phaseNo == 3){
+			drawable = getResources().getDrawable(R.drawable.phase_threestar);
+		}else{
+			drawable = getResources().getDrawable(R.drawable.phase_fourstar);
 		}
+		
+		//set the number of columns of the grid view containing objects
+		nogvLeft.setNumColumns(getNumColumns());
+		nogvRight.setNumColumns(getNumColumns());
+		//choose the picture randomnly
 	    nogvRight.setResIdIndex(nogvLeft.getRandomResIdIndex(true));
 		ibPhaseChangeRight.setImageDrawable(drawable);
-		nogvLeft.setMaxValue(getMaxValue() - 1);
-		nogvLeft.setNumValue(getMaxValue() - 1);
-		nivLeft.setNumValue(getMaxValue() - 1);
-		nogvRight.setMaxValue(getMaxValue() - 1);
-		nogvRight.setNumValue(1);
-		nivRight.setNumValue(1);
+		nogvLeft.setMaxValue(getMaxValue());
+		nogvLeft.setNumValue(getLeftInitialValue(),true);
+		nogvRight.setMaxValue(getMaxValue());
+		nogvRight.setNumValue(0);
+		nivRight.setNumValue(0);
+	}
+
+	private int getNumColumns() {
+		if (phaseNo == 1 || phaseNo == 2){
+			return 3;
+		}else if (phaseNo == 3){
+			return 4;
+		}else{
+			return 5;
+		}
+	}
+
+	/**
+	 * @return The initial value in the left part
+	 */
+	private int getLeftInitialValue() {
+		return phaseNo * 5;
 	}
 
 	@Override
@@ -77,18 +107,18 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 		nogvRight = (NumObjectGridView) findViewById(R.id.nogvRight);
 		nogvLeft.setOpMode(opMode);
 		nogvRight.setOpMode(opMode);
-		nivLeft = (NumImageView) findViewById(R.id.nivLeft);
 		nivRight = (NumImageView) findViewById(R.id.nivRight);
 		
-		ibPhaseChangeLeft = (ImageButton)findViewById(R.id.ibPhaseChangeLeft);
+		ibBack = (ImageButton)findViewById(R.id.ibBack);
 		ibPhaseChangeRight= (ImageButton)findViewById(R.id.ibPhaseChangeRight);
 		nogvLeft.addNumChangedListener(this);
 		int resIndex = nogvLeft.getRandomResIdIndex(false);
+		//choose new set of pictures whose color is different from the old ones
 		nogvRight.setStyleType(2);
 		nogvRight.setResIdIndex(resIndex);
 		nogvLeft.setResIdIndex(resIndex);
-		nogvLeft.setMaxValue(max - 1);
-		nogvLeft.setNumValue(max - 1);
+		nogvLeft.setMaxValue(max);
+		nogvLeft.setNumValue(getLeftInitialValue(),true);
 		nogvRight.addNumChangedListener(new NumberListener() {
 			
 			@Override
@@ -120,13 +150,12 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 				}
 			}
 		});
-		nogvRight.setMaxValue(max - 1);
-		nogvRight.setNumValue(1);
+		nogvRight.setMaxValue(max);
+		nogvRight.setNumValue(0);
 
 		// show corresponding value
 
-		nivLeft.setNumValue(max - 1);
-		nivRight.setNumValue(1);
+		nivRight.setNumValue(0);
 	}
 
 	@Override
@@ -150,7 +179,6 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 
 	@Override
 	public void afterNumChanged(int oldValue) {
-		nivLeft.setNumValue(nogvLeft.getNumValue());
 		//tap mode 
 		if (opMode == NumObjectGridView.OP_MODE_TAP){
 			if (oldValue > nogvLeft.getNumValue()){  //decrease value 

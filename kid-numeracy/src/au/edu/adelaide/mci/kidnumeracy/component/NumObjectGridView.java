@@ -9,8 +9,6 @@ import java.util.Random;
 import java.util.Set;
 
 import android.annotation.SuppressLint;
-import android.content.ClipData;
-import android.content.ClipDescription;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.DragEvent;
@@ -88,6 +86,11 @@ public class NumObjectGridView extends GridView {
 	//The position and corresponding image
 	private Map<Integer,ImageView> positions = new HashMap<Integer,ImageView>();
 	
+	/**
+	 * The map between position and value
+	 */
+	private Map<Integer,Integer> positionValueMap = new HashMap<Integer,Integer>();
+	
 	private Set<NumberListener> numListeners = new HashSet<NumberListener>();
 	
 	private static final int resIds[] = {R.drawable.apple_correct,R.drawable.garfield,
@@ -117,7 +120,7 @@ public class NumObjectGridView extends GridView {
 	
 	private int maxNumValue = 1;
 
-	private int minValue = 1;
+	private int minValue = 0;
 	
 	private int resIdIndex = -1;
 	
@@ -172,6 +175,10 @@ public class NumObjectGridView extends GridView {
 		}
 	}
 
+	/**
+	 * Set the num value of the grid view
+	 * @param numValue
+	 */
 	public void setNumValue(int numValue) {
 			positions.clear();
 			for (int i = 0 ; i < numValue ; i++){
@@ -180,6 +187,27 @@ public class NumObjectGridView extends GridView {
 			this.numValue = numValue;
 			setAdapter(new NumObjectImageAdapter());
 	}
+	
+	public void setNumValue(int numValue,boolean random) {
+		if (random){
+			positions.clear();
+			//set image position randomly
+			ArrayList<Integer> arrayList = new ArrayList<Integer>();
+			for (int i = 0 ; i < maxNumValue ; i++){
+				arrayList.add(i);
+			}
+			for(int i = 0 ; i < numValue ; i++){
+				//the randomly generated index
+				Integer index = arrayList.remove(this.random.nextInt(arrayList.size()));
+				positions.put(index, null);
+			}
+			
+			this.numValue = numValue;
+			setAdapter(new NumObjectImageAdapter());
+		}else{
+			setNumValue(numValue);
+		}
+}	
 
 
 	public void decreaseValue(int position) {
