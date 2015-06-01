@@ -6,8 +6,8 @@ import java.util.Set;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.util.AttributeSet;
-import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.MotionEvent;
 import android.view.View;
@@ -151,6 +151,29 @@ public class Ruler extends ImageView implements OnTouchListener,
 		}
 	}
 
+	/**
+	 * Play the sound corresponding to value
+	 * @param value
+	 */
+	private void playSound(int value) {
+		final int resIds[] = {R.raw.rhythm1,R.raw.rhythm2,R.raw.rhythm3,
+			R.raw.rhythm4,R.raw.rhythm5,R.raw.rhythm6,
+			R.raw.rhythm7,R.raw.rhythm8,R.raw.rhythm9,
+			R.raw.rhythm10,R.raw.rhythm11,R.raw.rhythm12,
+			R.raw.rhythm13,R.raw.rhythm14,R.raw.rhythm15,
+			R.raw.rhythm16,R.raw.rhythm17,R.raw.rhythm18,
+			R.raw.rhythm19,R.raw.rhythm20
+			};
+		MediaPlayer player = MediaPlayer.create(getContext(), resIds[value -1]);
+		player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+			@Override
+			public void onCompletion(MediaPlayer mp) {
+				mp.release();
+			}
+		});
+		player.start();
+	}
+
 	private void reloadFiles() {
 		if (phaseNo == 1) {
 			setImageDrawable(getPhase1Drawable(currentValue));
@@ -196,6 +219,8 @@ public class Ruler extends ImageView implements OnTouchListener,
 			// UpdateStatusActivity.class);
 			// startActivity(intent);
 			setCurrentValue(currentValue - 1);
+			//play sound for the corresponding number value
+			playSound(getCurrentValue());			
 		} else if (e2.getX() - e1.getX() > verticalMinDistance
 				&& Math.abs(velocityX) > minVelocity) {
 
@@ -204,6 +229,8 @@ public class Ruler extends ImageView implements OnTouchListener,
 			// UpdateStatusActivity.class);
 			// startActivity(intent);
 			setCurrentValue(currentValue + 1);
+			//play sound for the corresponding number value
+			playSound(getCurrentValue());			
 		} else {
 			return false;
 		}
@@ -223,6 +250,8 @@ public class Ruler extends ImageView implements OnTouchListener,
 			} else if (x < numColWidth * (currentValue - 1)) {
 				setCurrentValue(getCurrentValue() - 1);
 			}
+			//play sound for the corresponding number value
+			playSound(getCurrentValue());
 			return true;
 		}else{
 			return false;

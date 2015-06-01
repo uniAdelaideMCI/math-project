@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:layout_margin="0dp"
     android:onClick="onAddUiClick"
+    android:background="@drawable/background_wood_brown"    
     android:padding="0dp"
     tools:context="au.edu.adelaide.mci.kidnumeracy.AddLearningActivity" >
 
