@@ -138,7 +138,7 @@
 
         <au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView
             android:id="@+id/nogvResult"
-            android:layout_width="match_parent"
+            android:layout_width="@dimen/width_operand"
             android:layout_height="@dimen/height_operand_object"
             android:layout_centerHorizontal="true"
             android:layout_margin="0dp"
