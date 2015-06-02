@@ -2,7 +2,6 @@ package au.edu.adelaide.mci.kidnumeracy;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 
 import au.edu.adelaide.mci.kidnumeracy.model.Equation;
@@ -26,13 +25,9 @@ public class AddLearning implements Serializable {
 	
 	private int result;
 	
-	private Random random;
 	
 	private EquationGenerator equationGenerator = new EquationSeqGenerator();
 	
-	public AddLearning(){
-		random = new Random(System.currentTimeMillis());
-	}
 	
 	private Set<AddListener> addListeners = new HashSet<AddListener>();
 	

@@ -5,6 +5,10 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import au.edu.adelaide.mci.kidnumeracy.model.Equation;
+import au.edu.adelaide.mci.kidnumeracy.model.EquationGenerator;
+import au.edu.adelaide.mci.kidnumeracy.model.EquationSeqGenerator;
+
 public class SubtractLearning implements Serializable {
 
 	private static final long serialVersionUID = 6248898134992698449L;
@@ -18,6 +22,8 @@ public class SubtractLearning implements Serializable {
 	private Random random;
 	
 	private Set<SubtractListener> subtractListeners = new HashSet<SubtractListener>();
+	
+	private EquationGenerator equationGenerator = new EquationSeqGenerator();
 	
 	public SubtractLearning() {
 		random = new Random(System.currentTimeMillis());
@@ -34,10 +40,16 @@ public class SubtractLearning implements Serializable {
 	}
 	
 	public int subtract(){
-		operand2 = random.nextInt(19) + 1 ;
-		//operand2 =  %(19 - operand1)
-		result = random.nextInt(20 - operand2) + 1;
-		operand1 = operand2 + result;
+		//random subtraction
+//		operand2 = random.nextInt(19) + 1 ;
+//		//operand2 =  %(19 - operand1)
+//		result = random.nextInt(20 - operand2) + 1;
+//		operand1 = operand2 + result;
+		
+		Equation equation = equationGenerator.nextSequence();
+		operand1 = equation.getSum();
+		operand2 = equation.getOperand1();
+		result = equation.getOperand2();
 		fireSubtractEvent();
 		return result;		
 	}

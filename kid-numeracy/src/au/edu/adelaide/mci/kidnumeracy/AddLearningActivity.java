@@ -39,7 +39,6 @@ public class AddLearningActivity extends Activity implements AddListener {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		outState.putSerializable(ADD_LEARNING, addLearning);
 	}	
 	
 	@Override
@@ -47,11 +46,7 @@ public class AddLearningActivity extends Activity implements AddListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_learning);
 		mPlayer = MediaPlayer.create(AddLearningActivity.this, R.raw.ding);
-		if (null != savedInstanceState){
-			addLearning = (AddLearning)savedInstanceState.getSerializable(ADD_LEARNING);
-		}else{
-			addLearning = new AddLearning();
-		}
+		addLearning = new AddLearning();
 		addLearning.addAddListener(this);
 
 		
@@ -78,6 +73,17 @@ public class AddLearningActivity extends Activity implements AddListener {
 		addLearning.add();	
 	}
 
+	@Override
+	protected void onPause() {
+		mPlayer.release();
+		super.onPause();
+	}
+
+	@Override
+	protected void onStop() {
+		mPlayer.release();
+		super.onStop();
+	}
 	
 	public void onAddUiClick(View view){
 		nextAddition();

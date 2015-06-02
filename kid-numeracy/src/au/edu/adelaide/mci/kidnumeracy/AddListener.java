@@ -1,6 +1,8 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
-public interface AddListener {
+import java.io.Serializable;
+
+public interface AddListener extends Serializable {
 
 	void add();
 	

@@ -1,5 +1,7 @@
 package au.edu.adelaide.mci.kidnumeracy.model;
 
+import java.io.Serializable;
+
 /***********************************************************************
  * Module:  EquationSeqGenerator.java
  * Author:  Yun
@@ -10,7 +12,8 @@ package au.edu.adelaide.mci.kidnumeracy.model;
 /** Generate the equations in a sequent order
  * 
  * @pdOid 0e948de7-7f63-4933-912f-2838991902cf */
-public class EquationSeqGenerator implements EquationGenerator {
+public class EquationSeqGenerator implements EquationGenerator,Serializable {
+	private static final long serialVersionUID = -4172881849472213554L;
 	private int maxSum = 10;
 	private int operand1 = -1;
 	private int operand2 = -1;
