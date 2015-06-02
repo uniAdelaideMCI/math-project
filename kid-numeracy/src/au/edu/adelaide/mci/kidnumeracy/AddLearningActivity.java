@@ -4,9 +4,10 @@ import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
 
-@SuppressWarnings("deprecation")
 public class AddLearningActivity extends Activity implements AddListener {
 	
 	private AddLearning addLearning;
@@ -19,7 +20,19 @@ public class AddLearningActivity extends Activity implements AddListener {
 	NumObjectGridView nogvOperand2; //objects for second operand
 	NumImageView nivOperand2;
 	NumObjectGridView nogvResult; //objects for second operand
-	NumImageView nivResult;	
+	NumImageView nivResult;
+
+	/**
+	 * The onClickListener for all NumObjectGridViews
+	 */
+	private OnClickListener onClickListener = new View.OnClickListener() {
+		
+		@Override
+		public void onClick(View v) {
+			//switch to next addition equation
+			nextAddition();					
+		}
+	};	
 	
 	private static final String ADD_LEARNING = "au.edu.adelaide.mci.kidnumeracy.ADD_LEARNING";
 
@@ -45,15 +58,20 @@ public class AddLearningActivity extends Activity implements AddListener {
 		nogvOperand1 = (NumObjectGridView)findViewById(R.id.nogvOperand1);
 		int resIdsIndex = nogvOperand1.getRandomResIdIndex(false);
 		nogvOperand1.setOpMode(NumObjectGridView.OP_MODE_READ_ONLY);
+		nogvOperand1.setClickable(true);
+		nogvOperand1.setClickHander(onClickListener );
 		nivOperand1 = (NumImageView)findViewById(R.id.nivOperand1);
 		nogvOperand2 = (NumObjectGridView)findViewById(R.id.nogvOperand2);
 		nogvOperand2.setResIdIndex(resIdsIndex);
 		nogvOperand2.setOpMode(NumObjectGridView.OP_MODE_READ_ONLY);
+		nogvOperand2.setClickHander(onClickListener);
+		
 		nivOperand2 = (NumImageView)findViewById(R.id.nivOperand2);	
 		
 		nogvResult = (NumObjectGridView)findViewById(R.id.nogvResult);
 		nogvResult.setResIdIndex(resIdsIndex);
 		nogvResult.setOpMode(NumObjectGridView.OP_MODE_READ_ONLY);
+		nogvResult.setClickHander(onClickListener);
 		nivResult = (NumImageView)findViewById(R.id.nivResult);
 		
 		//trigger add event
@@ -62,6 +80,13 @@ public class AddLearningActivity extends Activity implements AddListener {
 
 	
 	public void onAddUiClick(View view){
+		nextAddition();
+	}
+
+	/**
+	 * Generate the next addition equation
+	 */
+	private void nextAddition() {
 		mPlayer.start();
 		addLearning.add();
 	}

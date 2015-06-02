@@ -52,6 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_operand_object"
             android:layout_centerHorizontal="true"
+            android:onClick="onAddUiClick"
             android:layout_margin="0dp"
             android:padding="0dp"
             android:src="@drawable/plus" />

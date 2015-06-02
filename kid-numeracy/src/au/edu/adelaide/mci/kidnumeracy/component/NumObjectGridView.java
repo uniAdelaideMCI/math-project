@@ -14,6 +14,7 @@ import android.util.AttributeSet;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
@@ -82,6 +83,12 @@ public class NumObjectGridView extends GridView {
 		}
 
 	}
+	
+	
+	/**
+	 * The click event listener for the whole grid view
+	 */
+	private OnClickListener onClickListener;
 
 	//The position and corresponding image
 	private Map<Integer,ImageView> positions = new HashMap<Integer,ImageView>();
@@ -340,6 +347,9 @@ public class NumObjectGridView extends GridView {
 							}
 						}						
 					}
+					if (onClickListener != null){
+						onClickListener.onClick(NumObjectGridView.this);
+					}
 				}
 
 				/**
@@ -366,6 +376,15 @@ public class NumObjectGridView extends GridView {
 
 	public void setResIdIndex(int resIndex) {
 		this.resIdIndex = resIndex;		
+	}
+
+	/**
+	 * Set click Listener for the whole component. note that this method differs from setOnClickListener
+	 *  which is not allowed to use.
+	 * @param onClickListener
+	 */
+	public void setClickHander(OnClickListener onClickListener) {
+		this.onClickListener = onClickListener;
 	}
 
 }
