@@ -22,6 +22,7 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 	private NumImageView nivRight;
 	
 	private ImageButton ibBack;
+	private ImageButton ibOpMode;
 	private ImageButton ibPhaseChangeRight;
 	
 	//0 read-only mode 1 tap mode 2 drop and drag mode
@@ -110,6 +111,7 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 		nivRight = (NumImageView) findViewById(R.id.nivRight);
 		
 		ibBack = (ImageButton)findViewById(R.id.ibBack);
+		ibOpMode = (ImageButton)findViewById(R.id.ibOpMode);
 		ibPhaseChangeRight= (ImageButton)findViewById(R.id.ibPhaseChangeRight);
 		nogvLeft.addNumChangedListener(this);
 		int resIndex = nogvLeft.getRandomResIdIndex(false);
@@ -216,5 +218,21 @@ public class CountUpDownLearnActivity extends Activity implements NumberListener
 	 */
 	public void onBackClick(View view){
 		finish();
+	}
+	
+	/**
+	 * The event handler for the botton of choosing operation mode
+	 * @param view
+	 */
+	public void onOpModeClick(View view){
+		if (opMode == NumObjectGridView.OP_MODE_DRAG_N_DROP){
+			opMode = NumObjectGridView.OP_MODE_TAP;
+			ibOpMode.setImageDrawable(getResources().getDrawable(R.drawable.button_touch));
+		}else{
+			opMode = NumObjectGridView.OP_MODE_DRAG_N_DROP;
+			ibOpMode.setImageDrawable(getResources().getDrawable(R.drawable.button_drag));
+		}
+		nogvLeft.setOpMode(opMode);
+		nogvRight.setOpMode(opMode);
 	}
 }

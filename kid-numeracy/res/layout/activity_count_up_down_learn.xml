@@ -39,7 +39,18 @@
 		        android:layout_gravity="bottom"	        
 		        android:scaleType="centerCrop"
 		        android:src="@drawable/arrow_left"
-				android:onClick="onBackClick"  />                   
+				android:onClick="onBackClick"  />
+		    <ImageButton
+		        android:id="@+id/ibOpMode"
+		        android:layout_width="100dp"
+		        android:layout_height="80dp"
+		        android:layout_marginBottom="0dp"
+		        android:layout_marginLeft="40dp"
+		        android:paddingBottom="1dp"
+		        android:layout_gravity="right|bottom"	        
+		        android:scaleType="centerCrop"
+		        android:src="@drawable/button_drag"
+				android:onClick="onOpModeClick"  />  		                       
         </LinearLayout>
 
 
