@@ -5,6 +5,10 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import au.edu.adelaide.mci.kidnumeracy.model.Equation;
+import au.edu.adelaide.mci.kidnumeracy.model.EquationGenerator;
+import au.edu.adelaide.mci.kidnumeracy.model.EquationSeqGenerator;
+
 /**
  * @author Yun
  *
@@ -24,6 +28,8 @@ public class AddLearning implements Serializable {
 	
 	private Random random;
 	
+	private EquationGenerator equationGenerator = new EquationSeqGenerator();
+	
 	public AddLearning(){
 		random = new Random(System.currentTimeMillis());
 	}
@@ -41,10 +47,11 @@ public class AddLearning implements Serializable {
 	}
 	
 	public int add(){
-		setOperand1(random.nextInt(9) + 1);
+		Equation equation = equationGenerator.nextSequence();
+		setOperand1(equation.getOperand1());
 		//operand2 =  %(19 - operand1)
-		setOperand2(random.nextInt(10 - operand1) + 1);
-		result = operand1 + operand2;
+		setOperand2(equation.getOperand2());
+		result = equation.getSum();
 		fireAddEvent();
 		return result;
 	}
