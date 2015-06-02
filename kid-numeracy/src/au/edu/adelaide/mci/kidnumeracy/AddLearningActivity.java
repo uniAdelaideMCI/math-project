@@ -91,6 +91,9 @@ public class AddLearningActivity extends Activity implements AddListener {
 		addLearning.add();
 	}
 
+	/* Respond to the add event
+	 * @see au.edu.adelaide.mci.kidnumeracy.AddListener#add()
+	 */
 	@Override
 	public void add() {
 		int operand1 = addLearning.getOperand1();
@@ -98,17 +101,55 @@ public class AddLearningActivity extends Activity implements AddListener {
 		int result = addLearning.getResult();
 		
 		nivOperand1.setNumValue(operand1);
-		nogvOperand1.setMaxValue(20);
-		nogvOperand1.setNumValue(operand1,true);
+		configNogvOperand(nogvOperand1,operand1);
+
 		
 		nivOperand2.setNumValue(operand2);
-		nogvOperand2.setMaxValue(20);
-		nogvOperand2.setNumValue(operand2,true);
+		configNogvOperand(nogvOperand2,operand2);
 		
 		NumImageView nivResult = (NumImageView)findViewById(R.id.nivResult);
 		nivResult.setNumValue(result);
 		
-		nogvResult.setMaxValue(20);
-		nogvResult.setNumValue(result,true);
+		configNogvOperand(nogvResult,result);
+	}
+
+	private void configNogvOperand(NumObjectGridView numObject, int numValue) {
+		numObject.setNumColumns(getNumColumns(numValue));
+		numObject.setMaxValue(getMaxValue(numValue));
+		numObject.setNumValue(numValue,true);
+		
+	}
+
+	/**
+	 * determines maxValue according to current values
+	 * @param numValue
+	 * @return
+	 */
+	private int getMaxValue(int numValue) {
+		if (numValue == 1){
+			return 1;
+		}else if (numValue == 2){
+			return 2;
+		}else if (numValue >= 3 && numValue <= 4){
+			return 4;
+		}else if (numValue >= 5 && numValue <= 6){
+			return 6;
+		}else if (numValue >= 7 && numValue <= 9){
+			return 9;
+		}else{
+			return 16;
+		}
+	}
+
+	private int getNumColumns(int numValue) {
+		if (numValue == 1){
+			return 1;
+		}else if (numValue >= 2 && numValue <= 4){
+			return 2;
+		}else if (numValue >= 5 && numValue <= 9){
+			return 3;
+		}else{
+			return 4;
+		}
 	}
 }

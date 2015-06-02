@@ -43,10 +43,14 @@ public class AddLearning implements Serializable {
 	public int add(){
 		setOperand1(random.nextInt(9) + 1);
 		//operand2 =  %(19 - operand1)
-		operand2 = random.nextInt(10 - operand1) + 1;
+		setOperand2(random.nextInt(10 - operand1) + 1);
 		result = operand1 + operand2;
 		fireAddEvent();
 		return result;
+	}
+
+	public void setOperand2(int operand2) {
+		this.operand2 = operand2;
 	}
 
 	private void setOperand1(int operand1) {
