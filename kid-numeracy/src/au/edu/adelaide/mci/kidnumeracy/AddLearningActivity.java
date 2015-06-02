@@ -5,7 +5,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
 
 public class AddLearningActivity extends Activity implements AddListener {
@@ -89,6 +89,10 @@ public class AddLearningActivity extends Activity implements AddListener {
 	private void nextAddition() {
 		mPlayer.start();
 		addLearning.add();
+		//change pictures of objects at random
+		int resIdsIndex = nogvOperand1.getRandomResIdIndex(true);
+		nogvOperand2.setResIdIndex(resIdsIndex);
+		nogvResult.setResIdIndex(resIdsIndex);
 	}
 
 	/* Respond to the add event
@@ -100,17 +104,37 @@ public class AddLearningActivity extends Activity implements AddListener {
 		int operand2 = addLearning.getOperand2();
 		int result = addLearning.getResult();
 		
-		nivOperand1.setNumValue(operand1);
-		configNogvOperand(nogvOperand1,operand1);
-
-		
-		nivOperand2.setNumValue(operand2);
-		configNogvOperand(nogvOperand2,operand2);
-		
 		NumImageView nivResult = (NumImageView)findViewById(R.id.nivResult);
 		nivResult.setNumValue(result);
 		
 		configNogvOperand(nogvResult,result);
+				
+		nivOperand1.setNumValue(operand1);
+		configNogvOperand(nogvOperand1,operand1);
+		//set width and height of operand1 gridview
+		//configOperandDimension(nogvResult,nogvOperand1);
+
+		
+		nivOperand2.setNumValue(operand2);
+		configNogvOperand(nogvOperand2,operand2);
+		//set width and height of operand2 gridview
+		//configOperandDimension(nogvResult,nogvOperand2);
+		
+	}
+
+	/**
+	 * config height and width of operand grid view according to 
+	 * the dimension of the result grid view 
+	 * @param aNogvResult
+	 * @param aNogvOperand
+	 */
+	private void configOperandDimension(NumObjectGridView aNogvResult,
+			NumObjectGridView aNogvOperand) {
+		int width = aNogvResult.getColumnWidth() * aNogvOperand.getNumColumns();
+		//row height for result grid view
+		int resultRowHeight = aNogvResult.getHeight() / (aNogvResult.getRowCount());
+		int height = resultRowHeight * aNogvOperand.getRowCount();
+		aNogvOperand.setLayoutParams(new LinearLayout.LayoutParams(width,height));
 	}
 
 	private void configNogvOperand(NumObjectGridView numObject, int numValue) {
@@ -137,7 +161,7 @@ public class AddLearningActivity extends Activity implements AddListener {
 		}else if (numValue >= 7 && numValue <= 9){
 			return 9;
 		}else{
-			return 16;
+			return 12;
 		}
 	}
 
@@ -149,7 +173,7 @@ public class AddLearningActivity extends Activity implements AddListener {
 		}else if (numValue >= 5 && numValue <= 9){
 			return 3;
 		}else{
-			return 4;
+			return 3;
 		}
 	}
 }

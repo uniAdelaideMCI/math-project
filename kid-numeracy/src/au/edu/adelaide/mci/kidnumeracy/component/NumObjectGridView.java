@@ -127,6 +127,11 @@ public class NumObjectGridView extends GridView {
 	
 	private int maxNumValue = 1;
 
+	public int getMaxNumValue() {
+		return maxNumValue;
+	}
+
+
 	private int minValue = 0;
 	
 	private int resIdIndex = -1;
@@ -159,6 +164,10 @@ public class NumObjectGridView extends GridView {
 
 	public int getNumValue() {
 		return numValue;
+	}
+	
+	public int getRowCount(){
+		return getMaxNumValue() / getNumColumns();
 	}
 	
 	public int getCurResId(){
