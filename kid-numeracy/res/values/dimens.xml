@@ -3,7 +3,7 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">1dp</dimen>
     <dimen name="activity_vertical_margin">1dp</dimen>
-	<dimen name="width_operand">360.03dp</dimen>
+	<dimen name="width_operand">320dp</dimen>
 	<dimen name="width_operator">96.3dp</dimen>
 	<dimen name="height_operand_object">1140px</dimen>
 	<dimen name="height_operand_text">300px</dimen>	 

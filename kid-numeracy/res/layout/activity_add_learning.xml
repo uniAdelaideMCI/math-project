@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="0dp"
+    android:background="@drawable/background_wood_brown"
     android:onClick="onAddUiClick"
-    android:background="@drawable/background_wood_brown"    
     android:padding="0dp"
     tools:context="au.edu.adelaide.mci.kidnumeracy.AddLearningActivity" >
 
@@ -13,6 +13,7 @@
         android:id="@+id/llOperand1"
         android:layout_width="@dimen/width_operand"
         android:layout_height="match_parent"
+        android:layout_weight="0"
         android:layout_margin="0dp"
         android:onClick="onAddUiClick"
         android:orientation="vertical"
@@ -43,6 +44,7 @@
         android:layout_width="@dimen/width_operator"
         android:layout_height="match_parent"
         android:layout_margin="0dp"
+                android:layout_weight="0"
         android:onClick="onAddUiClick"
         android:orientation="vertical"
         android:padding="0dp" >
@@ -52,8 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_operand_object"
             android:layout_centerHorizontal="true"
-            android:onClick="onAddUiClick"
             android:layout_margin="0dp"
+            android:onClick="onAddUiClick"
             android:padding="0dp"
             android:src="@drawable/plus" />
 
@@ -61,9 +63,9 @@
             android:id="@+id/ivPlusText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginBottom="50dp"
             android:padding="0dp"
-            android:layout_gravity="center_vertical"
             android:src="@drawable/plus" />
     </LinearLayout>
 
@@ -71,6 +73,7 @@
         android:id="@+id/llOperand2"
         android:layout_width="@dimen/width_operand"
         android:layout_height="match_parent"
+                android:layout_weight="0"
         android:layout_margin="0dp"
         android:onClick="onAddUiClick"
         android:orientation="vertical"
@@ -100,6 +103,7 @@
         android:id="@+id/llEqual"
         android:layout_width="@dimen/width_operator"
         android:layout_height="match_parent"
+                android:layout_weight="0"
         android:layout_margin="0dp"
         android:onClick="onAddUiClick"
         android:orientation="vertical"
@@ -119,13 +123,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
+            android:layout_marginBottom="50dp"
             android:padding="0dp"
-            android:layout_marginBottom="50dp"           
             android:src="@drawable/equal" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="@dimen/width_operand"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_margin="0dp"
         android:onClick="onAddUiClick"
@@ -142,14 +147,32 @@
             android:padding="0dp" >
         </au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView>
 
-        <au.edu.adelaide.mci.kidnumeracy.NumImageView
-            android:id="@+id/nivResult"
+        <LinearLayout android:id="@+id/resultAndBack" 
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/height_operand_text"
+            android:layout_height="0dp"            
+            android:layout_weight="1"
             android:layout_margin="0dp"
-            android:onClick="onAddUiClick"
-            android:padding="0dp"
-            android:src="@drawable/n11" />
+            android:padding="0dp">
+
+            <au.edu.adelaide.mci.kidnumeracy.NumImageView
+                android:id="@+id/nivResult"
+                android:layout_width="@dimen/width_operand"
+                android:layout_height="@dimen/height_operand_text"
+                android:layout_margin="0dp"
+                android:onClick="onAddUiClick"
+                android:padding="0dp"
+                android:src="@drawable/n11" />
+
+            <ImageButton
+                android:id="@+id/ibBack"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_gravity="right|bottom"
+                android:onClick="onBackClick"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_left" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

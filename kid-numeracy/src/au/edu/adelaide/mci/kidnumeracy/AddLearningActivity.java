@@ -82,6 +82,14 @@ public class AddLearningActivity extends Activity implements AddListener {
 	public void onAddUiClick(View view){
 		nextAddition();
 	}
+	
+	/**
+	 * event handler for back button
+	 * @param view
+	 */
+	public void onBackClick(View view){
+		finish();
+	}
 
 	/**
 	 * Generate the next addition equation
