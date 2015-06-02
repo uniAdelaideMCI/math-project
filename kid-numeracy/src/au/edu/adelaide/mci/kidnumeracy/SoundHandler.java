@@ -50,6 +50,7 @@ public class SoundHandler {
         	if (backgroundMusic == null){
         		backgroundMusic = MediaPlayer.create(context, getRandomResId());
         		backgroundMusic.setLooping(false);
+        		backgroundMusic.setVolume(0.4f, 0.4f);
         		backgroundMusic.setOnCompletionListener(new OnCompletionListener() {
 					
 					@Override
