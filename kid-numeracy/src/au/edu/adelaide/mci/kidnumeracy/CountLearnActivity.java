@@ -15,7 +15,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 @SuppressWarnings("deprecation")
-public class CountLearnActivity extends ActionBarActivity implements
+public class CountLearnActivity extends BaseActivity implements
 		NumberListener {
 
 	private static final String TAG = "CountLearnActivity";

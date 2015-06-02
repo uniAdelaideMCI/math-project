@@ -17,7 +17,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class PuzzleTestTouchActivity extends Activity {
+public class PuzzleTestTouchActivity extends BaseActivity {
 
 	/**
 	 * Listener for drag drop event

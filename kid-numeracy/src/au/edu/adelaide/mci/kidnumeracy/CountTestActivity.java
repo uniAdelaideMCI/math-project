@@ -10,7 +10,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-public class CountTestActivity extends Activity {
+public class CountTestActivity extends BaseActivity {
 
 	LinearLayout llMain;
 	LinearLayout llNums;

@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
 
 @SuppressWarnings("deprecation")
-public class SubtractLearningActivity extends Activity implements
+public class SubtractLearningActivity extends BaseActivity implements
 		SubtractListener {
 
 	private SubtractLearning subtractLearning;

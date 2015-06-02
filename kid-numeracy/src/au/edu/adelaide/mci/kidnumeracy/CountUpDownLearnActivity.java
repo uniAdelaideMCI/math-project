@@ -15,7 +15,7 @@ import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
  * @author Yun Zhang
  *
  */
-public class CountUpDownLearnActivity extends Activity implements NumberListener{
+public class CountUpDownLearnActivity extends BaseActivity implements NumberListener{
 	private NumObjectGridView nogvLeft;
 	private NumObjectGridView nogvRight;
 

@@ -59,6 +59,11 @@
             android:label="@string/title_activity_puzzle_test_touch"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name=".TestMenuActivity"
+            android:label="@string/title_activity_test_menu" >
+        </activity>
+        <service android:name="MusicService"></service>
     </application>
 
 </manifest>

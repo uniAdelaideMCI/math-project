@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 import au.edu.adelaide.mci.kidnumeracy.component.Ruler;
 import au.edu.adelaide.mci.kidnumeracy.component.RulerNumberChosenListener;
 
-public class CountRulerLearningActivity extends Activity implements
+public class CountRulerLearningActivity extends BaseActivity implements
 		RulerNumberChosenListener {
 	private Ruler ruler;
 	private NumImageView nivNum;

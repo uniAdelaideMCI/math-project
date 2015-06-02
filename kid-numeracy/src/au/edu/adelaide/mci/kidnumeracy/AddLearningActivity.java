@@ -8,7 +8,7 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
 
-public class AddLearningActivity extends Activity implements AddListener {
+public class AddLearningActivity extends BaseActivity implements AddListener {
 	
 	private AddLearning addLearning;
 
