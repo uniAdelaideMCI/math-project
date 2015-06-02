@@ -34,15 +34,17 @@ public class PuzzleTestTouchActivity extends Activity {
 			int action = event.getAction();
 			switch (action) {
 			case DragEvent.ACTION_DROP:
-				View origView = (View)event.getLocalState();
-				Integer answer = (Integer)origView.getTag();
-				if (v != null && v instanceof ImageView){
-					ImageView imageView = (ImageView)v;
-					//the position for the drop target
-					int position = gridView.getPositionForView(v);
-					puzzleTest.answer(position,answer);
-					adapter = new PuzzleTestImageAdapter();
-					gridView.setAdapter(adapter);
+				if (event.getLocalState() != null){
+					View origView = (View)event.getLocalState();
+					Integer answer = (Integer)origView.getTag();
+					if (v != null && v instanceof ImageView){
+						ImageView imageView = (ImageView)v;
+						//the position for the drop target
+						int position = gridView.getPositionForView(v);
+						puzzleTest.answer(position,answer);
+						adapter = new PuzzleTestImageAdapter();
+						gridView.setAdapter(adapter);
+					}
 				}
 
 				break;
