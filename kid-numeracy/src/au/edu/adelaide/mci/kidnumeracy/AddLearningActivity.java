@@ -99,16 +99,16 @@ public class AddLearningActivity extends Activity implements AddListener {
 		
 		nivOperand1.setNumValue(operand1);
 		nogvOperand1.setMaxValue(20);
-		nogvOperand1.setNumValue(operand1);
+		nogvOperand1.setNumValue(operand1,true);
 		
 		nivOperand2.setNumValue(operand2);
 		nogvOperand2.setMaxValue(20);
-		nogvOperand2.setNumValue(operand2);
+		nogvOperand2.setNumValue(operand2,true);
 		
 		NumImageView nivResult = (NumImageView)findViewById(R.id.nivResult);
 		nivResult.setNumValue(result);
 		
 		nogvResult.setMaxValue(20);
-		nogvResult.setNumValue(result);
+		nogvResult.setNumValue(result,true);
 	}
 }

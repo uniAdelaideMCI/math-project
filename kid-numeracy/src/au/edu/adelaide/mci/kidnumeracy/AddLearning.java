@@ -11,6 +11,11 @@ import java.util.Set;
  */
 public class AddLearning implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4163033232945938323L;
+
 	private int operand1;
 	
 	private int operand2;
@@ -36,12 +41,16 @@ public class AddLearning implements Serializable {
 	}
 	
 	public int add(){
-		operand1 = random.nextInt(9) + 1 ;
+		setOperand1(random.nextInt(9) + 1);
 		//operand2 =  %(19 - operand1)
 		operand2 = random.nextInt(10 - operand1) + 1;
 		result = operand1 + operand2;
 		fireAddEvent();
 		return result;
+	}
+
+	private void setOperand1(int operand1) {
+		this.operand1 = operand1;
 	}
 
 	public int getOperand1() {
