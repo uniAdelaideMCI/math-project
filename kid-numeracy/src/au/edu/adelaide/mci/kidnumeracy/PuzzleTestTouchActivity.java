@@ -1,8 +1,6 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.DragEvent;
@@ -41,7 +39,10 @@ public class PuzzleTestTouchActivity extends BaseActivity {
 						ImageView imageView = (ImageView)v;
 						//the position for the drop target
 						int position = gridView.getPositionForView(v);
-						puzzleTest.answer(position,answer);
+						boolean isCorrect = puzzleTest.answer(position,answer);
+						if (isCorrect){
+							origView.setVisibility(View.INVISIBLE);
+						}
 						adapter = new PuzzleTestImageAdapter();
 						gridView.setAdapter(adapter);
 					}
@@ -113,10 +114,13 @@ public class PuzzleTestTouchActivity extends BaseActivity {
 		int unorderedNums[] = puzzleTest.getMissNumsRandom();
 		ivNum1 = (ImageView) findViewById(R.id.ivNum1);
 		ivNum1.setOnTouchListener(new NumOptionTouchListener());
+		ivNum1.setVisibility(View.VISIBLE);
 		ivNum2 = (ImageView) findViewById(R.id.ivNum2);
 		ivNum2.setOnTouchListener(new NumOptionTouchListener());
+		ivNum2.setVisibility(View.VISIBLE);
 		ivNum3 = (ImageView) findViewById(R.id.ivNum3);
 		ivNum3.setOnTouchListener(new NumOptionTouchListener());
+		ivNum3.setVisibility(View.VISIBLE);
 		ivNum1.setImageDrawable(getDrawableByValue(unorderedNums[0]));
 		ivNum1.setTag(unorderedNums[0]);
 		missingNumMapper.register(unorderedNums[0], ivNum1.getDrawable());
