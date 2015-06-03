@@ -14,48 +14,48 @@
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-    <ImageButton
-        android:id="@+id/btnCountGridTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerInside"
-        android:src="@drawable/test_count_grid"
-        android:onClick="onBtnCountGridTestClick" />
+        <ImageButton
+            android:id="@+id/btnCountObjectsTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onBtnCountObjectsTestClick"
+            android:src="@drawable/test_count_object" />
 
-    <ImageButton
-        android:id="@+id/btnAddTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerInside"        
-        android:src="@drawable/test_addition"
-        android:onClick="onBtnAddTestClick" />
-    </LinearLayout>    
-    
+        <ImageButton
+            android:id="@+id/btnAddTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onBtnAddTestClick"
+            android:scaleType="centerInside"
+            android:src="@drawable/test_addition" />
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
         <ImageButton
-            android:id="@+id/btnCountObjectsTest"
+            android:id="@+id/btnCountRulerTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/test_count_object"
-            android:onClick="onBtnCountObjectsTestClick" />
+            android:onClick="onBtnCountRulerTestClick"
+            android:src="@drawable/test_count_ruler" />
 
         <ImageButton
             android:id="@+id/btnSubtractTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/test_subtract"
-            android:onClick="onBtnSubtractTestClick" />
+            android:onClick="onBtnSubtractTestClick"
+            android:src="@drawable/test_subtract" />
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/btnCountRulerTest"
+        android:id="@+id/btnCountGridTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/test_count_ruler"
-        android:onClick="onBtnCountRulerTestClick" />
+        android:onClick="onBtnCountGridTestClick"
+        android:scaleType="centerInside"
+        android:src="@drawable/test_count_grid" />
 
 </LinearLayout>
