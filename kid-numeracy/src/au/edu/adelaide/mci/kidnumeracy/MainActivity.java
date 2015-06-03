@@ -1,54 +1,19 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 
-@SuppressWarnings("deprecation")
 public class MainActivity extends BaseActivity {
 	private final String TAG = "au.edu.adelaide.mci.kidnumeracy.MainActivity";
-	private boolean mIsBound = false;
-	private MusicService mServ;
-	private ServiceConnection Scon =new ServiceConnection(){
 
-		public void onServiceConnected(ComponentName name, IBinder
-	     binder) {
-			mServ = ((MusicService.ServiceBinder)binder).getService();
-		}
-
-		public void onServiceDisconnected(ComponentName name) {
-			mServ = null;
-		}
-		};
-
-		void doBindService(){
-	 		bindService(new Intent(this,MusicService.class),
-					Scon,Context.BIND_AUTO_CREATE);
-			mIsBound = true;
-		}
-
-		void doUnbindService()
-		{
-			if(mIsBound)
-			{
-				unbindService(Scon);
-	      		mIsBound = false;
-			}
-		}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		//bind service to play background music
-//		doBindService();
-//		Intent music = new Intent();
-//		music.setClass(this,MusicService.class);
-//		startService(music);
+		
+		//set main activity as the context of the background music player
 		SoundHandler.setContext(this);
 	}
 	
@@ -77,8 +42,7 @@ public class MainActivity extends BaseActivity {
 	 * @param view
 	 */
 	public void onBtnTestClick(View view){
-		//Intent intent = new Intent(this,CountTestActivity.class);
-		Intent intent = new Intent(this,PuzzleTestTouchActivity.class);
+		Intent intent = new Intent(this,TestMenuActivity.class);
 		startActivity(intent);
 	}
 
@@ -114,7 +78,6 @@ public class MainActivity extends BaseActivity {
 
 	@Override
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 		Log.i(TAG, "onStop");
 	}

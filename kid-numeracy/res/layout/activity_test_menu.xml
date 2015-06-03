@@ -1,12 +1,61 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    android:background="@drawable/background_hero"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="au.edu.adelaide.mci.kidnumeracy.TestMenuActivity" >
 
-    <TextView
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+    <ImageButton
+        android:id="@+id/btnCountGridTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:scaleType="centerInside"
+        android:src="@drawable/action_count_object"
+        android:onClick="onBtnCountGridTestClick" />
 
-</RelativeLayout>
+    <ImageButton
+        android:id="@+id/btnAddTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerInside"        
+        android:src="@drawable/action_addition"
+        android:onClick="onBtnAddTestClick" />
+    </LinearLayout>    
+    
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <ImageButton
+            android:id="@+id/btnCountObjectsTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/action_addition"
+            android:onClick="onBtnCountObjectsTestClick" />
+
+        <ImageButton
+            android:id="@+id/btnSubtractTest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/action_subtract"
+            android:onClick="onBtnSubtractTestClick" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btnCountRulerTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/action_test"
+        android:onClick="onBtnCountRulerTestClick" />
+
+</LinearLayout>
