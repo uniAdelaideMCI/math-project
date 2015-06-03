@@ -296,7 +296,6 @@ public class NumObjectGridView extends GridView {
 
 		public NumObjectImageAdapter() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
 
 
@@ -310,13 +309,11 @@ public class NumObjectGridView extends GridView {
 
 		@Override
 		public Object getItem(int position) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public long getItemId(int position) {
-			// TODO Auto-generated method stub
 			return 0;
 		}
 
