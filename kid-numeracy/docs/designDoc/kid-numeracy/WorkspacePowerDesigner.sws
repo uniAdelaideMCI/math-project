@@ -5,7 +5,7 @@
 <Workspace>
 	<Local Expanded="Yes">
 		<Model Expanded="Yes" ID="{BDBBEFE7-EDB5-4127-B205-9017ED7A367B}" Name="kid-numeracy" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="kid-numeracy.prj"/>
-		<Model Expanded="Yes" ID="{4AF2A51B-C147-41E3-8FFC-9CE0B0203AAB}" Name="Count up and down seq diagram" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="counting/Count up and down seq diagram.oom"/>
+		<Model Expanded="Yes" ID="{4AF2A51B-C147-41E3-8FFC-9CE0B0203AAB}" Loaded="No" Name="Count up and down seq diagram" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="counting/Count up and down seq diagram.oom"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>

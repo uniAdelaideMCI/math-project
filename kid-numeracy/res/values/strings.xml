@@ -16,5 +16,6 @@
     <string name="title_activity_count_ruler_learning">CountRulerLearningActivity</string>
     <string name="title_activity_puzzle_test_touch">PuzzleTestTouch</string>
     <string name="title_activity_test_menu">TestMenuActivity</string>
+    <string name="title_activity_count_object_test">CountObjectTestActivity</string>
 
 </resources>

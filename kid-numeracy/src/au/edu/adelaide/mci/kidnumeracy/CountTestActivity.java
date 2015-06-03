@@ -1,6 +1,5 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
-import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;

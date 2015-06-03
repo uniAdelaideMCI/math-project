@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerInside"
-        android:src="@drawable/action_count_object"
+        android:src="@drawable/test_count_grid"
         android:onClick="onBtnCountGridTestClick" />
 
     <ImageButton
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scaleType="centerInside"        
-        android:src="@drawable/action_addition"
+        android:src="@drawable/test_addition"
         android:onClick="onBtnAddTestClick" />
     </LinearLayout>    
     
@@ -40,14 +40,14 @@
             android:id="@+id/btnCountObjectsTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/action_count_object"
+            android:src="@drawable/test_count_object"
             android:onClick="onBtnCountObjectsTestClick" />
 
         <ImageButton
             android:id="@+id/btnSubtractTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/action_subtract"
+            android:src="@drawable/test_subtract"
             android:onClick="onBtnSubtractTestClick" />
     </LinearLayout>
 
@@ -55,7 +55,7 @@
         android:id="@+id/btnCountRulerTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/action_count_ruler"
+        android:src="@drawable/test_count_ruler"
         android:onClick="onBtnCountRulerTestClick" />
 
 </LinearLayout>

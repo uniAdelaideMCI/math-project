@@ -18,8 +18,13 @@ public class TestMenuActivity extends BaseActivity {
 		startActivity(intent);
 	}
 	
+	/**
+	 * Invoke the user interface that test kids' ability to count objects
+	 * @param view
+	 */
 	public void onBtnCountObjectsTestClick(View view){
-		
+		Intent intent = new Intent(this,CountObjectTestActivity.class);
+		startActivity(intent);
 	}
 	
 	public void onBtnCountRulerTestClick(View view){

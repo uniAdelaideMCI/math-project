@@ -64,7 +64,15 @@
             android:label="@string/title_activity_test_menu"
             android:screenOrientation="landscape" >
         </activity>
-        <service android:name="MusicService"></service>
+
+        <service android:name=".MusicService" >
+        </service>
+
+        <activity
+            android:name=".CountObjectTestActivity"
+            android:label="@string/title_activity_count_object_test"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>

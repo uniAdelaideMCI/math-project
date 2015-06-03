@@ -1,0 +1,117 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_wood_brown"
+    android:orientation="horizontal"
+    android:padding="0px"
+    tools:context="au.edu.adelaide.mci.kidnumeracy.CountObjectTestActivity" >
+
+    <LinearLayout
+        android:id="@+id/llLeft"
+        android:layout_width="1180px"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView
+            android:id="@+id/nogvLeft"
+            android:layout_width="match_parent"
+            android:layout_height="1180px"
+            android:layout_weight="0"
+            android:background="@drawable/background_greengrass"
+            android:numColumns="5" >
+        </au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:orientation="horizontal" >
+
+            <ImageButton
+                android:id="@+id/ibBack"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="0dp"
+                android:onClick="onBackClick"
+                android:paddingBottom="1dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/arrow_left" />
+
+            <ImageButton
+                android:id="@+id/ibOpMode"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_gravity="right|bottom"
+                android:layout_marginBottom="0dp"
+                android:layout_marginLeft="40dp"
+                android:onClick="onOpModeClick"
+                android:paddingBottom="1dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/button_drag" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivBorder"
+        android:layout_width="200px"
+        android:layout_height="1180px"
+        android:layout_gravity="top"
+        android:layout_marginTop="0dp"
+        android:paddingTop="0dp"
+        android:src="@drawable/border_grassfence" />
+
+    <LinearLayout
+        android:id="@+id/llRight"
+        android:layout_width="1180px"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView
+            android:id="@+id/nogvRight"
+            android:layout_width="match_parent"
+            android:layout_height="1180px"
+            android:background="@drawable/background_greengrass"
+            android:numColumns="5" >
+        </au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <au.edu.adelaide.mci.kidnumeracy.NumImageView
+                android:id="@+id/nivRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/n1" />
+            
+            <ImageView
+                android:id="@+id/ivRightOrWrong"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:paddingLeft="0dp"
+                android:src="@drawable/answer_right_tick"
+                android:visibility="invisible" />            
+
+            <ImageButton
+                android:id="@+id/ibNextQuestion"
+                android:layout_width="100dp"
+                android:layout_height="80dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="0dp"
+                android:onClick="onNextQuestionClick"
+                android:paddingBottom="1dp"
+                android:paddingRight="1dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/kn_restart" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>
