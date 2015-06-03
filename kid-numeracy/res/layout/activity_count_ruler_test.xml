@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_wood_brown"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    tools:context="au.edu.adelaide.mci.kidnumeracy.CountRulerTestActivity" >
+
+    <au.edu.adelaide.mci.kidnumeracy.component.Ruler
+        android:id="@+id/ruler"
+        android:layout_width="2500px"
+        android:layout_height="500px"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:padding="0dp"
+        android:src="@drawable/ruler_10_0" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="onBackClick"
+        android:scaleType="centerCrop"
+        android:src="@drawable/arrow_left" />
+
+    <!--
+        ImageButton
+        android:id="@+id/ibPhaseChangeRight"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:onClick="onPhaseChooseClick"
+        android:scaleType="centerCrop"
+        android:src="@drawable/phase_twostar" /
+    -->
+
+    <au.edu.adelaide.mci.kidnumeracy.NumImageView
+        android:id="@+id/nivNum"
+        android:layout_width="680px"
+        android:layout_height="900px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/n1" />
+
+    <ImageView
+        android:id="@+id/ivRightOrWrong"
+        android:layout_width="680px"
+        android:layout_height="900px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/answer_right_tick"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/ibNextQuestion"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="0dp"
+        android:onClick="onNextQuestionClick"
+        android:paddingBottom="1dp"
+        android:paddingRight="1dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/kn_restart" />
+
+</RelativeLayout>

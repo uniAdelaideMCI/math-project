@@ -28,7 +28,8 @@ public class TestMenuActivity extends BaseActivity {
 	}
 	
 	public void onBtnCountRulerTestClick(View view){
-		
+		Intent intent = new Intent(this, CountRulerTestActivity.class);
+		startActivity(intent);
 	}
 	
 	public void onBtnAddTestClick(View view){

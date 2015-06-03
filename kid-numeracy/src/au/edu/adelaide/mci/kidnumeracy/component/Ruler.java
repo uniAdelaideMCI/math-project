@@ -39,6 +39,11 @@ public class Ruler extends ImageView implements OnTouchListener,
 	public void setPhaseNo(int phaseNo) {
 		if (phaseNo != this.phaseNo) {
 			this.phaseNo = phaseNo;
+			if (phaseNo == 1){
+				maxValue = 10;
+			}else{
+				maxValue = 20;
+			}
 		}
 
 	}
@@ -98,7 +103,7 @@ public class Ruler extends ImageView implements OnTouchListener,
 	/** @pdOid 0de98837-efe8-495d-bf06-e2e79abaa24d */
 	private int maxValue = 10;
 	/** @pdOid 90c27153-0c9d-470a-baca-0baa128197aa */
-	private int minValue = 1;
+	private int minValue = 0;
 	/** @pdOid 9c1a3117-7beb-4924-9573-427513e803c1 */
 	private int currentValue = 0;
 
@@ -280,5 +285,10 @@ public class Ruler extends ImageView implements OnTouchListener,
 
 	public boolean isLastPhase() {
 		return phaseNo == 2;
+	}
+
+	public void setPhaseNo(int phaseNo, int value) {
+		setPhaseNo(phaseNo);
+		setCurrentValue(value);
 	}
 }

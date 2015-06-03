@@ -36,7 +36,7 @@ public class NumImageView extends ImageView {
 
 	public void setNumValue(int numValue) {
 		
-		if (numValue > 0 && numValue <= 20){
+		if (numValue >= 0 && numValue <= 20){
 			this.numValue = numValue;
 			setImageDrawable(getDrawableByValue(numValue));
 		}else if (numValue == 0){

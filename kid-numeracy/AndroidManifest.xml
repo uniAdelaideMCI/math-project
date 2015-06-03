@@ -73,6 +73,10 @@
             android:label="@string/title_activity_count_object_test"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name=".CountRulerTestActivity"
+            android:label="@string/title_activity_count_ruler_test" >
+        </activity>
     </application>
 
 </manifest>
