@@ -37,7 +37,7 @@
         android:layout_alignParentRight="true"
         android:onClick="onPhaseChooseClick"
         android:scaleType="centerCrop"
-        android:src="@drawable/phase_twostar" />
+        android:src="@drawable/phase_onestar" />
 
     <au.edu.adelaide.mci.kidnumeracy.NumImageView
         android:id="@+id/nivNum"

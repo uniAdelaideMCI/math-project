@@ -23,7 +23,8 @@ public class CountRulerLearningActivity extends BaseActivity implements
 		ruler = (Ruler) findViewById(R.id.ruler);
 		ruler.addAfterRulerNumberChosen(this);
 		nivNum = (NumImageView) findViewById(R.id.nivNum);
-		nivNum.setNumValue(1);
+		ruler.setCurrentValue(0);
+		nivNum.setNumValue(0);
 
 		ibBack = (ImageButton) findViewById(R.id.ibBack);
 		ibPhaseChangeRight = (ImageButton) findViewById(R.id.ibPhaseChangeRight);
@@ -41,9 +42,9 @@ public class CountRulerLearningActivity extends BaseActivity implements
 
 		// change image on the button
 		if (ruler.isLastPhase()) {
-			ibPhaseChangeRight.setImageDrawable(getResources().getDrawable(R.drawable.phase_onestar));
-		} else {
 			ibPhaseChangeRight.setImageDrawable(getResources().getDrawable(R.drawable.phase_twostar));
+		} else {
+			ibPhaseChangeRight.setImageDrawable(getResources().getDrawable(R.drawable.phase_onestar));
 		}
 	}
 	

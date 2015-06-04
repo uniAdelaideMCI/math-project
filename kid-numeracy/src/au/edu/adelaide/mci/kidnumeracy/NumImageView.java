@@ -17,7 +17,18 @@ public class NumImageView extends ImageView {
 	
 	//the number this image view represents
 	private int numValue = 0;
+	
+	//whether to show zero
+	private boolean showZero = false;
 		
+	public boolean isShowZero() {
+		return showZero;
+	}
+
+	public void setShowZero(boolean showZero) {
+		this.showZero = showZero;
+	}
+
 	public NumImageView(Context context) {
 		super(context);
 		this.context = context;
@@ -38,10 +49,11 @@ public class NumImageView extends ImageView {
 		
 		if (numValue >= 0 && numValue <= 20){
 			this.numValue = numValue;
-			setImageDrawable(getDrawableByValue(numValue));
-		}else if (numValue == 0){
-			this.numValue = numValue;
-			setImageDrawable(null);		// do not show 0	
+			if (numValue == 0 && !showZero){
+				setImageDrawable(null);		// do not show 0	
+			}else{
+				setImageDrawable(getDrawableByValue(numValue));				
+			}
 		}else{
 			throw new IllegalArgumentException(String.format("Illegal Value : %d, value must be between 0 and 20.",numValue));
 		}
