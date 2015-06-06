@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:onClick="onBtnAddTestClick"
             android:scaleType="centerInside"
-            android:src="@drawable/test_addition" />
+            android:src="@drawable/test_addition"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <LinearLayout
@@ -47,7 +48,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onBtnSubtractTestClick"
-            android:src="@drawable/test_subtract" />
+            android:src="@drawable/test_subtract"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <ImageButton
