@@ -3,8 +3,8 @@
     android:id="@+id/ll_count_test_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:background="@drawable/background_wood_brown"
+    android:orientation="horizontal"
     tools:context=".CountTestActivity" >
 
     <GridView
@@ -12,13 +12,13 @@
         android:layout_width="800dp"
         android:layout_height="match_parent"
         android:layout_margin="0dp"
-        android:padding="0dp"        
+        android:background="@drawable/backgroud_grid_gold"
         android:gravity="fill"
         android:horizontalSpacing="0dp"
         android:numColumns="3"
+        android:padding="0dp"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="0dp"
-        android:background="@drawable/backgroud_grid_gold" >
+        android:verticalSpacing="0dp" >
     </GridView>
 
     <LinearLayout
@@ -27,62 +27,73 @@
         android:layout_height="match_parent"
         android:layout_margin="1dp"
         android:layout_marginLeft="50dp"
-        android:padding="0dp"             
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        android:padding="0dp" >
 
         <ImageView
             android:id="@+id/ivNum1"
             android:layout_width="fill_parent"
             android:layout_height="500px"
-	        android:layout_margin="0dp"
-	        android:padding="0dp"                 
-            android:src="@drawable/n1"
-            android:onClick="onBtnNumChoose" />
+            android:layout_margin="0dp"
+            android:onClick="onBtnNumChoose"
+            android:padding="0dp"
+            android:src="@drawable/n1" />
 
         <ImageView
             android:id="@+id/ivNum2"
             android:layout_width="fill_parent"
             android:layout_height="500px"
-	        android:layout_margin="0dp"
-	        android:padding="0dp"              
-            android:src="@drawable/n2"
-            android:onClick="onBtnNumChoose"/>
+            android:layout_margin="0dp"
+            android:onClick="onBtnNumChoose"
+            android:padding="0dp"
+            android:src="@drawable/n2" />
 
         <ImageView
             android:id="@+id/ivNum3"
             android:layout_width="fill_parent"
             android:layout_height="500px"
-	        android:layout_margin="0dp"
-	        android:padding="0dp"              
-            android:onClick="onBtnNumChoose"/>
-
+            android:layout_margin="0dp"
+            android:onClick="onBtnNumChoose"
+            android:padding="0dp" />
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="180dp"
         android:layout_height="match_parent"
-        android:padding="0dp"
-        android:layout_margin="0dp" >
+        android:layout_margin="0dp"
+        android:padding="0dp" >
 
         <ImageButton
             android:id="@+id/ibBack"
             android:layout_width="100dp"
             android:layout_height="80dp"
-            android:scaleType="centerCrop"
-            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:onClick="onBackClick"
+            android:scaleType="centerCrop"
             android:src="@drawable/arrow_left" />
+
+        <ImageButton
+            android:id="@+id/ibSubmit"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
+            android:layout_toRightOf="@id/ibBack"
+            android:onClick="onSubmitClick"
+            android:paddingBottom="1dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/button_submit" />
+
         <ImageButton
             android:id="@+id/ibRestart"
             android:layout_width="100dp"
             android:layout_height="80dp"
-            android:scaleType="centerCrop"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:onClick="onRestartClick"                        
+            android:onClick="onRestartClick"
+            android:scaleType="centerCrop"
             android:src="@drawable/kn_restart" />
-        
     </RelativeLayout>
 
 </LinearLayout>

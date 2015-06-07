@@ -213,7 +213,6 @@ public class CountTestActivity extends BaseActivity {
 			adapter = new PuzzleTestImageAdapter();
 			gridView.setAdapter(adapter);
 		}
-
 	}
 	
 	public void onBackClick(View view){
@@ -222,5 +221,9 @@ public class CountTestActivity extends BaseActivity {
 	
 	public void onRestartClick(View view){
 		init();
+	}
+	
+	public void onSubmitClick(View view){
+		
 	}
 }

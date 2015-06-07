@@ -42,10 +42,9 @@ public class CountRulerTestActivity extends BaseActivity implements
 		// show corresponding value
 		nextQuestion();
 	}
-
-	@Override
-	public void afterRulerNumberChosen(int newNumber) {
-		if (newNumber == expectedValue){
+	
+	public void onSubmitClick(View view){
+		if (ruler.getCurrentValue() == expectedValue){
 			//tell the user that the answer was right
 			answerIsRight();
 		}else{
@@ -53,20 +52,10 @@ public class CountRulerTestActivity extends BaseActivity implements
 		}
 	}
 
-//	@SuppressWarnings("deprecation")
-//	public void onPhaseChooseClick(View view) {
-//		// change the phase
-//		ruler.nexPhase();
-//
-//		// change image on the button
-//		if (ruler.isLastPhase()) {
-//			ibPhaseChangeRight.setImageDrawable(getResources().getDrawable(
-//					R.drawable.phase_onestar));
-//		} else {
-//			ibPhaseChangeRight.setImageDrawable(getResources().getDrawable(
-//					R.drawable.phase_twostar));
-//		}
-//	}
+	@Override
+	public void afterRulerNumberChosen(int newNumber) {
+		hideRightOrWrong();
+	}
 
 	public void onBackClick(View view) {
 		finish();
@@ -83,16 +72,22 @@ public class CountRulerTestActivity extends BaseActivity implements
 		}else{
 			ruler.setPhaseNo(2,0);
 		}
-		anserIsWrong();
+		hideRightOrWrong();
 	}
 
 	private void anserIsWrong() {
-		ivRightOrWrong.setVisibility(View.INVISIBLE);
+		ivRightOrWrong.setImageDrawable(getResources().getDrawable(R.drawable.answer_wrong));
+		ivRightOrWrong.setVisibility(View.VISIBLE);	
 	}
 
 	private void answerIsRight() {
+		ivRightOrWrong.setImageDrawable(getResources().getDrawable(R.drawable.answer_right_tick));
 		ivRightOrWrong.setVisibility(View.VISIBLE);
 	}
+	
+	private void hideRightOrWrong(){
+		ivRightOrWrong.setVisibility(View.INVISIBLE);
+	}	
 
 	private int getRandomValue() {
 		return random.nextInt(getMaxValue()) + 1;

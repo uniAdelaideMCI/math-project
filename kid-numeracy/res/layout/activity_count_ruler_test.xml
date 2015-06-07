@@ -29,17 +29,6 @@
         android:scaleType="centerCrop"
         android:src="@drawable/arrow_left" />
 
-    <!--
-        ImageButton
-        android:id="@+id/ibPhaseChangeRight"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:onClick="onPhaseChooseClick"
-        android:scaleType="centerCrop"
-        android:src="@drawable/phase_twostar" /
-    -->
 
     <au.edu.adelaide.mci.kidnumeracy.NumImageView
         android:id="@+id/nivNum"
@@ -57,6 +46,18 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/answer_right_tick"
         android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/ibSubmit"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_toRightOf="@id/nivNum"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:onClick="onSubmitClick"
+        android:paddingBottom="1dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/button_submit" />
 
     <ImageButton
         android:id="@+id/ibNextQuestion"

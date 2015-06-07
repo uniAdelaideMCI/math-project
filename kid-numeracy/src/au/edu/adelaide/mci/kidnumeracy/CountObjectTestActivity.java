@@ -105,14 +105,7 @@ public class CountObjectTestActivity extends BaseActivity implements
 						nogvLeft.decreaseDroppedValue(); 
 					}					
 				}
-				
-				
-				if (nogvRight.getNumValue() == expectedValue){
-					//tell the user that the answer was right
-					answerIsRight();
-				}else{
-					anserIsWrong();
-				}
+				hideRightOrWrong();	
 			}
 
 		});
@@ -133,14 +126,20 @@ public class CountObjectTestActivity extends BaseActivity implements
 		nogvLeft.setNumValue(getLeftInitialValue(), true);
 		nogvRight.setNumValue(0);
 		setExpectedValue(getRandomValue());
-		anserIsWrong();
+		hideRightOrWrong();
 	}
 	private void anserIsWrong() {
-		ivRightOrWrong.setVisibility(View.INVISIBLE);
+		ivRightOrWrong.setImageDrawable(getResources().getDrawable(R.drawable.answer_wrong));
+		ivRightOrWrong.setVisibility(View.VISIBLE);		
 	}
 
 	private void answerIsRight() {
+		ivRightOrWrong.setImageDrawable(getResources().getDrawable(R.drawable.answer_right_tick));
 		ivRightOrWrong.setVisibility(View.VISIBLE);
+	}
+	
+	private void hideRightOrWrong(){
+		ivRightOrWrong.setVisibility(View.INVISIBLE);
 	}
 
 	@Override
@@ -193,6 +192,15 @@ public class CountObjectTestActivity extends BaseActivity implements
 
 	public void onNextQuestionClick(View view) {
 		nextQuestion();
+	}
+	
+	public void onSubmitClick(View view){
+		if (nogvRight.getNumValue() == expectedValue){
+			//tell the user that the answer was right
+			answerIsRight();
+		}else{
+			anserIsWrong();
+		}
 	}
 
 

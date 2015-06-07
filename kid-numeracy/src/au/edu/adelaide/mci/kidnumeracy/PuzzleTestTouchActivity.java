@@ -285,22 +285,6 @@ public class PuzzleTestTouchActivity extends BaseActivity {
 		}
 
 	}
-
-
-//	public void onBtnNumChoose(View view) {
-//		// get the number corresponding to the button
-//		ImageView imageView = (ImageView) view;
-//		// the num is being touched
-//		int num = missingNumMapper.getNum(imageView.getDrawable());
-//		if (puzzleTest.hasMissing()
-//				&& puzzleTest.getCurrentMissIndex() == currentMissingIndex) {
-//			puzzleTest.answer(num);
-//			puzzleTest.nextMissingNum();
-//			adapter = new PuzzleTestImageAdapter();
-//			gridView.setAdapter(adapter);
-//		}
-//
-//	}
 	
 	public void onBackClick(View view){
 		finish();
@@ -308,5 +292,9 @@ public class PuzzleTestTouchActivity extends BaseActivity {
 	
 	public void onRestartClick(View view){
 		init();
+	}
+	
+	public void onSubmitClick(View view){
+		
 	}
 }

@@ -71,6 +71,20 @@
             android:layout_alignParentRight="true"
             android:onClick="onBackClick"
             android:src="@drawable/arrow_left" />
+        
+    <ImageButton
+        android:id="@+id/ibSubmit"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:onClick="onSubmitClick"
+        android:paddingBottom="1dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/button_submit" />      
+        
+        
+        
         <ImageButton
             android:id="@+id/ibRestart"
             android:layout_width="100dp"
