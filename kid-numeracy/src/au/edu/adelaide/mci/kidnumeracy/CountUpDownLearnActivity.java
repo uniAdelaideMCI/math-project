@@ -9,9 +9,9 @@ import android.widget.ImageButton;
 import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
 
 /**
- * Count up and down at the same time
+ * user interface for counting up and down at the same time
  * 
- * @author Yun Zhang
+ * @author Group 5
  *
  */
 public class CountUpDownLearnActivity extends BaseActivity implements NumberListener{

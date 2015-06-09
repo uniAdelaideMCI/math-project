@@ -13,6 +13,11 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+/**
+ * ImageAdapter for gridview which displays objects
+ * @author Group 5
+ *
+ */
 public class ImageAdapter extends BaseAdapter {
 	private int[] resIds={R.drawable.apple_correct,
 		R.drawable.balloon1,R.drawable.cat,R.drawable.garfield,

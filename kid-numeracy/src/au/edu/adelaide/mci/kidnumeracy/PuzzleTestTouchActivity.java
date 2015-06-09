@@ -15,6 +15,11 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+/**
+ * The user interface for puzzle tests
+ * @author Group 5
+ *
+ */
 public class PuzzleTestTouchActivity extends BaseActivity {
 
 	/**

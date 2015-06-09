@@ -8,8 +8,8 @@ import java.io.IOException;
 import org.json.JSONException;
 
 /**
- * Save and load progress info from stroage
- * @author Yun
+ * Save and load progress info from json files
+ * @author Group 5
  *
  */
 public interface ProgressSerialiser {

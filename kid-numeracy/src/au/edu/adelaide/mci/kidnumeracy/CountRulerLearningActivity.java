@@ -9,6 +9,11 @@ import android.widget.ImageButton;
 import au.edu.adelaide.mci.kidnumeracy.component.Ruler;
 import au.edu.adelaide.mci.kidnumeracy.component.RulerNumberChosenListener;
 
+/**
+ * The User Interface for count learning via dragging a ruler
+ * @author Group 5
+ *
+ */
 public class CountRulerLearningActivity extends BaseActivity implements
 		RulerNumberChosenListener {
 	private Ruler ruler;

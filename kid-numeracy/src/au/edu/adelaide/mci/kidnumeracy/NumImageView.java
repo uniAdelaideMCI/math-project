@@ -9,7 +9,8 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 /**
- * @author Yun
+ * The componenent for displaying numbers
+ * @author Group 5
  *
  */
 public class NumImageView extends ImageView {

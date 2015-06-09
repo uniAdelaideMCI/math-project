@@ -9,6 +9,11 @@ import au.edu.adelaide.mci.kidnumeracy.model.Equation;
 import au.edu.adelaide.mci.kidnumeracy.model.EquationGenerator;
 import au.edu.adelaide.mci.kidnumeracy.model.EquationSeqGenerator;
 
+/**
+ * The model class for subtraction learning
+ * @author Group 5
+ *
+ */
 public class SubtractLearning implements Serializable {
 
 	private static final long serialVersionUID = 6248898134992698449L;

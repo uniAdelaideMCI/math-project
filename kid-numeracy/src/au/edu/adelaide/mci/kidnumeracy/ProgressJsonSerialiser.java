@@ -13,6 +13,11 @@ import org.json.JSONObject;
 
 import android.content.Context;
 
+/**
+ * Serialise progress info as json files
+ * @author Group 5
+ *
+ */
 public class ProgressJsonSerialiser implements ProgressSerialiser {
 	private Context mContext;
 	private String mFileName;

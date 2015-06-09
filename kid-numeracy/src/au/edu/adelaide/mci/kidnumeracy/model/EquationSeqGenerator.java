@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /***********************************************************************
  * Module:  EquationSeqGenerator.java
- * Author:  Yun
+ * Author:  Group 5
  * Purpose: Defines the Class EquationSeqGenerator
  ***********************************************************************/
 

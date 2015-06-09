@@ -7,7 +7,8 @@ import java.util.Random;
 import java.util.Set;
 
 /**
- * @author Yun
+ * JSON Objects for a puzzle test
+ * @author Group 5
  *
  */
 public class PuzzleTest {

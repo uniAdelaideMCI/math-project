@@ -2,7 +2,8 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
 /**
- * @author Yun
+ * The event interface for number change
+ * @author Group 5
  *
  */
 public interface NumberListener {

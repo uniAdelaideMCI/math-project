@@ -8,6 +8,11 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
 
+/**
+ * The subtract learning activity
+ * @author Group 5
+ *
+ */
 @SuppressWarnings("deprecation")
 public class SubtractLearningActivity extends BaseActivity implements
 		SubtractListener {

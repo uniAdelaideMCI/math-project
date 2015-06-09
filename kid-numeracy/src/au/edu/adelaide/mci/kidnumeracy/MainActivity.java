@@ -5,6 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+/**
+ * The main user interface for the whole app
+ * @author Group 5
+ *
+ */
 public class MainActivity extends BaseActivity {
 	private final String TAG = "au.edu.adelaide.mci.kidnumeracy.MainActivity";
 

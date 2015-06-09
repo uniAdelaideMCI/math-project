@@ -4,6 +4,11 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * The sqlite database utility class
+ * @author Group 5
+ *
+ */
 public class SQLLiteDatabaseHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "kidNum.sqlite";	
     private static final int VERSION = 1;

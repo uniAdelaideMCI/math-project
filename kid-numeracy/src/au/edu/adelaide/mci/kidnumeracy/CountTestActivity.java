@@ -9,6 +9,11 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+/**
+ * Count test activity
+ * @author Group 5
+ *
+ */
 public class CountTestActivity extends BaseActivity {
 
 	LinearLayout llMain;

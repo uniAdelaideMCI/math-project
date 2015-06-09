@@ -10,6 +10,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
 
+/**
+ * The User interface for count test via dragging or tapping objects
+ * @author Group 5
+ *
+ */
 public class CountObjectTestActivity extends BaseActivity implements
 		NumberListener {
 	private NumObjectGridView nogvLeft;
@@ -23,6 +28,7 @@ public class CountObjectTestActivity extends BaseActivity implements
 	private Random random = new Random(System.currentTimeMillis());
 	//the current expected value
 	private int expectedValue = 0;
+	private int currentValue = -1;
 	
 	private ImageView ivRightOrWrong;
 
@@ -112,7 +118,7 @@ public class CountObjectTestActivity extends BaseActivity implements
 		nogvRight.setMaxValue(max);
 		ivRightOrWrong = (ImageView)findViewById(R.id.ivRightOrWrong);
 		// show corresponding value
-		setExpectedValue(getRandomValue());
+		setExpectedValue(getNextRandomSeqNum());
 	}
 	
 	private int getRandomValue() {
@@ -125,9 +131,23 @@ public class CountObjectTestActivity extends BaseActivity implements
 		nogvLeft.setNumValue(getLeftInitialValue(), true);
 		nogvLeft.setNumValue(getLeftInitialValue(), true);
 		nogvRight.setNumValue(0);
-		setExpectedValue(getRandomValue());
+		//setExpectedValue(getRandomValue());
+		setExpectedValue(getNextRandomSeqNum());
 		hideRightOrWrong();
 	}
+	private int getNextRandomSeqNum() {
+		if (currentValue == -1){
+			currentValue = 1;
+			return 1;
+		}else{
+			currentValue++;
+			if (currentValue == 21){
+				currentValue = 1;
+			}
+		}
+		return currentValue;
+	}
+
 	private void anserIsWrong() {
 		ivRightOrWrong.setImageDrawable(getResources().getDrawable(R.drawable.answer_wrong));
 		ivRightOrWrong.setVisibility(View.VISIBLE);		

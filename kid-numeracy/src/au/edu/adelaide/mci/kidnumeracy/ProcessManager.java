@@ -3,8 +3,8 @@ package au.edu.adelaide.mci.kidnumeracy;
 import android.content.Context;
 
 /**
- * Manage the process
- * @author Yun
+ * load process info from sqlite database
+ * @author Group 5
  *
  */
 public class ProcessManager {

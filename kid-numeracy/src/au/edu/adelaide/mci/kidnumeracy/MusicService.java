@@ -13,7 +13,8 @@ import android.widget.Toast;
 import au.edu.adelaide.mci.kidnumeracy.R;
 
 /**
- * @author Yun
+ * Service for playing music
+ * @author Group 5
  *
  */
 public class MusicService extends Service implements OnErrorListener {

@@ -7,7 +7,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * @author Yun
+ * load or save progress info to JSON files
+ * @author Group 5
  *
  */
 public class JsonProgress implements Progress {

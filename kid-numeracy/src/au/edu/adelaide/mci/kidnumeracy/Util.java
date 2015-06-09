@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * @author Yun
+ * The utility class
+ * @author Group 5
  *
  */
 public class Util {

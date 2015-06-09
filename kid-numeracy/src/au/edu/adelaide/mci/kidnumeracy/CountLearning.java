@@ -5,7 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author Yun
+ * The learning model object
+ * @author Group 5
  *
  */
 public class CountLearning implements Serializable {

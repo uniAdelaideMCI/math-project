@@ -5,7 +5,7 @@ import android.util.Log;
 
 /**
  * Base Activity for all activities for playing background information
- * @author Yun
+ * @author Group 5
  *
  */
 public class BaseActivity extends Activity {

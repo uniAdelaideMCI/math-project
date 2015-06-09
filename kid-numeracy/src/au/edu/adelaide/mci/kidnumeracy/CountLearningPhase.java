@@ -5,7 +5,7 @@ package au.edu.adelaide.mci.kidnumeracy;
 
 /**
  * Define each phase for count learning
- * @author Yun
+ * @author Group 5
  *
  */
 public class CountLearningPhase {

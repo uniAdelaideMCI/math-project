@@ -22,6 +22,11 @@ import android.widget.ImageView;
 import au.edu.adelaide.mci.kidnumeracy.NumberListener;
 import au.edu.adelaide.mci.kidnumeracy.R;
 
+/**
+ * The component for displaying objects corresponding to the a number
+ * @author Group 5
+ *
+ */
 public class NumObjectGridView extends GridView {
 	private class ImageViewDragListener implements OnDragListener {
 		//Drawable enterShape = getResources().getDrawable(R.drawable.shape_droptarget);

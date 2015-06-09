@@ -1,6 +1,6 @@
 /***********************************************************************
  * Module:  EquationGenerator.java
- * Author:  Yun
+ * Author:  Group 5
  * Purpose: Defines the Interface EquationGenerator
  ***********************************************************************/
 

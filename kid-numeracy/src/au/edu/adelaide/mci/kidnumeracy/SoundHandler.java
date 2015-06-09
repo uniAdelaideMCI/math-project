@@ -1,7 +1,8 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
 /**
- * @author Yun
+ * The Utility class for displaying music
+ * @author Group 5
  *
  */
 import java.util.Random;

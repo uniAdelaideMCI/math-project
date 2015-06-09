@@ -1,10 +1,8 @@
-/**
- * 
- */
 package au.edu.adelaide.mci.kidnumeracy;
 
 /**
- * @author Yun
+ * The event interface for subtraction
+ * @author Group 5
  *
  */
 public interface SubtractListener {

@@ -6,15 +6,17 @@ import org.json.JSONException;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
-import android.widget.Toast;
 
-@SuppressWarnings("deprecation")
+/**
+ * The user interface for count learning
+ * @author Group 5
+ *
+ */
 public class CountLearnActivity extends BaseActivity implements
 		NumberListener {
 
@@ -103,7 +105,6 @@ public class CountLearnActivity extends BaseActivity implements
 	public void onAllPhaseCounted() {
 		mNumFinished = true;
 		Log.d(TAG, "onAllPhaseCounted");
-		Toast.makeText(this, "Finish all counting", Toast.LENGTH_SHORT);
 	}
 
 	@Override

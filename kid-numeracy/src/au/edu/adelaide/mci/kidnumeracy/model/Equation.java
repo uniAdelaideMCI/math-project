@@ -6,7 +6,11 @@
 
 package au.edu.adelaide.mci.kidnumeracy.model;
 
-/** @pdOid 1ea040ae-2d3b-4820-b04d-5426ead24f84 */
+/**
+ * Addition or subtraction equation
+ * @author Group 5
+ *
+ */
 public class Equation {
 	/** @pdOid 2f585914-960f-4fa1-8232-1f9627c9dab7 */
 	private int operand1;

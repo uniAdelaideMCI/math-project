@@ -4,7 +4,8 @@
 package au.edu.adelaide.mci.kidnumeracy.component;
 
 /**
- * @author Yun
+ * The event listener for num change
+ * @author Group 5
  *
  */
 public interface NumChangeListener {

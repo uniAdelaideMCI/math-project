@@ -4,6 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+/**
+ * The user interface for the test menu
+ * @author Group 5
+ *
+ */
 public class TestMenuActivity extends BaseActivity {
 
 	@Override

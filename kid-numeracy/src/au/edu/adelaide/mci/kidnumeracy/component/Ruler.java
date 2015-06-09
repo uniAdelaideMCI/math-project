@@ -16,7 +16,8 @@ import android.widget.ImageView;
 import au.edu.adelaide.mci.kidnumeracy.R;
 
 /**
- * @author Yun
+ * The graphic component which displays a ruler corresponding to a number
+ * @author Group 5
  *
  */
 @SuppressLint("ClickableViewAccessibility")
@@ -179,7 +180,7 @@ public class Ruler extends ImageView implements OnTouchListener,
 		player.start();
 	}
 
-	private void reloadFiles() {
+	public void reloadFiles() {
 		if (phaseNo == 1) {
 			setImageDrawable(getPhase1Drawable(currentValue));
 		} else {

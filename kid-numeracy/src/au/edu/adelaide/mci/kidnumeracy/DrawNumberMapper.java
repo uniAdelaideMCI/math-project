@@ -9,7 +9,7 @@ import android.graphics.drawable.Drawable;
 
 /**
  * the mapping of drawalbes and numbers
- * @author Yun
+ * @author Group 5
  *
  */
 @SuppressLint("UseSparseArrays")

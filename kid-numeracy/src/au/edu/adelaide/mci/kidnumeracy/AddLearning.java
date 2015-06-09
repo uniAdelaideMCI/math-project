@@ -9,7 +9,7 @@ import au.edu.adelaide.mci.kidnumeracy.model.EquationGenerator;
 import au.edu.adelaide.mci.kidnumeracy.model.EquationSeqGenerator;
 
 /**
- * @author Yun
+ * @author Group 5
  *
  */
 public class AddLearning implements Serializable {

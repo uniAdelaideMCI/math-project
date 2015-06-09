@@ -15,7 +15,7 @@ import android.content.Context;
 
 /**
  * Define Count Learning Process
- * @author Yun
+ * @author Group 5
  *
  */
 public class CountLearningProcess {

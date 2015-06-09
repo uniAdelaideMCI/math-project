@@ -1,15 +1,20 @@
 package au.edu.adelaide.mci.kidnumeracy;
 
-import android.app.Activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.LinearLayout;
 import au.edu.adelaide.mci.kidnumeracy.component.NumObjectGridView;
 
+/**
+ * Add Learning Activity
+ * @author Group 5
+ *
+ */
 public class AddLearningActivity extends BaseActivity implements AddListener {
 	
+	private static final long serialVersionUID = -8788249968701554148L;
+
 	private AddLearning addLearning;
 
 	private MediaPlayer mPlayer; 
@@ -34,8 +39,6 @@ public class AddLearningActivity extends BaseActivity implements AddListener {
 		}
 	};	
 	
-	private static final String ADD_LEARNING = "au.edu.adelaide.mci.kidnumeracy.ADD_LEARNING";
-
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
@@ -134,21 +137,6 @@ public class AddLearningActivity extends BaseActivity implements AddListener {
 		//set width and height of operand2 gridview
 		//configOperandDimension(nogvResult,nogvOperand2);
 		
-	}
-
-	/**
-	 * config height and width of operand grid view according to 
-	 * the dimension of the result grid view 
-	 * @param aNogvResult
-	 * @param aNogvOperand
-	 */
-	private void configOperandDimension(NumObjectGridView aNogvResult,
-			NumObjectGridView aNogvOperand) {
-		int width = aNogvResult.getColumnWidth() * aNogvOperand.getNumColumns();
-		//row height for result grid view
-		int resultRowHeight = aNogvResult.getHeight() / (aNogvResult.getRowCount());
-		int height = resultRowHeight * aNogvOperand.getRowCount();
-		aNogvOperand.setLayoutParams(new LinearLayout.LayoutParams(width,height));
 	}
 
 	private void configNogvOperand(NumObjectGridView numObject, int numValue) {

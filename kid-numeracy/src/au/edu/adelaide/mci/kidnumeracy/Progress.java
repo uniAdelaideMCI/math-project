@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 /**
  * Learning progress info
- * @author Yun
+ * @author Group 5
  *
  */
 public interface Progress {
